@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.erp.auth.dept.model.DeptModel" table="tbl_deptModel">
+        		<id name="uuid">
+        			<generator class="native"/>
+        		</id>
+        		
+        		<property name="name" length="50"/>
+        		<property name="tele" length="50"/>
+        	</class>
+        </hibernate-mapping>

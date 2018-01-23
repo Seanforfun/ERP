@@ -12,8 +12,9 @@ import ca.mcmaster.erp.auth.emp.model.EmpModel;
  * @version Jan 22, 2018 12:10:21 PM
  */
 public class EmpImpl extends HibernateDaoSupport implements EmpDao{
+	@SuppressWarnings("unchecked")
 	public EmpModel getUserByUsernameAndPassword(String username, String password){
-		List<EmpModel> tmpList = this.getHibernateTemplate().find("from EmpModel");
+		List<EmpModel> tmpList = this.getHibernateTemplate().find("from EmpModel where username = ? and password = ?", username, password);
 		return tmpList.size() > 0 ? tmpList.get(0) : null;
 	}
 }

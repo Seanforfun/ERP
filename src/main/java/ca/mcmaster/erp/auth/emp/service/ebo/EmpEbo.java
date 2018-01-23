@@ -15,8 +15,11 @@ public class EmpEbo implements EmpEbi{
 	@Resource(name="empDao")
 	private EmpDao empDao;
 	public EmpModel login(String username, String password) {
-		String md5Pwd = MD5Utils.md5(password);
-		EmpModel tmpEmp = empDao.getUserByUsernameAndPassword(username, md5Pwd);
+		EmpModel tmpEmp = null;
+		if(null != password){
+			String md5Pwd = MD5Utils.md5(password);
+			tmpEmp = empDao.getUserByUsernameAndPassword(username, md5Pwd);
+		}
 		return tmpEmp;
 	}
 	

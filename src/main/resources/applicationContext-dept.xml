@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+
+	<bean id="deptAction" class="ca.mcmaster.erp.auth.dept.web.DeptAction" scope="prototype"/>
+	<bean id="deptEbi" class="ca.mcmaster.erp.auth.dept.service.ebo.DeptEbo"/>
+	<bean id="deptDao" class="ca.mcmaster.erp.auth.dept.dao.impl.DeptImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>

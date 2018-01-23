@@ -122,7 +122,7 @@
 								<td><a class="hei" target="main" href="#">基础维护</a></td>
 							</tr>
 							<tr>
-								<td><a class="hei" target="main" href="department/list.jsp">&nbsp;&nbsp;&nbsp;&nbsp;部门维护</a></td>
+								<td><a class="hei" target="main" href="${pageContext.request.contextPath}/dept_list.action">&nbsp;&nbsp;&nbsp;&nbsp;部门维护</a></td>
 							</tr>
 							<tr>
 								<td><a class="hei" target="main" href="employee/list.jsp">&nbsp;&nbsp;&nbsp;&nbsp;员工维护</a></td>
