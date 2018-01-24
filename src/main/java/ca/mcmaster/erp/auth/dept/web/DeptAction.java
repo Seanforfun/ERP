@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.auth.dept.model.DeptQueryModel;
 import ca.mcmaster.erp.auth.dept.service.ebi.DeptEbi;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -17,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("serial")
 public class DeptAction extends ActionSupport {
 	public DeptModel dm = new DeptModel();
+	public DeptQueryModel dqm = new DeptQueryModel(); 
 	@Resource(name="deptEbi")
 	private DeptEbi deptEbi;
 	
@@ -24,6 +26,13 @@ public class DeptAction extends ActionSupport {
 		//Add all info of all depts
 		List<DeptModel> deptList = deptEbi.getAll();
 		//put info into correct scope
+		ActionContext.getContext().put("deptList", deptList);
+		return "list";
+	}
+	
+	public String queryList(){
+		List<DeptModel> deptList = deptEbi.getAll(dqm);
+		System.out.println(dqm.getName() + ":" + dqm.getTele());
 		ActionContext.getContext().put("deptList", deptList);
 		return "list";
 	}
@@ -41,6 +50,11 @@ public class DeptAction extends ActionSupport {
 		}else{
 			deptEbi.update(dm);
 		}
+		return "toList";
+	}
+	
+	public String delete(){
+		deptEbi.delete(dm);
 		return "toList";
 	}
 }

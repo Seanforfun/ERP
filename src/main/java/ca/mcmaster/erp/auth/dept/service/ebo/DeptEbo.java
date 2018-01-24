@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.dept.dao.dao.DeptDao;
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.auth.dept.model.DeptQueryModel;
 import ca.mcmaster.erp.auth.dept.service.ebi.DeptEbi;
 
 /**
@@ -36,5 +37,16 @@ public class DeptEbo implements DeptEbi {
 	@Override
 	public void update(DeptModel dm) {
 		deptDao.update(dm);
+	}
+
+	@Override
+	public void delete(DeptModel dm) {
+		deptDao.delete(dm);
+	}
+
+	@Override
+	public List<DeptModel> getAll(DeptQueryModel dqm) {
+		List<DeptModel> deptList =deptDao.getAll(dqm);
+		return deptList;
 	}
 }

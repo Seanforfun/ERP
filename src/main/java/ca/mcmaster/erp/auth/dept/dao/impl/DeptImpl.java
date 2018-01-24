@@ -2,10 +2,13 @@ package ca.mcmaster.erp.auth.dept.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import ca.mcmaster.erp.auth.dept.dao.dao.DeptDao;
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.auth.dept.model.DeptQueryModel;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -35,4 +38,20 @@ public class DeptImpl extends HibernateDaoSupport implements DeptDao {
 		this.getHibernateTemplate().update(dm);
 	}
 
+	@Override
+	public void delete(DeptModel dm) {
+		this.getHibernateTemplate().delete(dm);
+	}
+
+	@Override
+	public List<DeptModel> getAll(DeptQueryModel dqm) {
+		DetachedCriteria dc = DetachedCriteria.forClass(DeptModel.class);
+		if(dqm != null && dqm.getName().trim().length() > 0){
+			dc.add(Restrictions.like("name", "%" + dqm.getName().trim() + "%"));
+		}
+		if(dqm != null && dqm.getTele().trim().length() > 0){
+			dc.add(Restrictions.like("tele", "%" + dqm.getTele().trim() + "%"));
+		}
+		return this.getHibernateTemplate().findByCriteria(dc);
+	}
 }

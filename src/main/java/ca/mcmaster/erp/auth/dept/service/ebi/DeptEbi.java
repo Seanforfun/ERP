@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.auth.dept.model.DeptQueryModel;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -17,5 +18,7 @@ public interface DeptEbi {
 	public List<DeptModel> getAll();
 	public DeptModel get(Integer uuid);
 	public void update(DeptModel dm);
+	public void delete(DeptModel dm);
+	public List<DeptModel> getAll(DeptQueryModel dqm);
 	
 }
