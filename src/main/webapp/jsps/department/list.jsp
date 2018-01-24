@@ -48,54 +48,61 @@
 			</div>
 			<!--"square-o-top"end-->
 			<div class="square-order">
-				<center>
-					<span style="font-size:20px;color:#96D34A;font-weight:bold">没有查找到满足条件的数据！</span>
-				</center>
-				<table width="100%" border="1" cellpadding="0" cellspacing="0">
-					<tr align="center"
-						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
-						<td width="13%" height="30">编号</td>
-						<td width="13%">部门名称</td>
-						<td width="16%">电话</td>
-						<td width="16%">操作</td>
-					</tr>
-					<s:iterator value="#deptList">
-						<tr align="center" bgcolor="#FFFFFF">
-							<td width="13%" height="30">${uuid }</td>
-							<td>${name}</td>
-							<td>${tele }</td>
-							<td>
-								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
-								<span style="line-height:12px; text-align:center;"> 
-									<a href="input.jsp" class="xiu">修改</a>
-								</span> 
-								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
-								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？当前部门删除后，所有部门内的员工将被删除，同时相关数据也将删除！',318)">删除</a>
-								</span>
-							</td>
+				<s:if test="#deptList.size() == 0">
+					<center>
+						<span style="font-size:20px;color:#96D34A;font-weight:bold">没有查找到满足条件的数据！</span>
+					</center>
+				</s:if>
+				<s:else>
+					<table width="100%" border="1" cellpadding="0" cellspacing="0">
+						<tr align="center"
+							style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
+							<td width="13%" height="30">编号</td>
+							<td width="13%">部门名称</td>
+							<td width="16%">电话</td>
+							<td width="16%">操作</td>
 						</tr>
-					</s:iterator>
-				</table>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="51%">&nbsp;</td>
-						<td width="13%">共24条记录
-						<td width="6%">
-							<a id="fir" class="sye">首&nbsp;&nbsp;页</a>
-						</td>
-						<td width="6%">
-							<a id="pre" class="sye">上一页</a>
-						</td>
-						<td width="6%">
-							<a id="next" class="sye">下一页</a>
-						</td>
-						<td width="6%">
-							<a id="last" class="sye">末&nbsp;&nbsp;页</a>
-						</td>
-						<td width="12%">当前第<span style="color:red;">1</span>/3页</td>
-					</tr>
-				</table>
+						<s:iterator value="#deptList">
+							<tr align="center" bgcolor="#FFFFFF">
+								<td width="13%" height="30">${uuid }</td>
+								<td>${name}</td>
+								<td>${tele }</td>
+								<td>
+									<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
+									<span style="line-height:12px; text-align:center;"> 
+										<s:a cssClass="xiu" action="dept_input">
+											<s:param name="dm.uuid" value="uuid"/>
+											修改
+										</s:a>
+									</span> 
+									<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
+									<span style="line-height:12px; text-align:center;"> 
+										<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？当前部门删除后，所有部门内的员工将被删除，同时相关数据也将删除！',318)">删除</a>
+									</span>
+								</td>
+							</tr>
+						</s:iterator>
+					</table>
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="51%">&nbsp;</td>
+							<td width="13%">共24条记录
+							<td width="6%">
+								<a id="fir" class="sye">首&nbsp;&nbsp;页</a>
+							</td>
+							<td width="6%">
+								<a id="pre" class="sye">上一页</a>
+							</td>
+							<td width="6%">
+								<a id="next" class="sye">下一页</a>
+							</td>
+							<td width="6%">
+								<a id="last" class="sye">末&nbsp;&nbsp;页</a>
+							</td>
+							<td width="12%">当前第<span style="color:red;">1</span>/3页</td>
+						</tr>
+					</table>
+				</s:else>
 			</div>
 		</form>
 	</div>

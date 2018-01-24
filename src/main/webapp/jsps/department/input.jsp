@@ -18,6 +18,7 @@
 	<div class="content-text">
 		<div class="square-order">
 			<s:form action="dept_save" method="post">
+			<s:textfield type="hidden" name="dm.uuid"/>
   			<div style="border:1px solid #cecece;">
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr bgcolor="#FFFFFF">

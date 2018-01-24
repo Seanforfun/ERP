@@ -29,11 +29,18 @@ public class DeptAction extends ActionSupport {
 	}
 	
 	public String input(){
+		if(dm.getUuid() != null){
+			dm = deptEbi.get(dm.getUuid());
+		}
 		return "input";
 	}
 	
 	public String save(){
-		deptEbi.save(dm);
-		return list();
+		if(dm.getUuid() == null){
+			deptEbi.save(dm);
+		}else{
+			deptEbi.update(dm);
+		}
+		return "toList";
 	}
 }

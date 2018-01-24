@@ -24,4 +24,15 @@ public class DeptImpl extends HibernateDaoSupport implements DeptDao {
 		return this.getHibernateTemplate().find(hql);
 	}
 
+	@Override
+	public DeptModel get(Integer uuid) {
+		DeptModel temp = this.getHibernateTemplate().get(DeptModel.class, uuid);
+		return temp;
+	}
+
+	@Override
+	public void update(DeptModel dm) {
+		this.getHibernateTemplate().update(dm);
+	}
+
 }

@@ -15,5 +15,7 @@ public interface DeptEbi {
 
 	public void save(DeptModel dm);
 	public List<DeptModel> getAll();
+	public DeptModel get(Integer uuid);
+	public void update(DeptModel dm);
 	
 }

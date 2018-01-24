@@ -33,6 +33,7 @@
 		<action name="dept_*" class="deptAction" method="{1}">
 			<result name="list">/jsps/department/list.jsp</result>
 			<result name="input">/jsps/department/input.jsp</result>
+			<result name="toList" type="redirectAction">dept_list.action</result>
 		</action>
 	</package>
 </struts>

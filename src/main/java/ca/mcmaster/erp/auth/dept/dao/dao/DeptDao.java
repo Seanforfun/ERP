@@ -9,9 +9,8 @@ import ca.mcmaster.erp.auth.dept.model.DeptModel;
  * @version Jan 23, 2018 3:35:42 PM
  */
 public interface DeptDao {
-
 	public void save(DeptModel dm);
-
 	public List<DeptModel> getAll();
-
+	public DeptModel get(Integer uuid);
+	public void update(DeptModel dm);
 }

@@ -26,4 +26,15 @@ public class DeptEbo implements DeptEbi {
 		List<DeptModel> deptList = deptDao.getAll();
 		return deptList;
 	}
+
+	@Override
+	public DeptModel get(Integer uuid) {
+		DeptModel temp = deptDao.get(uuid);
+		return temp;
+	}
+
+	@Override
+	public void update(DeptModel dm) {
+		deptDao.update(dm);
+	}
 }
