@@ -22,9 +22,15 @@ public class DeptAction extends ActionSupport {
 	@Resource(name="deptEbi")
 	private DeptEbi deptEbi;
 	
+	public Integer pageNum = 1;
+	public Integer pageCount = 2;
+	public Integer maxPageNum;
+	public Integer dataTotal;
 	public String list(){
+		dataTotal  = deptEbi.getCount(dqm);
+		maxPageNum = (dataTotal + pageCount - 1) / pageCount;
 		//Add all info of all depts
-		List<DeptModel> deptList = deptEbi.getAll();
+		List<DeptModel> deptList = deptEbi.getAll(dqm, pageNum, pageCount);
 		//put info into correct scope
 		ActionContext.getContext().put("deptList", deptList);
 		return "list";
@@ -32,7 +38,6 @@ public class DeptAction extends ActionSupport {
 	
 	public String queryList(){
 		List<DeptModel> deptList = deptEbi.getAll(dqm);
-		System.out.println(dqm.getName() + ":" + dqm.getTele());
 		ActionContext.getContext().put("deptList", deptList);
 		return "list";
 	}

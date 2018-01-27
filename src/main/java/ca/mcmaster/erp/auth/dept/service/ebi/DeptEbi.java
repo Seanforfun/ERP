@@ -20,5 +20,8 @@ public interface DeptEbi {
 	public void update(DeptModel dm);
 	public void delete(DeptModel dm);
 	public List<DeptModel> getAll(DeptQueryModel dqm);
+	public List<DeptModel> getAll(DeptQueryModel dqm, Integer pageNum,
+			Integer pageCount);
+	public Integer getCount(DeptQueryModel dqm);
 	
 }

@@ -3,6 +3,7 @@ package ca.mcmaster.erp.auth.dept.dao.impl;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -46,12 +47,39 @@ public class DeptImpl extends HibernateDaoSupport implements DeptDao {
 	@Override
 	public List<DeptModel> getAll(DeptQueryModel dqm) {
 		DetachedCriteria dc = DetachedCriteria.forClass(DeptModel.class);
-		if(dqm != null && dqm.getName().trim().length() > 0){
+		if(dqm.getName() != null && dqm.getName().trim().length() > 0){
 			dc.add(Restrictions.like("name", "%" + dqm.getName().trim() + "%"));
 		}
-		if(dqm != null && dqm.getTele().trim().length() > 0){
+		if(dqm.getTele() != null && dqm.getTele().trim().length() > 0){
 			dc.add(Restrictions.like("tele", "%" + dqm.getTele().trim() + "%"));
 		}
 		return this.getHibernateTemplate().findByCriteria(dc);
+	}
+
+	@Override
+	public List<DeptModel> getAll(DeptQueryModel dqm, Integer pageNum,
+			Integer pageCount) {
+		DetachedCriteria dc = DetachedCriteria.forClass(DeptModel.class);
+		if(dqm.getName() != null && dqm.getName().trim().length() > 0){
+			dc.add(Restrictions.like("name", "%" + dqm.getName().trim() + "%"));
+		}
+		if(dqm.getTele() != null && dqm.getTele().trim().length() > 0){
+			dc.add(Restrictions.like("tele", "%" + dqm.getTele().trim() + "%"));
+		}
+		return this.getHibernateTemplate().findByCriteria(dc, (pageNum - 1) * pageCount, pageCount);
+	}
+
+	@Override
+	public Integer getCount(DeptQueryModel dqm) {
+		DetachedCriteria dc = DetachedCriteria.forClass(DeptModel.class);
+		dc.setProjection(Projections.rowCount());
+		if(dqm.getName() != null && dqm.getName().trim().length() > 0){
+			dc.add(Restrictions.like("name", "%" + dqm.getName().trim() + "%"));
+		}
+		if(dqm.getTele() != null && dqm.getTele().trim().length() > 0){
+			dc.add(Restrictions.like("tele", "%" + dqm.getTele().trim() + "%"));
+		}
+		List<Long> deptCount = this.getHibernateTemplate().findByCriteria(dc);
+		return deptCount.get(0).intValue();
 	}
 }

@@ -49,4 +49,17 @@ public class DeptEbo implements DeptEbi {
 		List<DeptModel> deptList =deptDao.getAll(dqm);
 		return deptList;
 	}
+
+	@Override
+	public List<DeptModel> getAll(DeptQueryModel dqm, Integer pageNum,
+			Integer pageCount) {
+		List<DeptModel> deptList = deptDao.getAll(dqm, pageNum, pageCount);
+		return deptList;
+	}
+
+	@Override
+	public Integer getCount(DeptQueryModel dqm) {
+		Integer count = deptDao.getCount(dqm);
+		return count;
+	}
 }
