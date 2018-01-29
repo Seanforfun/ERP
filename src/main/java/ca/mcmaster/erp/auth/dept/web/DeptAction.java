@@ -26,6 +26,7 @@ public class DeptAction extends ActionSupport {
 	public Integer pageCount = 2;
 	public Integer maxPageNum;
 	public Integer dataTotal;
+	
 	public String list(){
 		dataTotal  = deptEbi.getCount(dqm);
 		maxPageNum = (dataTotal + pageCount - 1) / pageCount;

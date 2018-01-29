@@ -4,8 +4,8 @@
 <script type="text/javascript">
 	$(function(){
 		var pageNum = ${pageNum};
-		var pageCount = ${pageCount};
-		if(pageCount == 1){
+		var maxPageNum = ${maxPageNum};
+		if(maxPageNum == 1){
 			$("#fir").css("display","none");
 			$("#pre").css("display","none");
 			$("#next").css("display","none");
@@ -15,7 +15,7 @@
 			$("#pre").css("display","none");
 			$("#next").css("display","inline");
 			$("#last").css("display","inline");
-		}else if(pageNum == pageCount){
+		}else if(pageNum == maxPageNum){
 			$("#fir").css("display","inline");
 			$("#pre").css("display","inline");
 			$("#next").css("display","none");
@@ -63,6 +63,6 @@
 		<td width="6%">
 			<a id="last" class="sye">末&nbsp;&nbsp;页</a>
 		</td>
-		<td width="12%">当前第<span style="color:red;">${pageNum}</span>/${pageCount}页</td>
+		<td width="12%">当前第<span style="color:red;">${pageNum}</span>/${maxPageNum}页</td>
 	</tr>
 </table>
