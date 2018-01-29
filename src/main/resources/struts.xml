@@ -25,10 +25,10 @@
 			<result>/jsps/login.jsp</result>
 		</action>
 		
-		<action name="emp_*" class="empAction" method="{1}">
+		<!-- <action name="emp_*" class="empAction" method="{1}">
 			<result name="loginFail">/jsps/login.jsp</result>
 			<result name="loginSuccess">/jsps/main.jsp</result>
-		</action>
+		</action> -->
 		
 		<action name="dept_*" class="deptAction" method="{1}">
 			<result name="list">/jsps/department/list.jsp</result>

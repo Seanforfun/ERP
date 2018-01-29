@@ -1,9 +1,12 @@
 package ca.mcmaster.erp.util.generator;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
-import org.aspectj.apache.bcel.classfile.Field;
 import org.junit.Test;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
@@ -26,10 +29,68 @@ public class GeneratorUtilsTest {
 	private void GeneratorUtil(Class clazz) throws IOException {
 		this.clazz = clazz;
 		dataInit();
-		generatorDirectory();
-		generatorQueryModel();
+//		generatorDirectory();
+//		generatorQueryModel();
+		generatorHbmXml();
 	}
 
+	private void generatorHbmXml() throws IOException {
+		File f = new File("src/main/java/" + dir + "/model/" + b + "Model.hbm.xml");
+		if(f.exists()){
+			return;
+		}
+		f.createNewFile();
+		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+		
+		bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		bw.newLine();
+		bw.newLine();
+		
+		bw.write("<!DOCTYPE hibernate-mapping PUBLIC");
+		bw.newLine();
+		bw.write("        \"-//Hibernate/Hibernate Mapping DTD 3.0//EN\"");
+		bw.newLine();
+		bw.write("        \"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd\">");
+		bw.newLine();
+		bw.newLine();
+		
+		bw.write("        <hibernate-mapping>");
+		bw.newLine();
+		bw.write("        	<class name=\""+ pkg +".model."+ b +"Model\" table=\"tbl_"+ s +"Model\">");
+		bw.newLine();
+		bw.write("         		<id name=\"uuid\">");
+		bw.newLine();
+		bw.write("        			<generator class=\"native\"/>");
+		bw.newLine();
+		bw.write("        		</id>");
+		bw.newLine();
+		bw.newLine();
+		
+		Field[] declaredFields = clazz.getDeclaredFields();
+		for(Field field : declaredFields){
+			if(field.getModifiers() == Modifier.PRIVATE){
+				if(!"uuid".equals(field.getName())){
+					if(field.getType().equals(String.class) || 
+							field.getType().equals(Integer.class)	||
+							field.getType().equals(Double.class)	||
+							field.getType().equals(Long.class)	){
+						bw.write("        		<property name=\""+ field.getName() +"\" />");
+						bw.newLine();
+					}
+				}
+			}
+		}
+		
+		bw.write("        	</class>");
+		bw.newLine();
+		bw.write("        </hibernate-mapping>");
+		bw.newLine();
+		
+		bw.flush();
+		bw.close();
+	}
+	
 	private void generatorDirectory() {
 		File ebi = new File("src/main/java/"+ dir +"/service/ebi");
 		ebi.mkdirs();
@@ -43,8 +104,31 @@ public class GeneratorUtilsTest {
 		impl.mkdirs();
 	}
 
-	private void generatorQueryModel() {
+	private void generatorQueryModel() throws IOException {
+		File f = new File("src/main/java/" + dir + "/model/" + b + "QueryModel.java");
+		if(f.exists()){
+			return;
+		}
+		f.createNewFile();
 		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+		bw.write("package "+ pkg +".model;");
+		bw.newLine();
+		bw.newLine();
+		
+		bw.write("import ca.mcmaster.erp.utils.base.BaseQueryModel;");
+		bw.newLine();
+		bw.newLine();
+		
+		bw.write("public class "+b+"QueryModel extends "+b+"Model implements BaseQueryModel{");
+		bw.newLine();
+		
+		bw.write("	//TODO "+ b +"QueryModel");
+		bw.newLine();
+		
+		bw.write("}");
+		bw.flush();
+		bw.close();
 	}
 	
 	private void dataInit() {

@@ -1,23 +1,19 @@
 package ca.mcmaster.erp.auth.emp.model;
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
- * @version Jan 22, 2018 12:04:47 PM
+ * @version Jan 29, 2018 1:43:48 PM
  */
 public class EmpModel {
-	private Integer uuid;
+	private Long uuid;
 	private String username;
 	private String name;
 	private String password;
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Integer getUuid() {
+	private Integer age;
+	private Double weight;
+	public Long getUuid() {
 		return uuid;
 	}
-	public void setUuid(Integer uuid) {
+	public void setUuid(Long uuid) {
 		this.uuid = uuid;
 	}
 	public String getUsername() {
@@ -31,5 +27,23 @@ public class EmpModel {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public Double getWeight() {
+		return weight;
+	}
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 }
