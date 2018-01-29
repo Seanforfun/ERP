@@ -17,5 +17,6 @@ public interface BaseEbi<T> {
 	public T get( Serializable uuid);
 	public List<T> getAll();
 	public List<T> getAll(BaseQueryModel bqm, Integer pageNum, Integer pageCount);
+	public List<T> getAll(BaseQueryModel bqm);
 	public Integer getCount(BaseQueryModel bqm);
 }

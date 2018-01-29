@@ -10,6 +10,13 @@
 			$("form:last").submit();
 		});
 	});
+	
+	function showMsg(msg,uuid){
+		top.lock.show();
+		top.$("context-msg").style.display = "block";
+		top.$("context-msg-text").innerHTML = msg;
+		top.$("hid-action").value = "dept_delete.action?dm.uuid=" + uuid;
+	}
 </script>
 <div class="content-right">
 	<div class="content-r-pic_w">
@@ -77,10 +84,7 @@
 									</span> 
 									<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
-										<s:a action="dept_delete" cssClass="xiu">
-											<s:param name="dm.uuid" value="uuid"/>
-											删除
-										</s:a>
+										<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？当前部门删除后，所有部门内的员工将被删除，同时相关数据也将删除！',${uuid})">删除</a>
 									</span>
 								</td>
 							</tr>

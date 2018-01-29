@@ -147,7 +147,8 @@
 
 			<iframe id="frame-contect" src="${pageContext.request.contextPath }/jsps/context.jsp"
 				style="width:848px;float:right;height:530px" scrolling="no"
-				name="main" frameborder="0"></iframe>
+				name="main" frameborder="0">
+			</iframe>
 			<!--"content-right"end-->
 		</div>
 		<!--"content"end-->

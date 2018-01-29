@@ -39,7 +39,7 @@
 			$("form:first").submit();
 		});
 		$("#last").click(function(){
-			$("[name='pageNum']").val(pageCount);
+			$("[name='pageNum']").val(maxPageNum);
 			$("form:first").submit();
 		});
 

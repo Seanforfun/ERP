@@ -23,7 +23,7 @@ public class DeptAction extends ActionSupport {
 	private DeptEbi deptEbi;
 	
 	public Integer pageNum = 1;
-	public Integer pageCount = 2;
+	public Integer pageCount = 8;
 	public Integer maxPageNum;
 	public Integer dataTotal;
 	

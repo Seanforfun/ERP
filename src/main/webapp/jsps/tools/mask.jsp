@@ -170,11 +170,8 @@
 		};
 		bind(window, 'load', function() {
 			$('btn_ok').onclick = function() {
-				//显示遮罩的方法调用
-				//lock.show();
-				//以上为测试操作，以下为真实操作-----------------------------
 				lock.close();
-				$('frame-contect').src = $('hid-action').value;
+				$('frame-contect').src = $("hid-action").value;
 				$('context-msg').style.display = "none";
 			};
 			$('btn_cancel').onclick = function() {
@@ -205,8 +202,8 @@
 		<input id="hid-action" type="hidden" value=""/>
 		<div class="context-msg-btn">
 			<center>
-			<input id="btn_ok" type="image" src="../images/content_msg_btn_ok.jpg"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="btn_cancel" type="image" src="../images/content_msg_btn_cancel.jpg"/>
+			<input id="btn_ok" type="image" src="images/content_msg_btn_ok.jpg"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="btn_cancel" type="image" src="images/content_msg_btn_cancel.jpg"/>
 			</center>
 		</div>
 	</div>

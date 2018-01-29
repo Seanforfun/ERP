@@ -10,6 +10,6 @@
 	<bean id="empAction" class="ca.mcmaster.erp.auth.emp.web.EmpAction" scope="prototype"/>
 	<bean id="empEbi" class="ca.mcmaster.erp.auth.emp.service.ebo.EmpEbo"/>
 	<bean id="empDao" class="ca.mcmaster.erp.auth.emp.dao.impl.EmpImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 </beans>
