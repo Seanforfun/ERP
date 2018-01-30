@@ -1,6 +1,5 @@
 package ca.mcmaster.erp.auth.dept.dao.impl;
 
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
