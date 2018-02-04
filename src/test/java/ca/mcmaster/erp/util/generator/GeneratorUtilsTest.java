@@ -32,13 +32,13 @@ public class GeneratorUtilsTest {
 		dataInit();
 //		generatorDirectory();
 //		generatorQueryModel();
-//		generatorHbmXml();
+		generatorHbmXml();
 //		generatorDao();
 //		generatorImpl();
 //		generatorEbi();
 //		generatorEbo();
 //		generatorAction();
-		generatorApplicationContextXml();
+//		generatorApplicationContextXml();
 	}
 
 	private void generatorApplicationContextXml() throws IOException {
