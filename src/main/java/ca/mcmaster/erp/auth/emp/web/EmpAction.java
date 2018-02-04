@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
+import ca.mcmaster.erp.utils.base.BaseAction;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -13,8 +14,8 @@ import com.opensymphony.xwork2.ModelDriven;
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Jan 22, 2018 12:16:01 PM
  */
-public class EmpAction extends ActionSupport implements ModelDriven<EmpModel> {
-	private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class EmpAction extends BaseAction{
 	public static final String LOGIN_EMP = "login_emp";
 	public EmpModel em = new EmpModel();
 	@Resource(name="empEbi")
@@ -30,9 +31,4 @@ public class EmpAction extends ActionSupport implements ModelDriven<EmpModel> {
 		}
 		return "loginSuccess";
 	}
-
-	public EmpModel getModel() {
-		return em;
-	}
-
 }

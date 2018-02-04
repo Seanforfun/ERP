@@ -21,7 +21,7 @@ public class DeptAction extends BaseAction {
 	private DeptEbi deptEbi;
 	
 	public String list(){
-		super.setDataTotal(dataTotal);
+		super.setDataTotal(deptEbi.getCount(dqm));
 		List<DeptModel> deptList = deptEbi.getAll(dqm, pageNum, pageCount);
 		super.put("deptList", deptList);
 		return LIST;

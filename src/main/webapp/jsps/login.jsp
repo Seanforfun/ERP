@@ -28,13 +28,13 @@
 						<tr>
 							<td width="40%" height="28">Username:</td>
 							<td colspan="2">
-								<s:textfield name="username" value="admin"/>
+								<s:textfield name="em.username" value="admin"/>
 							</td>
 						</tr>
 						<tr>
 							<td height="31">Password:</td>
 							<td colspan="2">
-								<s:textfield name="password" value="admin"/>
+								<s:textfield name="em.password" value="admin"/>
 							</td>
 						</tr>
 						<tr>

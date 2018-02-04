@@ -34,12 +34,53 @@ public class GeneratorUtilsTest {
 //		generatorQueryModel();
 //		generatorHbmXml();
 //		generatorDao();
-		generatorImpl();
+//		generatorImpl();
 //		generatorEbi();
 //		generatorEbo();
 //		generatorAction();
+		generatorApplicationContextXml();
 	}
 
+	private void generatorApplicationContextXml() throws IOException {
+		File f = new File("src/main/resources/applicationContext-"+s+".xml");
+		f.createNewFile();
+		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+		bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+		bw.newLine();
+		bw.newLine();
+		
+		bw.write("<beans xmlns=\"http://www.springframework.org/schema/beans\"");
+		bw.newLine();
+		bw.write("	xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+		bw.newLine();
+		bw.write("	xsi:schemaLocation=\"");
+		bw.newLine();
+		bw.write("		http://www.springframework.org/schema/beans ");
+		bw.newLine();
+		bw.write("		http://www.springframework.org/schema/beans/spring-beans.xsd");
+		bw.newLine();
+		bw.write("		\">");
+		bw.newLine();
+		bw.newLine();
+		
+		bw.write("	<bean id=\""+s+"Action\" class=\""+pkg+".web."+b+"Action\" scope=\"prototype\"/>");
+		bw.newLine();
+		bw.write("	<bean id=\""+s+"Ebi\" class=\""+pkg+".service.ebo."+b+"Ebo\"/>");
+		bw.newLine();
+		bw.write("	<bean id=\""+s+"Dao\" class=\""+pkg+".dao.impl."+b+"Impl\">");
+		bw.newLine();
+		bw.write("		<property name=\"sessionFactory\" ref=\"sessionFactory\"/>");
+		bw.newLine();
+		bw.write("	</bean>");
+		bw.newLine();
+		bw.write("</beans>");
+		bw.newLine();
+		
+		bw.flush();
+		bw.close();
+	}
+	
 	private void generatorAction() throws IOException {
 		File f = new File("src/main/java/"+ dir + "/web/"+ b + "Action.java");
 		f.createNewFile();
