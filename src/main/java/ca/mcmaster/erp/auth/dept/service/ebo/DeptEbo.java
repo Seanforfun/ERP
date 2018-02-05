@@ -23,11 +23,6 @@ public class DeptEbo implements DeptEbi {
 		deptDao.save(dm);
 	}
 
-	public List<DeptModel> getAll() {
-		List<DeptModel> deptList = deptDao.getAll();
-		return deptList;
-	}
-
 	public DeptModel get(Serializable uuid) {
 		DeptModel temp = deptDao.get(uuid);
 		return temp;
@@ -39,11 +34,6 @@ public class DeptEbo implements DeptEbi {
 
 	public void delete(DeptModel dm) {
 		deptDao.delete(dm);
-	}
-
-	public List<DeptModel> getAll(DeptQueryModel dqm) {
-		List<DeptModel> deptList =deptDao.getAll(dqm);
-		return deptList;
 	}
 
 	public List<DeptModel> getAll(BaseQueryModel bqm, Integer pageNum,
@@ -58,6 +48,7 @@ public class DeptEbo implements DeptEbi {
 	}
 
 	public List<DeptModel> getAll(BaseQueryModel bqm) {
-		return null;
+		List<DeptModel> deptList =deptDao.getAll(bqm);
+		return deptList;
 	}
 }

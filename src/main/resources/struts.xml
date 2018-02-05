@@ -29,6 +29,8 @@
 		<action name="emp_*" class="empAction" method="{1}">
 			<result name="loginFail">/jsps/login.jsp</result>
 			<result name="loginSuccess">/jsps/main.jsp</result>
+			<result name="list">/jsps/employee/list.jsp</result>
+			<result name="input">/jsps/employee/input.jsp</result>
 		</action>
 		
 		<action name="dept_*" class="deptAction" method="{1}">

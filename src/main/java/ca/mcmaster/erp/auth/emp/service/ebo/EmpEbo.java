@@ -1,10 +1,14 @@
 package ca.mcmaster.erp.auth.emp.service.ebo;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.emp.dao.dao.EmpDao;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
+import ca.mcmaster.erp.utils.base.BaseQueryModel;
 import ca.mcmaster.erp.utils.format.MD5Utils;
 
 /**
@@ -22,5 +26,30 @@ public class EmpEbo implements EmpEbi{
 		}
 		return tmpEmp;
 	}
-	
+	public Integer getCount(BaseQueryModel bqm) {
+		Integer count = empDao.getCount(bqm);
+		return count;
+	}
+	public void save(EmpModel t) {
+		empDao.save(t);
+	}
+	public void delete(EmpModel t) {
+		empDao.delete(t);
+	}
+	public void update(EmpModel t) {
+		empDao.update(t);
+	}
+	public EmpModel get(Serializable uuid) {
+		EmpModel temp = empDao.get(uuid);
+		return temp;
+	}
+	public List<EmpModel> getAll(BaseQueryModel bqm, Integer pageNum,
+			Integer pageCount) {
+		List<EmpModel> empList = empDao.getAll(bqm, pageNum, pageCount);
+		return empList;
+	}
+	public List<EmpModel> getAll(BaseQueryModel bqm) {
+		List<EmpModel> empList = empDao.getAll(bqm);
+		return empList;
+	}
 }

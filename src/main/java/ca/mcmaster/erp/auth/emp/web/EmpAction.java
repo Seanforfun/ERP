@@ -1,8 +1,11 @@
 package ca.mcmaster.erp.auth.emp.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
+import ca.mcmaster.erp.auth.emp.model.EmpQueryModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
 
@@ -18,6 +21,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class EmpAction extends BaseAction{
 	public static final String LOGIN_EMP = "login_emp";
 	public EmpModel em = new EmpModel();
+	public EmpQueryModel eqm = new EmpQueryModel();
 	@Resource(name="empEbi")
 	private EmpEbi empEbi;
 
@@ -30,5 +34,19 @@ public class EmpAction extends BaseAction{
 			return "loginFail";
 		}
 		return "loginSuccess";
+	}
+	
+	public String list(){
+		super.setDataTotal(empEbi.getCount(eqm));
+		List<EmpModel> empList = empEbi.getAll(eqm, pageNum, pageCount);
+		super.put("empList", empList);
+		return LIST;
+	}
+	
+	public String input(){
+		if(em.getUuid() != null){
+			em = empEbi.get(em.getUuid());
+		}
+		return INPUT;
 	}
 }

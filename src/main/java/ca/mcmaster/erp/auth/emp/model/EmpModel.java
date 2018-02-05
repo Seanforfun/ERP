@@ -1,7 +1,5 @@
 package ca.mcmaster.erp.auth.emp.model;
 
-import java.sql.Date;
-
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
 
 /**

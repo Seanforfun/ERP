@@ -19,6 +19,8 @@
         		<property name="birthday" />
         		<property name="address" />
         		
-        		<many-to-one name="dm" column="deptuuid" class="ca.mcmaster.erp.auth.dept.model.DeptModel"/>
+        		<many-to-one name="dm" 
+        		column="deptuuid" 
+        		class="ca.mcmaster.erp.auth.dept.model.DeptModel"/>
         	</class>
         </hibernate-mapping>

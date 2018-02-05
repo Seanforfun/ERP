@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+@SuppressWarnings("serial")
 public class BaseAction  extends ActionSupport{
 	public static final String LIST = "list";
 	public static final String TO_LIST = "toList";

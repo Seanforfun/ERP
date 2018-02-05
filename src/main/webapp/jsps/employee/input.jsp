@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<link href="../../css/index.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="../../js/Calendar.js"></script>
+<link href="${pageContext.request.contextPath }/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/Calendar.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#all").click(function() {
@@ -35,11 +35,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">用&nbsp;户&nbsp;名</td>
 				      <td width="32%">
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="username" value="em.username" size="25"/>
 				      </td>
 				      <td width="18%"align="center">真实姓名</td>
 				      <td width="32%">
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="name" value="em.name" size="25"/>
 					  </td>
 				    </tr>
 				    <tr bgcolor="#FFFFFF">
@@ -48,7 +48,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="password" value="em.password" size="25"/>
 				      </td>
 				      <td  align="center">确认密码</td>
 				      <td >
@@ -61,10 +61,10 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">电子邮箱</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="email" value="em.email" size="25"/>
 				      <td align="center">电话号码</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="tele" value="em.tele" size="25"/>
 					  </td>
 				     </tr>
 				      <tr bgcolor="#FFFFFF">
@@ -73,6 +73,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">性&nbsp;&nbsp;&nbsp;&nbsp;别</td>
 				      <td>
+				      	<%-- <s:select list=""></s:select> --%>
 				      	<select style="width:190px">
 								<option value="-1">----请-选-择----</option>
 								<option value="1">男</option>
@@ -135,12 +136,12 @@
 					<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 					  <tr>
 					    <td>
-					    	<a href="javascript:document.forms[0].submit()"><img src="../../images/order_tuo.gif" border="0" /></a>
+					    	<a href="javascript:document.forms[0].submit()"><img src="${pageContext.request.contextPath }/images/order_tuo.gif" border="0" /></a>
 					    </td>
 					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="../../images/order_tuo.gif" border="0" /></a></td>
+					    <td><a href="#"><img src="${pageContext.request.contextPath }/images/order_tuo.gif" border="0" /></a></td>
 					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="../../images/order_tuo.gif" border="0" /></a></td>
+					    <td><a href="#"><img src="${pageContext.request.contextPath }/images/order_tuo.gif" border="0" /></a></td>
 					  </tr>
 					</table>
 				</div>
@@ -148,5 +149,5 @@
 			</form>
 		</div><!--"square-order"end-->
 	</div><!--"content-text"end-->
-	<div class="content-bbg"><img src="../../images/content_bbg.jpg" /></div>
+	<div class="content-bbg"><img src="${pageContext.request.contextPath }/images/content_bbg.jpg" /></div>
 </div>
