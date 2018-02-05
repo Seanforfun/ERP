@@ -41,6 +41,8 @@ public class EmpAction extends BaseAction{
 	}
 	
 	public String list(){
+		List<DeptModel> deptList = deptEbi.getAll();
+		super.put("deptList", deptList);
 		super.setDataTotal(empEbi.getCount(eqm));
 		List<EmpModel> empList = empEbi.getAll(eqm, pageNum, pageCount);
 		super.put("empList", empList);

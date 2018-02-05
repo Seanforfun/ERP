@@ -95,7 +95,7 @@
 					  </td>
 				      <td align="center">所属部门</td>
 				      <td>
-				      	<s:select name="em.dm.uuid" list="deptList" listKey="uuid" listValue="name" cssStyle="width:190px"/>
+				      	<s:select name="em.dm.uuid" list="deptList" listKey="uuid" listValue="name" cssStyle="width:190px" headerKey="-1" headerValue="----请-选-择----"/>
 					  </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
