@@ -18,6 +18,9 @@
         		<property name="gender" />
         		<property name="birthday" />
         		<property name="address" />
+        		<property name="lastLoginTime"/>
+        		<property name="lastLoginIp"/>
+        		<property name="loginTimes"/>
         		
         		<many-to-one name="dm" 
         		column="deptuuid" 

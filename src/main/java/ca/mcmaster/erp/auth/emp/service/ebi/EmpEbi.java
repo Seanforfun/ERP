@@ -11,11 +11,13 @@ import ca.mcmaster.erp.utils.base.BaseEbi;
  */
 @Transactional
 public interface EmpEbi extends BaseEbi<EmpModel> {
+
 	/**
-	 * @Description: TODO User login
+	 * @Description: TODO
 	 * @param username
 	 * @param password
-	 * @return EmpMode or null
+	 * @param loginIp
+	 * @return
 	 */
-	public EmpModel login(String username, String password);
+	public EmpModel login(String username, String password, String loginIp);
 }

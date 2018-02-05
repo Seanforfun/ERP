@@ -18,11 +18,16 @@ import ca.mcmaster.erp.utils.format.MD5Utils;
 public class EmpEbo implements EmpEbi{
 	@Resource(name="empDao")
 	private EmpDao empDao;
-	public EmpModel login(String username, String password) {
+	public EmpModel login(String username, String password, String loginIp) {
 		EmpModel tmpEmp = null;
 		if(null != password){
 			String md5Pwd = MD5Utils.md5(password);
 			tmpEmp = empDao.getUserByUsernameAndPassword(username, md5Pwd);
+			if (null != tmpEmp) {
+				tmpEmp.setLastLoginTime(System.currentTimeMillis());
+				tmpEmp.setLoginTimes(tmpEmp.getLoginTimes() + 1);
+				tmpEmp.setLastLoginIp(loginIp);
+			}
 		}
 		return tmpEmp;
 	}
@@ -32,6 +37,9 @@ public class EmpEbo implements EmpEbi{
 	}
 	public void save(EmpModel t) {
 		t.setPassword(MD5Utils.md5(t.getPassword()));
+		t.setLastLoginTime(System.currentTimeMillis());
+		t.setLastLoginIp("-");
+		t.setLoginTimes(0);
 		empDao.save(t);
 	}
 	public void delete(EmpModel t) {

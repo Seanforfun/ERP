@@ -3,6 +3,7 @@ package ca.mcmaster.erp.auth.emp.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
 import ca.mcmaster.erp.auth.dept.service.ebi.DeptEbi;
@@ -30,7 +31,18 @@ public class EmpAction extends BaseAction{
 	private DeptEbi deptEbi;
 
 	public String login() {
-		EmpModel tmpEmp = empEbi.login(em.getUsername(), em.getPassword());
+		HttpServletRequest request = getRequest();
+		String loginIp = request.getHeader("x-forwarded-for"); 
+		if(loginIp == null || loginIp.length() == 0 || "unknown".equalsIgnoreCase(loginIp)) { 
+			loginIp = request.getHeader("Proxy-Client-IP"); 
+		} 
+		if(loginIp == null || loginIp.length() == 0 || "unknown".equalsIgnoreCase(loginIp)) { 
+			loginIp = request.getHeader("WL-Proxy-Client-IP"); 
+		} 
+		if(loginIp == null || loginIp.length() == 0 || "unknown".equalsIgnoreCase(loginIp)) { 
+			loginIp = request.getRemoteAddr();
+		}
+		EmpModel tmpEmp = empEbi.login(em.getUsername(), em.getPassword(), loginIp);
 		if(null != tmpEmp){
 			ActionContext.getContext().getSession().put(LOGIN_EMP, tmpEmp.getName());
 		}else{

@@ -104,7 +104,7 @@
 							<td>${tele}</td>
 							<td>${email}</td>
 							<td>${dm.name}</td>
-							<td>****</td>
+							<td>${lastLoginTime}</td>
 							<td>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 

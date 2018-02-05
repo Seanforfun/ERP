@@ -33,6 +33,34 @@ public class EmpModel {
 	private String address;
 	private String birthdayView;
 	private String genderView;
+	private Long lastLoginTime;
+	private String lastLoginTimeView;
+	public String getLastLoginTimeView() {
+		return lastLoginTimeView;
+	}
+	private String lastLoginIp;
+	private Integer loginTimes;
+	public Long getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(Long lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+		if(lastLoginTime != null){
+			lastLoginTimeView = FormatUtils.formatDate(lastLoginTime);
+		}
+	}
+	public String getLastLoginIp() {
+		return lastLoginIp;
+	}
+	public void setLastLoginIp(String lastLoginIp) {
+		this.lastLoginIp = lastLoginIp;
+	}
+	public Integer getLoginTimes() {
+		return loginTimes;
+	}
+	public void setLoginTimes(Integer loginTimes) {
+		this.loginTimes = loginTimes;
+	}
 	public String getGenderView() {
 		return genderView;
 	}
