@@ -85,26 +85,28 @@
 						<td width="16%">最后登录时间</td>
 						<td width="16%">操作</td>
 					</tr>
-					<tr align="center" bgcolor="#FFFFFF">
-						<td width="13%" height="30">zs2008</td>
-						<td>张三</td>
-						<td>男</td>
-						<td>1987-01-09</td>
-						<td>18800009999</td>
-						<td>zs@sina.com</td>
-						<td>采购部</td>
-						<td>2014-5-12</td>
-						<td>
-							<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
-							<span style="line-height:12px; text-align:center;"> 
-								<a href="./input.jsp" class="xiu">修改</a>
-							</span> 
-							<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
-							<span style="line-height:12px; text-align:center;"> 
-								<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
-							</span>
-						</td>
-					</tr>
+					<s:iterator value="#empList">
+						<tr align="center" bgcolor="#FFFFFF">
+							<td width="13%" height="30">${username}</td>
+							<td>${name}</td>
+							<td>${genderView}</td>
+							<td>${birthdayView}</td>
+							<td>${tele}</td>
+							<td>${email}</td>
+							<td>${dm.name}</td>
+							<td>****</td>
+							<td>
+								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
+								<span style="line-height:12px; text-align:center;"> 
+									<a href="./input.jsp" class="xiu">修改</a>
+								</span> 
+								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
+								<span style="line-height:12px; text-align:center;"> 
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
+								</span>
+							</td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 		</form>

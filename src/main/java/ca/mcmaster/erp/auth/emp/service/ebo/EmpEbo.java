@@ -31,6 +31,7 @@ public class EmpEbo implements EmpEbi{
 		return count;
 	}
 	public void save(EmpModel t) {
+		t.setPassword(MD5Utils.md5(t.getPassword()));
 		empDao.save(t);
 	}
 	public void delete(EmpModel t) {
@@ -50,6 +51,10 @@ public class EmpEbo implements EmpEbi{
 	}
 	public List<EmpModel> getAll(BaseQueryModel bqm) {
 		List<EmpModel> empList = empDao.getAll(bqm);
+		return empList;
+	}
+	public List<EmpModel> getAll() {
+		List<EmpModel> empList = empDao.getAll();
 		return empList;
 	}
 }

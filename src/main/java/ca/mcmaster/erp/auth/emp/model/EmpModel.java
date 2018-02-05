@@ -31,6 +31,11 @@ public class EmpModel {
 	private Long birthday;
 	private DeptModel dm;
 	private String address;
+	private String birthdayView;
+	private String genderView;
+	public String getGenderView() {
+		return genderView;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -48,7 +53,8 @@ public class EmpModel {
 	}
 	public void setBirthday(Long birthday) {
 		this.birthday = birthday;
-//		this.birthdayView = FormatUtils.formatDate(birthday);
+		if(null != birthday)
+			this.birthdayView = FormatUtils.formatDate(birthday);
 	}
 	public String getPassword() {
 		return password;
@@ -91,5 +97,11 @@ public class EmpModel {
 	}
 	public void setGender(Integer gender) {
 		this.gender = gender;
+		if(null != gender){
+			genderView = genderMap.get(gender);
+		}
+	}
+	public String getBirthdayView() {
+		return birthdayView;
 	}
 }

@@ -55,4 +55,9 @@ public class EmpAction extends BaseAction{
 		}
 		return INPUT;
 	}
+	
+	public String save(){
+		empEbi.save(em);
+		return TO_LIST;
+	}
 }

@@ -24,7 +24,7 @@
 	</div>
 	<div class="content-text">
 		<div class="square-order">
-			<form action="list.jsp" method="post"> 
+			<form action="emp_save.action" method="post"> 
   			<div style="border:1px solid #cecece;">
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr bgcolor="#FFFFFF">
@@ -79,7 +79,6 @@
 				      <td align="center">地&nbsp;&nbsp;&nbsp;&nbsp;址</td>
 				      <td>
 				      	<s:textfield name="em.address" size="25"/>
-				      	<input>
 					  </td>
 				    </tr>
 				     <tr bgcolor="#FFFFFF">
@@ -88,7 +87,8 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">出生日期</td>
 				      <td>
-				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true" value="${em.birthday}"/>
+				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true"/>
+				      	<s:hidden name="em.birthday"/>
 					  </td>
 				      <td align="center">所属部门</td>
 				      <td>

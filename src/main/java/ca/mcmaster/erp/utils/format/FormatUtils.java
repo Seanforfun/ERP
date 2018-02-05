@@ -13,4 +13,12 @@ public class FormatUtils {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(new Date(time));
 	}
+	public static final String formatTime(Long time){
+		DateFormat df = new SimpleDateFormat("HH-mm-ss");
+		return df.format(new Date(time));
+	}
+	public static final String formatDateTime(Long time){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		return df.format(new Date(time));
+	}
 }
