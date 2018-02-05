@@ -98,7 +98,10 @@
 							<td>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="./input.jsp" class="xiu">修改</a>
+									<s:a action="emp_input.action" cssClass="xiu">
+										<s:param name="em.uuid" value="uuid"/>
+										修改
+									</s:a>
 								</span> 
 								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 

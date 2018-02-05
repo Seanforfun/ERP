@@ -57,7 +57,11 @@ public class EmpAction extends BaseAction{
 	}
 	
 	public String save(){
-		empEbi.save(em);
+		if(em.getUuid() == null){
+			empEbi.save(em);
+		}else{
+			empEbi.update(em);
+		}
 		return TO_LIST;
 	}
 }

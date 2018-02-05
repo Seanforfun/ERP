@@ -25,6 +25,7 @@
 	<div class="content-text">
 		<div class="square-order">
 			<form action="emp_save.action" method="post"> 
+			<s:hidden name="em.uuid"/>
   			<div style="border:1px solid #cecece;">
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr bgcolor="#FFFFFF">
@@ -45,16 +46,18 @@
 				    <tr bgcolor="#FFFFFF">
 					  <td colspan="4">&nbsp;</td>
 					</tr>
-				    <tr  bgcolor="#FFFFFF">
-				      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
-				      <td>
-				      	<s:textfield name="em.password" size="25"/>
-				      </td>
-				      <td  align="center">确认密码</td>
-				      <td >
-				      	<input type="text" size="25"/>
-				      </td>
-				    </tr>
+					<s:if test="uuid != null">
+					    <tr  bgcolor="#FFFFFF">
+					      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
+					      <td>
+					      	<s:textfield name="em.password" size="25"/>
+					      </td>
+					      <td  align="center">确认密码</td>
+					      <td >
+					      	<input type="text" size="25"/>
+					      </td>
+					    </tr>
+					 </s:if>
 				     <tr bgcolor="#FFFFFF">
 					  <td colspan="4">&nbsp;</td>
 					</tr>
@@ -87,7 +90,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">出生日期</td>
 				      <td>
-				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true"/>
+				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true" value="${em.birthdayView}"/>
 				      	<s:hidden name="em.birthday"/>
 					  </td>
 				      <td align="center">所属部门</td>

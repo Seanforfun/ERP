@@ -38,7 +38,14 @@ public class EmpEbo implements EmpEbi{
 		empDao.delete(t);
 	}
 	public void update(EmpModel t) {
-		empDao.update(t);
+		EmpModel temp = empDao.get(t.getUuid());
+		temp.setBirthday(t.getBirthday());
+		temp.setAddress(t.getAddress());
+		temp.setGender(t.getGender());
+		temp.setEmail(t.getEmail());
+		temp.setTele(t.getTele());;
+		temp.setDm(t.getDm());
+		empDao.update(temp);
 	}
 	public EmpModel get(Serializable uuid) {
 		EmpModel temp = empDao.get(uuid);
