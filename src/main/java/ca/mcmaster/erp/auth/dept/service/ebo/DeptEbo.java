@@ -51,4 +51,9 @@ public class DeptEbo implements DeptEbi {
 		List<DeptModel> deptList =deptDao.getAll(bqm);
 		return deptList;
 	}
+
+	public List<DeptModel> getAll() {
+		List<DeptModel> deptList =deptDao.getAll();		
+		return deptList;
+	}
 }

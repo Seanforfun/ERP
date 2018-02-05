@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.auth.dept.service.ebi.DeptEbi;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.model.EmpQueryModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
@@ -24,6 +26,8 @@ public class EmpAction extends BaseAction{
 	public EmpQueryModel eqm = new EmpQueryModel();
 	@Resource(name="empEbi")
 	private EmpEbi empEbi;
+	@Resource(name="deptEbi")
+	private DeptEbi deptEbi;
 
 	public String login() {
 		EmpModel tmpEmp = empEbi.login(em.getUsername(), em.getPassword());
@@ -44,6 +48,8 @@ public class EmpAction extends BaseAction{
 	}
 	
 	public String input(){
+		List<DeptModel> deptList = deptEbi.getAll();
+		super.put("deptList", deptList);
 		if(em.getUuid() != null){
 			em = empEbi.get(em.getUuid());
 		}

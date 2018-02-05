@@ -35,11 +35,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">用&nbsp;户&nbsp;名</td>
 				      <td width="32%">
-				      	<s:textfield name="username" value="em.username" size="25"/>
+				      	<s:textfield name="em.username" size="25"/>
 				      </td>
 				      <td width="18%"align="center">真实姓名</td>
 				      <td width="32%">
-				      	<s:textfield name="name" value="em.name" size="25"/>
+				      	<s:textfield name="em.name" size="25"/>
 					  </td>
 				    </tr>
 				    <tr bgcolor="#FFFFFF">
@@ -48,7 +48,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
 				      <td>
-				      	<s:textfield name="password" value="em.password" size="25"/>
+				      	<s:textfield name="em.password" size="25"/>
 				      </td>
 				      <td  align="center">确认密码</td>
 				      <td >
@@ -61,10 +61,10 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">电子邮箱</td>
 				      <td>
-				      	<s:textfield name="email" value="em.email" size="25"/>
+				      	<s:textfield name="em.email" size="25"/>
 				      <td align="center">电话号码</td>
 				      <td>
-				      	<s:textfield name="tele" value="em.tele" size="25"/>
+				      	<s:textfield name="em.tele" size="25"/>
 					  </td>
 				     </tr>
 				      <tr bgcolor="#FFFFFF">
@@ -73,16 +73,13 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">性&nbsp;&nbsp;&nbsp;&nbsp;别</td>
 				      <td>
-				      	<%-- <s:select list=""></s:select> --%>
-				      	<select style="width:190px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">男</option>
-								<option value="0">女</option>
-							</select>
+				      	<s:select name="em.gender" list="@ca.mcmaster.erp.auth.emp.model.EmpModel@genderMap" cssStyle="width:190px" 
+				      	headerKey="-1" headerValue="----请-选-择----"/>
 					  </td>
 				      <td align="center">地&nbsp;&nbsp;&nbsp;&nbsp;址</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="em.address" size="25"/>
+				      	<input>
 					  </td>
 				    </tr>
 				     <tr bgcolor="#FFFFFF">
@@ -91,15 +88,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">出生日期</td>
 				      <td>
-				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true"/>
+				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true" value="${em.birthday}"/>
 					  </td>
 				      <td align="center">所属部门</td>
 				      <td>
-				      	<select style="width:190px">
-							<option value="-1">----请-选-择----</option>
-							<option value="1">销售部</option>
-							<option value="2">采购部</option>
-						</select>
+				      	<s:select name="em.dm.uuid" list="deptList" listKey="uuid" listValue="name" cssStyle="width:190px"/>
 					  </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">

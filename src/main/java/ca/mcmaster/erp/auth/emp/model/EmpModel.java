@@ -1,12 +1,26 @@
 package ca.mcmaster.erp.auth.emp.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.utils.format.FormatUtils;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Jan 22, 2018 12:04:47 PM
  */
 public class EmpModel {
+	public static final Integer EM_INDEX_GENDER_MALE = 0;
+	public static final Integer EM_INDEX_GENDER_FRMALE = 1;
+	public static final String EM_VIEW_GENDER_MALE = "male";
+	public static final String EM_VIEW_GENDER_FRMALE = "female";
+	public static final Map<Integer, String> genderMap = new HashMap<Integer, String>();
+	static{
+		genderMap.put(EM_INDEX_GENDER_MALE, EM_VIEW_GENDER_MALE);
+		genderMap.put(EM_INDEX_GENDER_FRMALE, EM_VIEW_GENDER_FRMALE);
+	}
+	
 	private Integer uuid;
 	private String username;
 	private String name;
@@ -34,6 +48,7 @@ public class EmpModel {
 	}
 	public void setBirthday(Long birthday) {
 		this.birthday = birthday;
+//		this.birthdayView = FormatUtils.formatDate(birthday);
 	}
 	public String getPassword() {
 		return password;
