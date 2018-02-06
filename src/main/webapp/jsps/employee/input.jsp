@@ -46,7 +46,7 @@
 				    <tr bgcolor="#FFFFFF">
 					  <td colspan="4">&nbsp;</td>
 					</tr>
-					<s:if test="uuid != null">
+					<s:if test="uuid == null">
 					    <tr  bgcolor="#FFFFFF">
 					      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
 					      <td>

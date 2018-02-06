@@ -9,6 +9,7 @@ import ca.mcmaster.erp.auth.emp.dao.dao.EmpDao;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
 import ca.mcmaster.erp.utils.base.BaseQueryModel;
+import ca.mcmaster.erp.utils.exceptions.AppException;
 import ca.mcmaster.erp.utils.format.MD5Utils;
 
 /**
@@ -36,6 +37,9 @@ public class EmpEbo implements EmpEbi{
 		return count;
 	}
 	public void save(EmpModel t) {
+		if(null == t.getUsername() || t.getUsername().trim().length() == 0){
+			throw new AppException("User Information is incomplete.");
+		}
 		t.setPassword(MD5Utils.md5(t.getPassword()));
 		t.setLastLoginTime(System.currentTimeMillis());
 		t.setLastLoginIp("-");
