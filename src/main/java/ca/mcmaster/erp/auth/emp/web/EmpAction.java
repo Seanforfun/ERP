@@ -13,18 +13,16 @@ import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Jan 22, 2018 12:16:01 PM
  */
 @SuppressWarnings("serial")
-public class EmpAction extends BaseAction{
-	public static final String LOGIN_EMP = "login_emp";
+public class EmpAction extends BaseAction{	
 	public EmpModel em = new EmpModel();
 	public EmpQueryModel eqm = new EmpQueryModel();
+	public String newPassword;
 	@Resource(name="empEbi")
 	private EmpEbi empEbi;
 	@Resource(name="deptEbi")
@@ -44,12 +42,33 @@ public class EmpAction extends BaseAction{
 		}
 		EmpModel tmpEmp = empEbi.login(em.getUsername(), em.getPassword(), loginIp);
 		if(null != tmpEmp){
-			ActionContext.getContext().getSession().put(LOGIN_EMP, tmpEmp.getName());
+			ActionContext.getContext().getSession().put(EmpModel.LOGIN_EMP, tmpEmp.getName());
 		}else{
 			this.addActionError("Username or password is incorrect!");
 			return "loginFail";
 		}
 		return "loginSuccess";
+	}
+	
+	public String logout(){
+		putSession(EmpModel.LOGIN_EMP, null);
+		return "loginFail";
+	}
+	
+	public String toChangePwd(){
+		return "toChangePwd";
+	}
+	
+	public String changePwd(){
+		String loginName = getLogin();
+		Boolean flag = empEbi.changePwd(loginName, em.getPassword(), newPassword);
+		if(true == flag){
+			putSession(EmpModel.LOGIN_EMP, null);
+			return "loginFail";
+		}else {
+			this.addActionError("Failed to change password!");
+			return "toChangePwd";
+		}
 	}
 	
 	public String list(){

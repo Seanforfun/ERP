@@ -32,6 +32,7 @@
 			<result name="list">/jsps/employee/list.jsp</result>
 			<result name="input">/jsps/employee/input.jsp</result>
 			<result name="toList" type="redirectAction">emp_list.action</result>
+			<result name="toChangePwd">/jsps/employee/changePwd.jsp</result>
 		</action>
 		
 		<action name="dept_*" class="deptAction" method="{1}">

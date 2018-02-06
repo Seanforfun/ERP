@@ -72,4 +72,9 @@ public class EmpEbo implements EmpEbi{
 		List<EmpModel> empList = empDao.getAll();
 		return empList;
 	}
+	public Boolean changePwd(String loginName, String password, String newPassword) {
+		String md5Pwd = MD5Utils.md5(password);
+		String md5NewPwd = MD5Utils.md5(newPassword);
+		return empDao.changePwdByNameAndPassword(loginName, md5Pwd, md5NewPwd);
+	}
 }

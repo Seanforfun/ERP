@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
+import ca.mcmaster.erp.auth.emp.model.EmpModel;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -62,4 +64,7 @@ public class BaseAction  extends ActionSupport{
 		return ServletActionContext.getResponse();
 	}
 	
+	protected String getLogin(){
+		return (String) getSession(EmpModel.LOGIN_EMP);
+	}
 }

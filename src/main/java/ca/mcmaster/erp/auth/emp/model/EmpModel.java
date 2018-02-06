@@ -11,6 +11,7 @@ import ca.mcmaster.erp.utils.format.FormatUtils;
  * @version Jan 22, 2018 12:04:47 PM
  */
 public class EmpModel {
+	public static final String LOGIN_EMP = "login_emp";
 	public static final Integer EM_INDEX_GENDER_MALE = 0;
 	public static final Integer EM_INDEX_GENDER_FRMALE = 1;
 	public static final String EM_VIEW_GENDER_MALE = "male";

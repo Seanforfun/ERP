@@ -10,4 +10,6 @@ import ca.mcmaster.erp.utils.base.BaseDao;
 public interface EmpDao extends BaseDao<EmpModel>{
 	public EmpModel getUserByUsernameAndPassword(String username,
 			String password);
+	public Boolean changePwdByNameAndPassword(String loginName, String md5Pwd,
+			String md5NewPwd);
 }

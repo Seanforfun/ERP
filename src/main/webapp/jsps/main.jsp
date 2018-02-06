@@ -19,12 +19,12 @@
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="32%">
-							<a href="employee/changePwd.jsp" target="main">
+							<a href="emp_toChangePwd.action" target="main">
 								<img src="${pageContext.request.contextPath}/images/head-l.gif"	border="0" />
 							</a>
 						</td>
 						<td width="26%">
-							<a href="${pageContext.request.contextPath}/index2.jsp">
+							<a href="${pageContext.request.contextPath}/emp_logout.action">
 								<img src="${pageContext.request.contextPath}/images/head-m.gif"	border="0" />
 							</a>
 						</td>

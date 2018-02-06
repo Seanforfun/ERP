@@ -52,4 +52,11 @@ public class EmpImpl extends BaseImpl<EmpModel> implements EmpDao{
 			dc.add(Restrictions.le("birthday", eqm.getBirthdayMax() + 86400000 - 1));
 		}
 	}
+
+	public Boolean changePwdByNameAndPassword(String loginName, String md5Pwd,
+			String md5NewPwd) {
+		String hql = "update EmpModel set password = ? where name = ? and password = ?";
+		int row = this.getHibernateTemplate().bulkUpdate(hql, md5NewPwd, loginName, md5Pwd);
+		return row > 0;
+	}
 }
