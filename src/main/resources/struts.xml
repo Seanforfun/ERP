@@ -6,7 +6,7 @@
 <struts>
 	<constant name="struts.devMode" value="false" />
 	<constant name="struts.ui.theme" value="simple" />
-
+	<constant name="struts.custom.i18n.resources" value="msg"/>
 	<package name="default" namespace="/" extends="struts-default">
 		
 		<interceptors>

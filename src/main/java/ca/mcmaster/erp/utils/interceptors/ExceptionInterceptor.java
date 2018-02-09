@@ -19,8 +19,12 @@ public class ExceptionInterceptor extends MethodFilterInterceptor{
 			return invocation.invoke();
 		} catch (AppException e) {
 			ActionSupport as = (ActionSupport) invocation.getAction();
-			as.addActionError(e.getMessage());
+			as.addActionError(as.getText(e.getMessage()));
 			return "error";
+		} catch (Exception e) {
+			ActionSupport as = (ActionSupport) invocation.getAction();
+			as.addActionError("Sorry, something terrible happened to the server!");
+			return invocation.invoke();
 		}
 	}
 

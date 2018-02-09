@@ -38,7 +38,7 @@ public class EmpEbo implements EmpEbi{
 	}
 	public void save(EmpModel t) {
 		if(null == t.getUsername() || t.getUsername().trim().length() == 0){
-			throw new AppException("User Information is incomplete.");
+			throw new AppException("INFO_EMP_USERNAME_IS_EMPTY");
 		}
 		t.setPassword(MD5Utils.md5(t.getPassword()));
 		t.setLastLoginTime(System.currentTimeMillis());
