@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+	
+	<bean id="ResourcesAction" class="ca.mcmaster.erp.auth.res.web.ResourcesAction" scope="prototype"/>
+	<bean id="ResourcesEbi" class="ca.mcmaster.erp.auth.res.service.ebo.ResourcesEbo"/>
+	<bean id="ResourcesDao" class="ca.mcmaster.erp.auth.res.dao.impl.ResourcesImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+</beans>

@@ -97,4 +97,9 @@ public class EmpAction extends BaseAction{
 		}
 		return TO_LIST;
 	}
+	
+	public String delete(){
+		empEbi.delete(em);
+		return TO_LIST;
+	}
 }
