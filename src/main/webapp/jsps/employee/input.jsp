@@ -111,15 +111,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">&nbsp;</td>
 				      <td width="82%" colspan="3">
-				      	<input type="checkbox">经理
-				      	<input type="checkbox">主管
-				      	<input type="checkbox">员工
-				      	<input type="checkbox">经理
-				      	<input type="checkbox">主管
-				      	<input type="checkbox">员工
-				      	<input type="checkbox">经理
-				      	<input type="checkbox">主管
-				      	<input type="checkbox">员工
+				      	<s:checkboxlist list="roleList" name="roleUuids" listKey="uuid" listValue="name"/>
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">

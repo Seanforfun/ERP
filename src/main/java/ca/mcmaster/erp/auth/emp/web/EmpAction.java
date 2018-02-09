@@ -10,6 +10,8 @@ import ca.mcmaster.erp.auth.dept.service.ebi.DeptEbi;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.model.EmpQueryModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
+import ca.mcmaster.erp.auth.role.model.RoleModel;
+import ca.mcmaster.erp.auth.role.service.ebi.RoleEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -27,6 +29,8 @@ public class EmpAction extends BaseAction{
 	private EmpEbi empEbi;
 	@Resource(name="deptEbi")
 	private DeptEbi deptEbi;
+	@Resource(name="roleEbi")
+	private RoleEbi roleEbi;
 
 	public String login() {
 		HttpServletRequest request = getRequest();
@@ -81,19 +85,27 @@ public class EmpAction extends BaseAction{
 	}
 	
 	public String input(){
+		List<RoleModel> roleList = roleEbi.getAll();
+		put("roleList", roleList);
 		List<DeptModel> deptList = deptEbi.getAll();
 		super.put("deptList", deptList);
+		Integer i = 0;
 		if(em.getUuid() != null){
 			em = empEbi.get(em.getUuid());
+			roleUuids = new Long[em.getRoleModels().size()];
+			for(RoleModel rm : em.getRoleModels()){
+				roleUuids[i++] = rm.getUuid();
+			}
 		}
 		return INPUT;
 	}
 	
+	public Long[] roleUuids;
 	public String save(){
 		if(em.getUuid() == null){
-			empEbi.save(em);
+			empEbi.save(em, roleUuids);
 		}else{
-			empEbi.update(em);
+			empEbi.update(em, roleUuids);
 		}
 		return TO_LIST;
 	}

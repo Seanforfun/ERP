@@ -25,5 +25,10 @@
         		<many-to-one name="dm" 
         		column="deptuuid" 
         		class="ca.mcmaster.erp.auth.dept.model.DeptModel"/>
+        		
+        		<set name="roleModels" table="tbl_emp_role">
+        			<key column="empuuid"/>
+        			<many-to-many column="roleuuid" class="ca.mcmaster.erp.auth.role.model.RoleModel"/>
+        		</set>
         	</class>
         </hibernate-mapping>

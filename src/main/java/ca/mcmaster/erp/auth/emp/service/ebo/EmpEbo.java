@@ -1,13 +1,16 @@
 package ca.mcmaster.erp.auth.emp.service.ebo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.emp.dao.dao.EmpDao;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
+import ca.mcmaster.erp.auth.role.model.RoleModel;
 import ca.mcmaster.erp.utils.base.BaseQueryModel;
 import ca.mcmaster.erp.utils.exceptions.AppException;
 import ca.mcmaster.erp.utils.format.MD5Utils;
@@ -36,6 +39,8 @@ public class EmpEbo implements EmpEbi{
 		Integer count = empDao.getCount(bqm);
 		return count;
 	}
+	
+	@Deprecated
 	public void save(EmpModel t) {
 		if(null == t.getUsername() || t.getUsername().trim().length() == 0){
 			throw new AppException("INFO_EMP_USERNAME_IS_EMPTY");
@@ -49,6 +54,8 @@ public class EmpEbo implements EmpEbi{
 	public void delete(EmpModel t) {
 		empDao.delete(t);
 	}
+	
+	@Deprecated
 	public void update(EmpModel t) {
 		EmpModel temp = empDao.get(t.getUuid());
 		temp.setAddress(t.getAddress());
@@ -80,5 +87,41 @@ public class EmpEbo implements EmpEbi{
 		String md5Pwd = MD5Utils.md5(password);
 		String md5NewPwd = MD5Utils.md5(newPassword);
 		return empDao.changePwdByNameAndPassword(loginName, md5Pwd, md5NewPwd);
+	}
+	public void save(EmpModel em, Long[] roleUuids) {
+		if(null == em.getUsername() ||em.getUsername().trim().length() == 0){
+			throw new AppException("INFO_EMP_USERNAME_IS_EMPTY");
+		}
+		
+		Set<RoleModel> roleModels = new HashSet<RoleModel>();
+		for (Long uuid:roleUuids) {
+			RoleModel temp = new RoleModel();
+			temp.setUuid(uuid);
+			roleModels.add(temp);
+		}
+		em.setRoleModels(roleModels);
+		em.setPassword(MD5Utils.md5(em.getPassword()));
+		em.setLastLoginTime(System.currentTimeMillis());
+		em.setLastLoginIp("-");
+		em.setLoginTimes(0);
+		empDao.save(em);
+	}
+	
+	public void update(EmpModel em, Long[] roleUuids) {
+		Set<RoleModel> roleModels = new HashSet<RoleModel>();
+		for(Long uuid : roleUuids){
+			RoleModel rm = new RoleModel();
+			rm.setUuid(uuid);
+			roleModels.add(rm);
+		}
+		EmpModel temp = empDao.get(em.getUuid());
+		temp.setRoleModels(roleModels);
+		temp.setAddress(em.getAddress());
+		temp.setGender(em.getGender());
+		temp.setEmail(em.getEmail());
+		temp.setTele(em.getTele());;
+		temp.setDm(em.getDm());
+		temp.setName(em.getName());
+		empDao.update(temp);
 	}
 }

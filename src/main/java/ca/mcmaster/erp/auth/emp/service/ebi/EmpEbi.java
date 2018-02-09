@@ -31,4 +31,18 @@ public interface EmpEbi extends BaseEbi<EmpModel> {
 	 * False:Failed to change password
 	 */
 	public Boolean changePwd(String loginName, String password, String newPassword);
+	
+	/**
+	 * @Description: Save the empModel with their roles
+	 * @param em
+	 * @param roleUuids
+	 */
+	public void save(EmpModel em, Long[] roleUuids);
+
+	/**
+	 * @Description: Update the empModel with their roles
+	 * @param em
+	 * @param roleUuids
+	 */
+	public void update(EmpModel em, Long[] roleUuids);
 }

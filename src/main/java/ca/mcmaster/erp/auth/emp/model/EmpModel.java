@@ -2,8 +2,10 @@ package ca.mcmaster.erp.auth.emp.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import ca.mcmaster.erp.auth.dept.model.DeptModel;
+import ca.mcmaster.erp.auth.role.model.RoleModel;
 import ca.mcmaster.erp.utils.format.FormatUtils;
 
 /**
@@ -31,6 +33,7 @@ public class EmpModel {
 	private Integer gender;	//1-male; 0-female
 	private Long birthday;
 	private DeptModel dm;
+	private Set<RoleModel> roleModels;
 	private String address;
 	private String birthdayView;
 	private String genderView;
@@ -132,5 +135,11 @@ public class EmpModel {
 	}
 	public String getBirthdayView() {
 		return birthdayView;
+	}
+	public Set<RoleModel> getRoleModels() {
+		return roleModels;
+	}
+	public void setRoleModels(Set<RoleModel> roleModels) {
+		this.roleModels = roleModels;
 	}
 }
