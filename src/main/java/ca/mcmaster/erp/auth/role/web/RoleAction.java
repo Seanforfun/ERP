@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.auth.role.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.role.model.RoleModel;
@@ -16,18 +18,30 @@ public class RoleAction extends BaseAction {
 	@Resource(name="roleEbi")
 	private RoleEbi roleEbi;
 	public String save(){
-		return null;
+		if(rm.getUuid() == null){
+			roleEbi.save(rm);
+		}else{
+			roleEbi.update(rm);
+		}
+		return TO_LIST;
 	}
 	
 	public String delete(){
 		return null;
 	}
 	
-	public String update(){
-		return null;
+	
+	public String list(){
+		List<RoleModel> roleList = roleEbi.getAll();
+		put("roleList", roleList);
+		return LIST;
 	}
 	
-	public String search(){
-		return null;
+	public String input(){
+		System.out.println(rm.getUuid());
+		if(rm.getUuid() != null){
+			rm = roleEbi.get(rm.getUuid());
+		}
+		return INPUT;
 	}
 }

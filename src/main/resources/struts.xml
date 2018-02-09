@@ -43,5 +43,17 @@
 			<result name="input">/jsps/department/input.jsp</result>
 			<result name="toList" type="redirectAction">dept_list.action</result>
 		</action>
+		
+		<action name="role_*" class="roleAction" method="{1}">
+			<result name="list">/jsps/role/list.jsp</result>
+			<result name="input">/jsps/role/input.jsp</result>
+			<result name="toList" type="redirectAction">role_list.action</result>
+		</action>
+		
+		<action name="resources_*" class="resourcesAction" method="{1}">
+			<result name="list">/jsps/resource/list.jsp</result>
+			<result name="input">/jsps/resource/input.jsp</result>
+			<result name="toList" type="redirectAction">resources_list.action</result>
+		</action>
 	</package>
 </struts>

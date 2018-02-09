@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.auth.res.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;
@@ -27,7 +29,13 @@ public class ResourcesAction extends BaseAction {
 		return null;
 	}
 	
-	public String search(){
-		return null;
+	public String list(){
+		List<ResourcesModel> resourcesList = resourcesEbi.getAll();
+		put("resourcesList", resourcesList);
+		return LIST;
+	}
+	
+	public String input(){
+		return INPUT;
 	}
 }

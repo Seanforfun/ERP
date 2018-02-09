@@ -7,9 +7,9 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		">
 	
-	<bean id="ResourcesAction" class="ca.mcmaster.erp.auth.res.web.ResourcesAction" scope="prototype"/>
-	<bean id="ResourcesEbi" class="ca.mcmaster.erp.auth.res.service.ebo.ResourcesEbo"/>
-	<bean id="ResourcesDao" class="ca.mcmaster.erp.auth.res.dao.impl.ResourcesImpl">
+	<bean id="resourcesAction" class="ca.mcmaster.erp.auth.res.web.ResourcesAction" scope="prototype"/>
+	<bean id="resourcesEbi" class="ca.mcmaster.erp.auth.res.service.ebo.ResourcesEbo"/>
+	<bean id="resourcesDao" class="ca.mcmaster.erp.auth.res.dao.impl.ResourcesImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
