@@ -15,7 +15,7 @@
 		//top.document.getElementById("context-msg").style.display = "block";
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
-		top.$('hid-action').value="actionName";
+		top.$('hid-action').value="resources_delete.action?rm.uuid=" + uuid;
 		top.lock.show();
 	}
 </script>
@@ -26,31 +26,20 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post">
+		<s:form action="resources_input" method="post">
+			<s:hidden name="rm.uuid"/>
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
 					<tr>
 						<td width="68" height="30">资源名称</td>
 						<td width="123"><input type="text" size="18" /></td>
-						<td width="62">资源类别</td>
-						<td width="142">
-							<select class="kuan">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">URL</option>
-								<option value="2">action访问</option>
-							</select>
-						</td>
-						<td width="60">操作类别</td>
-						<td width="149">
-							<select class="kuan">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">可操作</option>
-								<option value="2">可视</option>
-							</select>
-						</td>
 						<td width="70"><a id="query"> <img src="${pageContext.request.contextPath}/images/can_b_01.gif" border="0" /> </a></td>
-						<td width="70"><a href="./input.jsp"><img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" /></a></td>
+						<td width="70">
+							<a href="${pageContext.request.contextPath}/resources_input.action">
+								<img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" />
+							</a>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -60,30 +49,31 @@
 					<tr align="center"
 						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
 						<td height="30">资源名称</td>
-						<td>资源类别</td>
-						<td>操作类别</td>
 						<td>资源值</td>
 						<td width="16%">操作</td>
 					</tr>
-					<tr align="center" bgcolor="#FFFFFF">
-						<td width="13%" height="30">添加/修改员工信息</td>
-						<td>action访问</td>
-						<td>可访问</td>
-						<td align="left">cn.itcast.invoice.auto.employee.web.EmployeeAction.input</td>
-						<td>
-							<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
-							<span style="line-height:12px; text-align:center;"> 
-								<a href="./input.jsp" class="xiu">修改</a>
-							</span> 
-							<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
-							<span style="line-height:12px; text-align:center;"> 
-								<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
-							</span>
-						</td>
-					</tr>
+					<s:iterator value="resourcesList">
+						<tr align="center" bgcolor="#FFFFFF">
+							<td width="13%" height="30">${name}</td>
+							<td align="left">&nbsp;${url}</td>
+							<td>
+								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
+								<span style="line-height:12px; text-align:center;"> 
+									<s:a action="resources_input" cssClass="xiu">
+									<s:param name="rm.uuid" value="uuid"/>
+										修改
+									</s:a>
+								</span> 
+								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
+								<span style="line-height:12px; text-align:center;"> 
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
+								</span>
+							</td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
-		 </form>
+		 </s:form>
 	</div>
 	<div class="content-bbg"></div>
 </div>

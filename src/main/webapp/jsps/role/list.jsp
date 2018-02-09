@@ -14,7 +14,7 @@
 		//top.document.getElementById("context-msg").style.display = "block";
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
-		top.$('hid-action').value="role_delete.action?uuid=" + uuid;
+		top.$('hid-action').value="role_delete.action?rm.uuid=" + uuid;
 		top.lock.show();
 	}
 </script>
@@ -50,7 +50,7 @@
 						<td width="40%">角色编码</td>
 						<td width="20%">操作</td>
 					</tr>
-					<s:iterator value="roleList">
+					<s:iterator value="#roleList">
 						<tr align="center" bgcolor="#FFFFFF">
 							<td height="30">${name}</td>
 							<td>${code}</td>
@@ -64,7 +64,7 @@
 								</span> 
 								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？', ${uuid})">删除</a>
 								</span>
 							</td>
 						</tr>

@@ -27,7 +27,8 @@ public class RoleAction extends BaseAction {
 	}
 	
 	public String delete(){
-		return null;
+		roleEbi.delete(rm);
+		return TO_LIST;
 	}
 	
 	
@@ -38,7 +39,6 @@ public class RoleAction extends BaseAction {
 	}
 	
 	public String input(){
-		System.out.println(rm.getUuid());
 		if(rm.getUuid() != null){
 			rm = roleEbi.get(rm.getUuid());
 		}

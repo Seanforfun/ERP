@@ -18,15 +18,17 @@ public class ResourcesAction extends BaseAction {
 	@Resource(name="resourcesEbi")
 	private ResourcesEbi resourcesEbi;
 	public String save(){
-		return null;
+		if(rm.getUuid() == null){
+			resourcesEbi.save(rm);
+		}else{
+			resourcesEbi.update(rm);
+		}
+		return TO_LIST;
 	}
 	
 	public String delete(){
-		return null;
-	}
-	
-	public String update(){
-		return null;
+		resourcesEbi.delete(rm);
+		return TO_LIST;
 	}
 	
 	public String list(){
@@ -36,6 +38,9 @@ public class ResourcesAction extends BaseAction {
 	}
 	
 	public String input(){
+		if(rm.getUuid() != null){
+			rm = resourcesEbi.get(rm.getUuid());
+		}
 		return INPUT;
 	}
 }
