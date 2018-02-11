@@ -4,15 +4,33 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/Calendar.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#all").click(function() {
-			$("[name=resources]:checkbox").attr("checked",$("#all").attr("checked")=="checked");
+	$(function(){
+		$("#all").click(function(){
+			/* $("[name=resUuids]").attr("checked","checked"); */
+			flag = $(this).attr("checked");
+			$("[name=resUuids]").attr("checked",flag == 'checked');
 		});
-		$("#reverse").click(function() {
-			$("[name=resources]:checkbox").each(function () {
-                $(this).attr("checked", !$(this).attr("checked"));
-            });
-
+	})
+	
+	$(function(){
+		$("#reverse").click(function(){
+			/* $("[name=resUuids]").attr("checked",!($("[name=resUuids]").attr("checked") == "checked")); */
+			var flag = true;
+			$("[name=resUuids]").each(function(){
+				$(this).attr("checked", !($(this).attr("checked") == "checked"));
+				flag = flag && ($(this).attr("checked")=="checked")
+			});
+			$("#all").attr("checked", flag);
+		});
+	});
+	
+	$(function(){
+		$("[name=resUuids]").click(function(){
+			var flag = true;
+			$("[name=resUuids]").each(function(){
+				flag = flag && ($(this).attr("checked") == "checked");
+			});
+			$("#all").attr("checked", flag);
 		});
 	});
 </script>
@@ -62,8 +80,8 @@
 				     <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">菜单名称</td>
 				      <td width="82%" colspan="3">
-				      	<input type="checkbox" id="all">全选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				      	<input type="checkbox" id="reverse">反选
+				      	<input type="checkbox" id="all1">全选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      	<input type="checkbox" id="reverse1">反选
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
