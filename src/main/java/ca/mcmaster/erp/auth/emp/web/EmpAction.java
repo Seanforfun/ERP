@@ -46,7 +46,7 @@ public class EmpAction extends BaseAction{
 		}
 		EmpModel tmpEmp = empEbi.login(em.getUsername(), em.getPassword(), loginIp);
 		if(null != tmpEmp){
-			ActionContext.getContext().getSession().put(EmpModel.LOGIN_EMP, tmpEmp.getName());
+			ActionContext.getContext().getSession().put(EmpModel.LOGIN_EMP, tmpEmp);
 		}else{
 			this.addActionError("Username or password is incorrect!");
 			return "loginFail";

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.res.dao.dao.ResourcesDao;
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 import ca.mcmaster.erp.auth.res.service.ebi.ResourcesEbi;
@@ -53,5 +54,10 @@ public class ResourcesEbo implements ResourcesEbi {
 	public Integer getCount(BaseQueryModel bqm) {
 		Integer count = resourcesDao.getCount(bqm);
 		return count;
+	}
+
+	public List<ResourcesModel> getAllByEmp(Integer uuid) {
+		List<ResourcesModel> resourcesModelList = resourcesDao.getAllByEmpUuid(uuid);
+		return resourcesModelList;
 	}
 }

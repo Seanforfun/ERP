@@ -10,10 +10,12 @@
 	<package name="default" namespace="/" extends="struts-default">
 		
 		<interceptors>
-			<interceptor name="authInterceptor" class="ca.mcmaster.erp.utils.interceptors.AuthInterceptor"/>
+			<interceptor name="loginInterceptor" class="ca.mcmaster.erp.utils.interceptors.LoginInterceptor"/>
 			<interceptor name="exceptionInterceptor" class="ca.mcmaster.erp.utils.interceptors.ExceptionInterceptor"/>
+			<interceptor name="authInterceptor" class="ca.mcmaster.erp.utils.interceptors.AuthInterceptor"/>
 			<interceptor-stack name="systemStack">
 				<interceptor-ref name="exceptionInterceptor"/>
+				<!-- <interceptor-ref name="loginInterceptor"/> -->
 				<interceptor-ref name="authInterceptor"/>
 				<interceptor-ref name="defaultStack"/>
 			</interceptor-stack>

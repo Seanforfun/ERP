@@ -1,4 +1,9 @@
 package ca.mcmaster.erp.auth.res.model;
+
+import java.util.Set;
+
+import ca.mcmaster.erp.auth.role.model.RoleModel;
+
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Feb 8, 2018 9:24:24 PM
