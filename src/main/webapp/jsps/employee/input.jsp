@@ -124,7 +124,9 @@
 					<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 					  <tr>
 					    <td>
-					    	<a href="javascript:document.forms[0].submit()"><img src="${pageContext.request.contextPath }/images/order_tuo.gif" border="0" /></a>
+					    	<a href="javascript:document.forms[0].submit()">
+					    		<img src="${pageContext.request.contextPath }/images/order_tuo.gif" border="0" />
+					    	</a>
 					    </td>
 					    <td>&nbsp;</td>
 					    <td><a href="#"><img src="${pageContext.request.contextPath }/images/order_tuo.gif" border="0" /></a></td>

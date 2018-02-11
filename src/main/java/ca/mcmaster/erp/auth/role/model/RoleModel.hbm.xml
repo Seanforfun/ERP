@@ -12,5 +12,9 @@
         		
         		<property name="name"/>        	
         		<property name="code"/>
+        		<set name="resourcesModels" table="tbl_role_resources">
+        			<key column="roleuuid"/>
+        			<many-to-many column="resourcesuuid" class="ca.mcmaster.erp.auth.res.model.ResourcesModel"/>
+        		</set>
         	</class>
         </hibernate-mapping>

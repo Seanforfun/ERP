@@ -56,10 +56,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">&nbsp;</td>
 				      <td width="82%" colspan="3">
-				      	<input type="checkbox"/>员工列表
-				      	<input type="checkbox"/>添加/修改员工
-				      	<input type="checkbox"/>删除员工
-				      	<input type="checkbox"/>提交编辑员工
+				      	<s:checkboxlist list="resList" name="resUuids" listKey="uuid" listValue="name"/>
 				      </td>
 				    </tr>
 				     <tr  bgcolor="#FFFFFF">
@@ -88,12 +85,14 @@
 					<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 					  <tr>
 					    <td>
-					    	<a href="javascript:document.forms[0].submit()"><img src="${pageContext.request.contextPath}/images/order_tuo.gif" border="0" /></a>
+					    	<a href="javascript:document.forms[0].submit()">
+					    		<img src="${pageContext.request.contextPath}/images/order_tuo.gif" border="0" />
+					    	</a>
 					    </td>
 					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="${pageContext.request.contextPath}/images/order_tuo.gif" border="0" /></a></td>
+					    <td><a href=""><img src="${pageContext.request.contextPath}/images/order_tuo.gif" border="0" /></a></td>
 					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="${pageContext.request.contextPath}/images/order_tuo.gif" border="0" /></a></td>
+					    <td><a href=""><img src="${pageContext.request.contextPath}/images/order_tuo.gif" border="0" /></a></td>
 					  </tr>
 					</table>
 				</div>
@@ -101,5 +100,7 @@
 			</s:form>
 		</div><!--"square-order"end-->
 	</div><!--"content-text"end-->
-	<div class="content-bbg"><img src="${pageContext.request.contextPath}/images/content_bbg.jpg" /></div>
+	<div class="content-bbg">
+		<img src="${pageContext.request.contextPath}/images/content_bbg.jpg" />
+	</div>
 </div>

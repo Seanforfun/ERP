@@ -1,4 +1,9 @@
 package ca.mcmaster.erp.auth.role.model;
+
+import java.util.Set;
+
+import ca.mcmaster.erp.auth.res.model.ResourcesModel;
+
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Feb 8, 2018 9:23:00 PM
@@ -7,6 +12,13 @@ public class RoleModel {
 	private Long uuid;
 	private String name;
 	private String code;
+	private Set<ResourcesModel> resourcesModels;
+	public Set<ResourcesModel> getResourcesModels() {
+		return resourcesModels;
+	}
+	public void setResourcesModels(Set<ResourcesModel> resourcesModels) {
+		this.resourcesModels = resourcesModels;
+	}
 	public Long getUuid() {
 		return uuid;
 	}

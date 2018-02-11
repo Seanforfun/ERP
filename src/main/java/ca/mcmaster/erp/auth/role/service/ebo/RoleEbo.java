@@ -1,10 +1,13 @@
 package ca.mcmaster.erp.auth.role.service.ebo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 import ca.mcmaster.erp.auth.role.dao.dao.RoleDao;
 import ca.mcmaster.erp.auth.role.model.RoleModel;
 import ca.mcmaster.erp.auth.role.service.ebi.RoleEbi;
@@ -17,6 +20,8 @@ import ca.mcmaster.erp.utils.base.BaseQueryModel;
 public class RoleEbo implements RoleEbi {
 	@Resource(name="roleDao")
 	private RoleDao roleDao;
+	
+	@Deprecated
 	public void save(RoleModel t) {
 		roleDao.save(t);
 	}
@@ -25,6 +30,7 @@ public class RoleEbo implements RoleEbi {
 		roleDao.delete(t);
 	}
 
+	@Deprecated
 	public void update(RoleModel t) {
 		roleDao.update(t);
 	}
@@ -53,5 +59,30 @@ public class RoleEbo implements RoleEbi {
 	public Integer getCount(BaseQueryModel bqm) {
 		Integer count = roleDao.getCount(bqm);
 		return count;
+	}
+
+	public void save(RoleModel rm, Long[] resourcesUuid) {
+		Set<ResourcesModel> resourcesModels = new HashSet<ResourcesModel>();
+		for(Long uuid:resourcesUuid){
+			ResourcesModel temp = new ResourcesModel();
+			temp.setUuid(uuid);
+			resourcesModels.add(temp);
+		}
+		rm.setResourcesModels(resourcesModels);
+		roleDao.save(rm);
+	}
+
+	public void update(RoleModel rm, Long[] resourcesUuid) {
+		RoleModel temp = roleDao.get(rm.getUuid());
+		Set<ResourcesModel> resourcesModels= new HashSet<ResourcesModel>();
+		for(Long uuid:resourcesUuid){
+			ResourcesModel temp1 = new ResourcesModel();
+			temp1.setUuid(uuid);
+			resourcesModels.add(temp1);
+		}
+		temp.setResourcesModels(resourcesModels);
+		temp.setName(rm.getName());
+		temp.setCode(rm.getCode());
+		roleDao.update(temp);
 	}
 }
