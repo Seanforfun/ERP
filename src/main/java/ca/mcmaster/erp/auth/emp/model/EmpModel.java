@@ -39,6 +39,13 @@ public class EmpModel {
 	private String genderView;
 	private Long lastLoginTime;
 	private String lastLoginTimeView;
+	private String empRes;
+	public String getEmpRes() {
+		return empRes;
+	}
+	public void setEmpRes(String empRes) {
+		this.empRes = empRes;
+	}
 	public String getLastLoginTimeView() {
 		return lastLoginTimeView;
 	}

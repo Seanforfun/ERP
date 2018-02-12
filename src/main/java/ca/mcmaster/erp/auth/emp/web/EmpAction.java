@@ -10,6 +10,8 @@ import ca.mcmaster.erp.auth.dept.service.ebi.DeptEbi;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.model.EmpQueryModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
+import ca.mcmaster.erp.auth.res.model.ResourcesModel;
+import ca.mcmaster.erp.auth.res.service.ebi.ResourcesEbi;
 import ca.mcmaster.erp.auth.role.model.RoleModel;
 import ca.mcmaster.erp.auth.role.service.ebi.RoleEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
@@ -31,6 +33,8 @@ public class EmpAction extends BaseAction{
 	private DeptEbi deptEbi;
 	@Resource(name="roleEbi")
 	private RoleEbi roleEbi;
+	@Resource(name="resourcesEbi")
+	private ResourcesEbi resourcesEbi;
 
 	public String login() {
 		HttpServletRequest request = getRequest();
@@ -46,6 +50,13 @@ public class EmpAction extends BaseAction{
 		}
 		EmpModel tmpEmp = empEbi.login(em.getUsername(), em.getPassword(), loginIp);
 		if(null != tmpEmp){
+			List<ResourcesModel> allRes = resourcesEbi.getAllByEmp(tmpEmp.getUuid());
+			StringBuilder sb = new StringBuilder();
+			for(ResourcesModel rm:allRes){
+				sb.append(rm.getUrl());
+				sb.append(",");
+			}
+			tmpEmp.setEmpRes(sb.toString());
 			ActionContext.getContext().getSession().put(EmpModel.LOGIN_EMP, tmpEmp);
 		}else{
 			this.addActionError("Username or password is incorrect!");

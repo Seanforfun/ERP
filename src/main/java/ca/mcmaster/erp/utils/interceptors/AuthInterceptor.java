@@ -1,11 +1,8 @@
 package ca.mcmaster.erp.utils.interceptors;
 
-import java.util.List;
-
 import org.apache.struts2.ServletActionContext;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
-import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 import ca.mcmaster.erp.auth.res.service.ebi.ResourcesEbi;
 import ca.mcmaster.erp.utils.exceptions.AppException;
 
@@ -18,11 +15,11 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
  */
 @SuppressWarnings("serial")
 public class AuthInterceptor extends AbstractInterceptor {
-	private ResourcesEbi resourcesEbi;
-	
-	public void setResourcesEbi(ResourcesEbi resourcesEbi) {
-		this.resourcesEbi = resourcesEbi;
-	}
+//	private ResourcesEbi resourcesEbi;
+//	
+//	public void setResourcesEbi(ResourcesEbi resourcesEbi) {
+//		this.resourcesEbi = resourcesEbi;
+//	}
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
@@ -41,11 +38,15 @@ public class AuthInterceptor extends AbstractInterceptor {
 			return "nologin";
 		}
 		
-		List<ResourcesModel> resourcesModels = resourcesEbi.getAllByEmp(em.getUuid());
-		for(ResourcesModel rm : resourcesModels){
-			if(rm.getUrl().equals(resource)){
-				return invocation.invoke();
-			}
+//		List<ResourcesModel> resourcesModels = resourcesEbi.getAllByEmp(em.getUuid());
+//		for(ResourcesModel rm : resourcesModels){
+//			if(rm.getUrl().equals(resource)){
+//				return invocation.invoke();
+//			}
+//		}
+		String empRes = em.getEmpRes();
+		if(empRes.contains(resource)){
+			invocation.invoke();
 		}
 		throw new AppException("Please don't euecute unauthorized actions!");
 	}
