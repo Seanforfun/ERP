@@ -1,9 +1,6 @@
 package ca.mcmaster.erp.auth.role.web;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;

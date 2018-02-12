@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<link href="../../css/index.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="../../js/Calendar.js"></script>
+<link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/Calendar.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#query").click(function() {
@@ -13,7 +13,7 @@
 	function showMsg(msg,uuid){
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
-		top.$('hid-action').value="actionName";
+		top.$('hid-action').value="menu_delete.action?mm.uuid=" + uuid;
 		top.lock.show();
 	}
 </script>
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post">
+		<form action="menu_list" method="post">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -41,8 +41,8 @@
 								<option value="0">采购管理</option>
 							</select>
 						</td>
-						<td width="70"><a id="query"> <img src="../../images/can_b_01.gif" border="0" /> </a></td>
-						<td width="70"><a href="./input.jsp"><img src="../../images/can_b_02.gif" border="0" /></a></td>
+						<td width="70"><a id="query"> <img src="${pageContext.request.contextPath}/images/can_b_01.gif" border="0" /> </a></td>
+						<td width="70"><a href="${pageContext.request.contextPath}/menu_input"><img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" /></a></td>
 					</tr>
 				</table>
 			</div>
@@ -50,27 +50,32 @@
 			<div class="square-order">
 				<table width="100%" border="1" cellpadding="0" cellspacing="0">
 					<tr align="center"
-						style="background:url(../../images/table_bg.gif) repeat-x;">
+						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
 						<td width="25%" height="30">菜单名称</td>
 						<td width="25%">所属菜单</td>
 						<td width="25%">URL</td>
 						<td width="25%">操作</td>
 					</tr>
-					<tr align="center" bgcolor="#FFFFFF">
-						<td height="30">销售订单</td>
-						<td>销售管理</td>
-						<td>sellAction_order.action</td>
-						<td>
-							<img src="../../images/icon_3.gif" /> 
-							<span style="line-height:12px; text-align:center;"> 
-								<a href="./input.jsp" class="xiu">修改</a> 
-							</span> 
-							<img src="../../images/icon_04.gif" /> 
-							<span style="line-height:12px; text-align:center;"> 
-								<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
-							</span>
-						</td>
-					</tr>
+					<s:iterator value="#menuList">
+						<tr align="center" bgcolor="#FFFFFF">
+							<td height="30">${name}</td>
+							<td>${parent.name}</td>
+							<td>${url}</td>
+							<td>
+								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
+								<span style="line-height:12px; text-align:center;">
+									<s:a action="menu_input.action" cssClass="xiu">
+										<s:param name="mm.uuid" value="uuid"/>
+										修改
+									</s:a>
+								</span> 
+								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
+								<span style="line-height:12px; text-align:center;"> 
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
+								</span>
+							</td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 		</form>

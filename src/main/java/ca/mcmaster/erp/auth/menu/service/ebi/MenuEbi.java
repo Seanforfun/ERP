@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.auth.menu.service.ebi;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcmaster.erp.auth.menu.model.MenuModel;
@@ -11,5 +13,9 @@ import ca.mcmaster.erp.utils.base.BaseEbi;
  */
 @Transactional
 public interface MenuEbi extends BaseEbi<MenuModel> {
-
+	/**
+	 * @Description: Get all level one menu
+	 * @return
+	 */
+	public List<MenuModel> getAllLevelOne();
 }

@@ -4,6 +4,7 @@ package ca.mcmaster.erp.auth.menu.model;
  * @version Feb 11, 2018 10:01:05 PM
  */
 public class MenuModel {
+	public static final Long MENU_SYSTEM_MENU_UUID = 1L;
 	private Long uuid;
 	private String name;
 	private String url;

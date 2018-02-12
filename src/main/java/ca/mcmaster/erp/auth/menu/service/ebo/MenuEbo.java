@@ -52,4 +52,8 @@ public class MenuEbo implements MenuEbi {
 		Integer count = menuDao.getCount(bqm);
 		return count;
 	}
+
+	public List<MenuModel> getAllLevelOne() {
+		return menuDao.getByPuuidIsOneOrZero();
+	}
 }

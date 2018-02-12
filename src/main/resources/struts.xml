@@ -59,6 +59,9 @@
 		</action>
 		
 		<action name="menu_*" class="menuAction" method="{1}">
+			<result name="list">/jsps/menu/list.jsp</result>
+			<result name="input">/jsps/menu/input.jsp</result>
+			<result name="toList" type="redirectAction">menu_list.action</result>
 		</action>
 	</package>
 </struts>
