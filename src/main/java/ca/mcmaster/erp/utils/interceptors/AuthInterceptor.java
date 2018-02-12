@@ -2,6 +2,8 @@ package ca.mcmaster.erp.utils.interceptors;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 import ca.mcmaster.erp.auth.res.service.ebi.ResourcesEbi;
@@ -27,8 +29,12 @@ public class AuthInterceptor extends AbstractInterceptor {
 		String actionName = invocation.getProxy().getAction().getClass().getName();
 		String methodName = invocation.getProxy().getMethod();
 		String resource = actionName + "." + methodName;
-		if("ca.mcmaster.erp.auth.emp.web.EmpAction.login".equals(resource)){
-			return invocation.invoke();
+//		if("ca.mcmaster.erp.auth.emp.web.EmpAction.login".equals(resource)){
+//			return invocation.invoke();
+//		}
+		String resList = (String) ServletActionContext.getServletContext().getAttribute("resList");
+		if(!resList.contains(resource)){
+			invocation.invoke();
 		}
 		EmpModel em =  (EmpModel) invocation.getInvocationContext().getSession().get(EmpModel.LOGIN_EMP);
 		if(null == em){
