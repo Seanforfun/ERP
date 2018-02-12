@@ -57,5 +57,8 @@
 			<result name="input">/jsps/resource/input.jsp</result>
 			<result name="toList" type="redirectAction">resources_list.action</result>
 		</action>
+		
+		<action name="menu_*" class="menuAction" method="{1}">
+		</action>
 	</package>
 </struts>
