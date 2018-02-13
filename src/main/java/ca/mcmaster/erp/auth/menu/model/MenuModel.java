@@ -1,4 +1,7 @@
 package ca.mcmaster.erp.auth.menu.model;
+
+import java.util.Set;
+
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Feb 11, 2018 10:01:05 PM
@@ -9,6 +12,13 @@ public class MenuModel {
 	private String name;
 	private String url;
 	private MenuModel parent;
+	private Set<MenuModel> children;
+ 	public Set<MenuModel> getChildren() {
+		return children;
+	}
+	public void setChildren(Set<MenuModel> children) {
+		this.children = children;
+	}
 	public MenuModel getParent() {
 		return parent;
 	}

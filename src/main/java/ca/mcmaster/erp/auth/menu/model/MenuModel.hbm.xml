@@ -17,5 +17,10 @@
         			column="puuid"
         			class="ca.mcmaster.erp.auth.menu.model.MenuModel"
         		/>
+        		
+        		<set name="children" cascade="delete" inverse="true">
+        			<key column="puuid"/>
+        			<one-to-many class="ca.mcmaster.erp.auth.menu.model.MenuModel"/>
+        		</set>
         	</class>
         </hibernate-mapping>

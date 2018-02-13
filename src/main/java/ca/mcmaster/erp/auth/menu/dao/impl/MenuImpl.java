@@ -20,6 +20,12 @@ public class MenuImpl extends BaseImpl<MenuModel> implements MenuDao {
 	public void doCriteria(BaseQueryModel bqm, DetachedCriteria dc) {
 		MenuQueryModel mqm = (MenuQueryModel) bqm;
 		dc.add(Restrictions.ne("uuid", MenuModel.MENU_SYSTEM_MENU_UUID));
+		if(mqm.getName() != null && mqm.getName().trim().length() > 0){
+			dc.add(Restrictions.like("name", "%" +mqm.getName().trim()+ "%"));
+		}
+		if(mqm.getParent() != null && mqm.getParent().getUuid() != null && mqm.getParent().getUuid() != -1){
+			dc.add(Restrictions.eq("parent", mqm.getParent()));
+		}
 	}
 
 	public List<MenuModel> getByPuuidIsOneOrZero() {

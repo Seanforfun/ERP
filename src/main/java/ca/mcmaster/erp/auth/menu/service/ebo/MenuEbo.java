@@ -22,11 +22,15 @@ public class MenuEbo implements MenuEbi {
 	}
 
 	public void delete(MenuModel t) {
-		menuDao.delete(t);
+		MenuModel temp = menuDao.get(t.getUuid());
+		menuDao.delete(temp);
 	}
 
 	public void update(MenuModel t) {
-		menuDao.update(t);
+		MenuModel tempMenu = menuDao.get(t.getUuid());
+		tempMenu.setName(t.getName());
+		tempMenu.setUrl(t.getUrl());
+		menuDao.update(tempMenu);
 	}
 
 	public MenuModel get(Serializable uuid) {

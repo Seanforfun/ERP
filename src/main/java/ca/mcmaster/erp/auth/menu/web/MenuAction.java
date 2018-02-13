@@ -35,8 +35,10 @@ public class MenuAction extends BaseAction {
 	}
 	
 	public String list(){
+		List<MenuModel> parentList = menuEbi.getAllLevelOne();
+		put("parentList", parentList);
 		setDataTotal(menuEbi.getCount(mqm));
-		List<MenuModel> menuList = menuEbi.getAll(mqm, maxPageNum, pageCount);
+		List<MenuModel> menuList = menuEbi.getAll(mqm, pageNum, pageCount);
 		put("menuList", menuList);
 		return LIST;
 	}
