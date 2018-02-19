@@ -13,4 +13,7 @@ public interface MenuDao extends BaseDao<MenuModel> {
 	public List<MenuModel> getByPuuidIsOneOrZero();
 
 	public List<MenuModel> getAllLevelOneByEmpUuid(Integer loginUuid);
+
+	public List<MenuModel> getByEmpAndPUuid(Integer loginUuid,
+			Long parentUuid);
 }

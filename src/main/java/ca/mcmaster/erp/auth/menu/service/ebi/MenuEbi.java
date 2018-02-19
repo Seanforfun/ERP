@@ -46,4 +46,13 @@ public interface MenuEbi extends BaseEbi<MenuModel> {
 	 * @return
 	 */
 	public List<MenuModel> getAllLevelOneByEmp(Integer loginUuid);
+
+	/**
+	 * @Description: Get all level2 menu according to level1 uuid and empUuid
+	 * @param loginUuid
+	 * @param parentUuid
+	 * @return
+	 */
+	public List<MenuModel> getByEmpAndPUuid(Integer loginUuid,
+			Long parentUuid);
 }

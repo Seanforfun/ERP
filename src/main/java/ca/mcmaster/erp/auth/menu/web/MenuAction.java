@@ -75,18 +75,31 @@ public class MenuAction extends BaseAction {
 	}
 	
 	public void showMenu() throws IOException{
-		Integer loginUuid = getLogin().getUuid();
 		HttpServletResponse response = super.getResponse();
 		response.setContentType("text/heml;charset=utf-8");
 		StringBuilder json = new StringBuilder();
+		String rootRequest = ServletActionContext.getRequest().getParameter("root");
+		Integer loginUuid = getLogin().getUuid();
 		json.append("[");
-		List<MenuModel> menuList = menuEbi.getAllLevelOneByEmp(loginUuid);
-		for(MenuModel temp : menuList){
-			json.append("{\"text\": \"");
-			json.append(temp.getName());
-			json.append("\", \"hasChildren\":true, \"classes\":\"folder\", \"id\":\"");
-			json.append(temp.getUuid().toString());
-			json.append("\"},");
+		if("source".equals(rootRequest)){
+			List<MenuModel> menuList = menuEbi.getByEmpAndPUuid(loginUuid, MenuModel.MENU_SYSTEM_MENU_UUID);
+			for(MenuModel temp : menuList){
+				json.append("{\"text\": \"");
+				json.append(temp.getName());
+				json.append("\", \"hasChildren\":true, \"classes\":\"folder\", \"id\":\"");
+				json.append(temp.getUuid().toString());
+				json.append("\"},");
+			}
+		}else{
+			Long parentUuid = new Long(rootRequest);
+			List<MenuModel> menuList = menuEbi.getByEmpAndPUuid(loginUuid, parentUuid);
+			for(MenuModel temp : menuList){
+				json.append("{\"text\": \"<a class='hei' target='main' href='");
+				json.append(temp.getUrl());
+				json.append("'>");
+				json.append(temp.getName());
+				json.append("</a>\", \"hasChildren\":false, \"classes\":\"file\"},");
+			}
 		}
 		json.deleteCharAt(json.lastIndexOf(","));
 		json.append("]");

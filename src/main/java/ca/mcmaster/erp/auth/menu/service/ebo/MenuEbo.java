@@ -99,4 +99,9 @@ public class MenuEbo implements MenuEbi {
 	public List<MenuModel> getAllLevelOneByEmp(Integer loginUuid) {
 		return menuDao.getAllLevelOneByEmpUuid(loginUuid);
 	}
+
+	public List<MenuModel> getByEmpAndPUuid(Integer loginUuid,
+			Long parentUuid) {
+		return menuDao.getByEmpAndPUuid(loginUuid, parentUuid);
+	}
 }
