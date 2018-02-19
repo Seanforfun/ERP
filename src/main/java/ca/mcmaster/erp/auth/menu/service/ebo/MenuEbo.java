@@ -95,4 +95,8 @@ public class MenuEbo implements MenuEbi {
 		List<MenuModel> menuList = menuDao.getAll(mqm, 1, Integer.MAX_VALUE);
 		return menuList;
 	}
+
+	public List<MenuModel> getAllLevelOneByEmp(Integer loginUuid) {
+		return menuDao.getAllLevelOneByEmpUuid(loginUuid);
+	}
 }

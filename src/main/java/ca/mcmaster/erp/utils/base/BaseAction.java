@@ -64,7 +64,7 @@ public class BaseAction  extends ActionSupport{
 		return ServletActionContext.getResponse();
 	}
 	
-	protected String getLogin(){
-		return (String) getSession(EmpModel.LOGIN_EMP);
+	protected EmpModel getLogin(){
+		return (EmpModel) getSession(EmpModel.LOGIN_EMP);
 	}
 }

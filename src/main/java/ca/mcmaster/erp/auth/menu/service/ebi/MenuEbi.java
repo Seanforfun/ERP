@@ -39,4 +39,11 @@ public interface MenuEbi extends BaseEbi<MenuModel> {
 	 * @return
 	 */
 	public List<MenuModel> getAllLevelOneWithoutSystem();
+
+	/**
+	 * @param loginUuid 
+	 * @Description: Get the menu list of current employee.
+	 * @return
+	 */
+	public List<MenuModel> getAllLevelOneByEmp(Integer loginUuid);
 }

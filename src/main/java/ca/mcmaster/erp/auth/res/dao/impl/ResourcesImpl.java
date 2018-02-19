@@ -24,7 +24,7 @@ public class ResourcesImpl extends BaseImpl<ResourcesModel> implements Resources
 	}
 
 	public List<ResourcesModel> getAllByEmpUuid(Integer uuid) {
-		String hql = "select res from EmpModel em join em.roleModels role join role.resourcesModels res where em.uuid = ?";
+		String hql = "select distinct res from EmpModel em join em.roleModels role join role.resourcesModels res where em.uuid = ?";
 		List<ResourcesModel> resList = this.getHibernateTemplate().find(hql, uuid);
 		return resList;
 	}

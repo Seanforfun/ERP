@@ -75,8 +75,8 @@ public class EmpAction extends BaseAction{
 	}
 	
 	public String changePwd(){
-		String loginName = getLogin();
-		Boolean flag = empEbi.changePwd(loginName, em.getPassword(), newPassword);
+		EmpModel login = getLogin();
+		Boolean flag = empEbi.changePwd(login.getName(), em.getPassword(), newPassword);
 		if(true == flag){
 			putSession(EmpModel.LOGIN_EMP, null);
 			return "loginFail";

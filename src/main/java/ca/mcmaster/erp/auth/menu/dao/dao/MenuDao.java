@@ -11,4 +11,6 @@ import ca.mcmaster.erp.utils.base.BaseDao;
  */
 public interface MenuDao extends BaseDao<MenuModel> {
 	public List<MenuModel> getByPuuidIsOneOrZero();
+
+	public List<MenuModel> getAllLevelOneByEmpUuid(Integer loginUuid);
 }

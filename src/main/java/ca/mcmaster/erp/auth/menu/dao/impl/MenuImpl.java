@@ -32,4 +32,9 @@ public class MenuImpl extends BaseImpl<MenuModel> implements MenuDao {
 		String hql = "from MenuModel where parent.uuid = ? or uuid = ?";
 		return this.getHibernateTemplate().find(hql, MenuModel.MENU_SYSTEM_MENU_UUID, MenuModel.MENU_SYSTEM_MENU_UUID);
 	}
+
+	public List<MenuModel> getAllLevelOneByEmpUuid(Integer loginUuid) {
+		String hql ="select distinct mm from MenuModel mm join mm.roleModels role join role.empModels emp where mm.parent.uuid = ? and emp.uuid = ? order by mm.uuid";
+		return this.getHibernateTemplate().find(hql, MenuModel.MENU_SYSTEM_MENU_UUID, loginUuid);
+	}
 }

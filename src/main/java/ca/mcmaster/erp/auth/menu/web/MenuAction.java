@@ -75,15 +75,18 @@ public class MenuAction extends BaseAction {
 	}
 	
 	public void showMenu() throws IOException{
+		Integer loginUuid = getLogin().getUuid();
 		HttpServletResponse response = super.getResponse();
 		response.setContentType("text/heml;charset=utf-8");
 		StringBuilder json = new StringBuilder();
 		json.append("[");
-		List<MenuModel> menuList = menuEbi.getAllLevelOneWithoutSystem();
+		List<MenuModel> menuList = menuEbi.getAllLevelOneByEmp(loginUuid);
 		for(MenuModel temp : menuList){
 			json.append("{\"text\": \"");
 			json.append(temp.getName());
-			json.append("\", \"hasChildren\":true, \"classes\":\"folder\"},");
+			json.append("\", \"hasChildren\":true, \"classes\":\"folder\", \"id\":\"");
+			json.append(temp.getUuid().toString());
+			json.append("\"},");
 		}
 		json.deleteCharAt(json.lastIndexOf(","));
 		json.append("]");
