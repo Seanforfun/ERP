@@ -20,7 +20,7 @@
         			<key column="roleuuid"/>
         			<many-to-many column="menuuuid" class="ca.mcmaster.erp.auth.menu.model.MenuModel"/>
         		</set>
-        		<set name="empModels" table="tbl_emp_role">
+        		<set name="empModels" table="tbl_emp_role" inverse="true">
         			<key column="roleuuid"/>
         			<many-to-many column="empuuid" class="ca.mcmaster.erp.auth.emp.model.EmpModel"/>
         		</set>
