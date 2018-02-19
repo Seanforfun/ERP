@@ -16,5 +16,9 @@
         			<key column="roleuuid"/>
         			<many-to-many column="resourcesuuid" class="ca.mcmaster.erp.auth.res.model.ResourcesModel"/>
         		</set>
+        		<set name="menuModels" table="tbl_role_menu">
+        			<key column="roleuuid"/>
+        			<many-to-many column="menuuuid" class="ca.mcmaster.erp.auth.menu.model.MenuModel"/>
+        		</set>
         	</class>
         </hibernate-mapping>

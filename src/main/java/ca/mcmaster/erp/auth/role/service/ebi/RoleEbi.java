@@ -24,4 +24,20 @@ public interface RoleEbi extends BaseEbi<RoleModel>{
 	 * @param resourcesUuid
 	 */
 	void update(RoleModel rm, Long[] resourcesUuid);
+
+	/**
+	 * @Description: Save role with defined resourcesModel and menuModel
+	 * @param rm
+	 * @param resUuids
+	 * @param menuUuids
+	 */
+	void save(RoleModel rm, Long[] resUuids, Long[] menuUuids);
+
+	/**
+	 * @Description: Update role with defined resourcesModel and menuModel
+	 * @param rm
+	 * @param resUuids
+	 * @param menuUuids
+	 */
+	void update(RoleModel rm, Long[] resUuids, Long[] menuUuids);
 }

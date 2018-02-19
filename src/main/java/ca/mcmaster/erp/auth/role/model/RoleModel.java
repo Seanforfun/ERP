@@ -2,6 +2,7 @@ package ca.mcmaster.erp.auth.role.model;
 
 import java.util.Set;
 
+import ca.mcmaster.erp.auth.menu.model.MenuModel;
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 
 /**
@@ -13,6 +14,13 @@ public class RoleModel {
 	private String name;
 	private String code;
 	private Set<ResourcesModel> resourcesModels;
+	private Set<MenuModel> menuModels;
+	public Set<MenuModel> getMenuModels() {
+		return menuModels;
+	}
+	public void setMenuModels(Set<MenuModel> menuModels) {
+		this.menuModels = menuModels;
+	}
 	public Set<ResourcesModel> getResourcesModels() {
 		return resourcesModels;
 	}

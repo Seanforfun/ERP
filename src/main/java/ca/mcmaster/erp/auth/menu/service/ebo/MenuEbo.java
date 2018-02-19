@@ -1,13 +1,17 @@
 package ca.mcmaster.erp.auth.menu.service.ebo;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.menu.dao.dao.MenuDao;
 import ca.mcmaster.erp.auth.menu.model.MenuModel;
+import ca.mcmaster.erp.auth.menu.model.MenuQueryModel;
 import ca.mcmaster.erp.auth.menu.service.ebi.MenuEbi;
+import ca.mcmaster.erp.auth.role.model.RoleModel;
 import ca.mcmaster.erp.utils.base.BaseQueryModel;
 
 /**
@@ -59,5 +63,36 @@ public class MenuEbo implements MenuEbi {
 
 	public List<MenuModel> getAllLevelOne() {
 		return menuDao.getByPuuidIsOneOrZero();
+	}
+
+	public void save(MenuModel mm, Long[] roleUuids) {
+		Set<RoleModel> roleModels = new HashSet<RoleModel>();
+		for(Long uuid : roleUuids){
+			RoleModel temp = new RoleModel();
+			temp.setUuid(uuid);
+			roleModels.add(temp);
+		}
+		mm.setRoleModels(roleModels);
+		menuDao.save(mm);
+	}
+
+	public void update(MenuModel mm, Long[] roleUuids) {
+		Set<RoleModel> roleModels = new HashSet<RoleModel>();
+		for(Long uuid : roleUuids){
+			RoleModel temp = new RoleModel();
+			temp.setUuid(uuid);
+			roleModels.add(temp);
+		}
+		mm.setRoleModels(roleModels);
+		menuDao.update(mm);
+	}
+
+	public List<MenuModel> getAllLevelOneWithoutSystem() {
+		MenuQueryModel mqm = new MenuQueryModel();
+		MenuModel parent = new MenuModel();
+		parent.setUuid(MenuModel.MENU_SYSTEM_MENU_UUID);
+		mqm.setParent(parent);
+		List<MenuModel> menuList = menuDao.getAll(mqm, 1, Integer.MAX_VALUE);
+		return menuList;
 	}
 }

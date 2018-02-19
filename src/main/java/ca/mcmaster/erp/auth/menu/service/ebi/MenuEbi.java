@@ -1,6 +1,7 @@
 package ca.mcmaster.erp.auth.menu.service.ebi;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,4 +19,24 @@ public interface MenuEbi extends BaseEbi<MenuModel> {
 	 * @return
 	 */
 	public List<MenuModel> getAllLevelOne();
+
+	/**
+	 * @Description: Save menu with role inforamtion.
+	 * @param mm
+	 * @param roleUuids
+	 */
+	public void save(MenuModel mm, Long[] roleUuids);
+
+	/**
+	 * @Description: Save menu with role inforamtion.
+	 * @param mm
+	 * @param roleUuids
+	 */
+	public void update(MenuModel mm, Long[] roleUuids);
+
+	/**
+	 * @Description: Get all level one menu without geting the system menu
+	 * @return
+	 */
+	public List<MenuModel> getAllLevelOneWithoutSystem();
 }

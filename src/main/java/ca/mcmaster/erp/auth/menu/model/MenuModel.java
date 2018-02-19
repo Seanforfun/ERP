@@ -2,6 +2,8 @@ package ca.mcmaster.erp.auth.menu.model;
 
 import java.util.Set;
 
+import ca.mcmaster.erp.auth.role.model.RoleModel;
+
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Feb 11, 2018 10:01:05 PM
@@ -13,7 +15,14 @@ public class MenuModel {
 	private String url;
 	private MenuModel parent;
 	private Set<MenuModel> children;
- 	public Set<MenuModel> getChildren() {
+	private Set<RoleModel> roleModels;
+ 	public Set<RoleModel> getRoleModels() {
+		return roleModels;
+	}
+	public void setRoleModels(Set<RoleModel> roleModels) {
+		this.roleModels = roleModels;
+	}
+	public Set<MenuModel> getChildren() {
 		return children;
 	}
 	public void setChildren(Set<MenuModel> children) {

@@ -1,8 +1,11 @@
 package ca.mcmaster.erp.auth.role.web;
 
 import java.util.List;
+
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.menu.model.MenuModel;
+import ca.mcmaster.erp.auth.menu.service.ebi.MenuEbi;
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 import ca.mcmaster.erp.auth.res.service.ebi.ResourcesEbi;
 import ca.mcmaster.erp.auth.role.model.RoleModel;
@@ -20,13 +23,16 @@ public class RoleAction extends BaseAction {
 	private RoleEbi roleEbi;
 	@Resource(name="resourcesEbi")
 	private ResourcesEbi resourcesEbi;
+	@Resource(name="menuEbi")
+	private MenuEbi menuEbi;
 	public Long[] resUuids;
+	public Long[] menuUuids;
 	
 	public String save(){
 		if(rm.getUuid() == null){
-			roleEbi.save(rm, resUuids);
+			roleEbi.save(rm, resUuids, menuUuids);
 		}else{
-			roleEbi.update(rm,resUuids);
+			roleEbi.update(rm,resUuids, menuUuids);
 		}
 		return TO_LIST;
 	}
@@ -43,6 +49,8 @@ public class RoleAction extends BaseAction {
 	}
 	
 	public String input(){
+		List<MenuModel> menuList = menuEbi.getAll();
+		put("menuList", menuList);
 		List<ResourcesModel> resList = resourcesEbi.getAll();
 		put("resList", resList);
 		if(rm.getUuid() != null){
@@ -52,6 +60,12 @@ public class RoleAction extends BaseAction {
 			for(ResourcesModel temp:rm.getResourcesModels()){
 				resUuids[i] = temp.getUuid();
 				i ++;
+			}
+			menuUuids = new Long[rm.getMenuModels().size()];
+			i = 0;
+			for(MenuModel mm : rm.getMenuModels()){
+				menuUuids[i] = mm.getUuid();
+				i++;
 			}
 		}
 		return INPUT;

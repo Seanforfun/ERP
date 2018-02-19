@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.menu.model.MenuModel;
 import ca.mcmaster.erp.auth.res.model.ResourcesModel;
 import ca.mcmaster.erp.auth.role.dao.dao.RoleDao;
 import ca.mcmaster.erp.auth.role.model.RoleModel;
@@ -80,6 +81,46 @@ public class RoleEbo implements RoleEbi {
 			temp1.setUuid(uuid);
 			resourcesModels.add(temp1);
 		}
+		temp.setResourcesModels(resourcesModels);
+		temp.setName(rm.getName());
+		temp.setCode(rm.getCode());
+		roleDao.update(temp);
+	}
+
+	public void save(RoleModel rm, Long[] resUuids, Long[] menuUuids) {
+		Set<ResourcesModel> resourcesModels = new HashSet<ResourcesModel>();
+		for(Long uuid:resUuids){
+			ResourcesModel temp = new ResourcesModel();
+			temp.setUuid(uuid);
+			resourcesModels.add(temp);
+		}
+		Set<MenuModel> menuModels = new HashSet<MenuModel>();
+		for(Long uuid:menuUuids){
+			MenuModel temp = new MenuModel();
+			temp.setUuid(uuid);
+			menuModels.add(temp);
+		}
+		rm.setMenuModels(menuModels);
+		rm.setResourcesModels(resourcesModels);
+		roleDao.save(rm);
+	}
+
+	public void update(RoleModel rm, Long[] resUuids, Long[] menuUuids) {
+		RoleModel temp = roleDao.get(rm.getUuid());
+		Set<ResourcesModel> resourcesModels= new HashSet<ResourcesModel>();
+		for(Long uuid:resUuids){
+			ResourcesModel temp1 = new ResourcesModel();
+			temp1.setUuid(uuid);
+			resourcesModels.add(temp1);
+		}
+		Set<MenuModel> menuModels= new HashSet<MenuModel>();
+		for(Long uuid:menuUuids){
+			System.out.println("==========" + uuid);
+			MenuModel temp1 = new MenuModel();
+			temp1.setUuid(uuid);
+			menuModels.add(temp1);
+		}
+		temp.setMenuModels(menuModels);
 		temp.setResourcesModels(resourcesModels);
 		temp.setName(rm.getName());
 		temp.setCode(rm.getCode());
