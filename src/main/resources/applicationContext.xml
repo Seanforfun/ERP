@@ -35,7 +35,7 @@
 			</props>
 		</property>
 		<property name="mappingLocations">
-			<value>classpath:ca/mcmaster/erp/auth/*/model/*Model.hbm.xml</value>
+			<value>classpath:ca/mcmaster/erp/*/*/model/*Model.hbm.xml</value>
 		</property>
 	</bean>
 

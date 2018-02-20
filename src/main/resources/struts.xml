@@ -63,5 +63,17 @@
 			<result name="input">/jsps/menu/input.jsp</result>
 			<result name="toList" type="redirectAction">menu_list.action</result>
 		</action>
+		
+		<action name="supplier_*" class="supplierAction" method="{1}">
+			<result name="list">/jsps/supplier/list.jsp</result>
+			<result name="input">/jsps/supplier/input.jsp</result>
+			<result name="toList" type="redirectAction">supplier_list.action</result>
+		</action>
+		
+		<action name="goodsType_*" class="goodsTypeAction" method="{1}">
+			<result name="list">/jsps/goodstype/list.jsp</result>
+			<result name="input">/jsps/goodstype/input.jsp</result>
+			<result name="toList" type="redirectAction">goodsType_list.action</result>
+		</action>
 	</package>
 </struts>
