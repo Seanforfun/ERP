@@ -75,5 +75,11 @@
 			<result name="input">/jsps/goodstype/input.jsp</result>
 			<result name="toList" type="redirectAction">goodsType_list.action</result>
 		</action>
+		
+		<action name="goods_*" class="goodsAction" method="{1}">
+			<result name="list">/jsps/goods/list.jsp</result>
+			<result name="input">/jsps/goods/input.jsp</result>
+			<result name="toList" type="redirectAction">goods_list.action</result>
+		</action>
 	</package>
 </struts>

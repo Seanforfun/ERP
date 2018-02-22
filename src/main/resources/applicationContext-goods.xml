@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+
+	<bean id="goodsAction" class="ca.mcmaster.erp.invoice.goods.web.GoodsAction" scope="prototype"/>
+	<bean id="goodsEbi" class="ca.mcmaster.erp.invoice.goods.service.ebo.GoodsEbo"/>
+	<bean id="goodsDao" class="ca.mcmaster.erp.invoice.goods.dao.impl.GoodsImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+</beans>

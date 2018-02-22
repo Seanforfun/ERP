@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.erp.invoice.goods.model.GoodsModel" table="tbl_goods">
+        		<id column="uuid" name="uuid">
+        			<generator class="native"/>
+        		</id>
+        		<property name="name"/>
+        		<property name="origin"/>
+        		<property name="producer"/>
+        		<property name="unit"/>
+        		<property name="inprice"/>
+        		<property name="outprice"/>
+        		<many-to-one name="gtm" 
+        		class="ca.mcmaster.erp.invoice.goodstype.model.GoodsTypeModel" 
+        		column="goodsTypeuuid"/>
+        	</class>
+        </hibernate-mapping>
+        
