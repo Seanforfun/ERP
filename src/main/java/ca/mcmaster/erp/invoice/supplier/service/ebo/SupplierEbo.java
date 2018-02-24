@@ -49,4 +49,8 @@ public class SupplierEbo implements SupplierEbi {
 	public Integer getCount(BaseQueryModel bqm) {
 		return supplierDao.getCount(bqm);
 	}
+
+	public List<SupplierModel> getAllUnion() {
+		return supplierDao.getAllUnion();
+	}
 }

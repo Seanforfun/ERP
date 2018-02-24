@@ -7,7 +7,7 @@
 	<constant name="struts.devMode" value="false" />
 	<constant name="struts.ui.theme" value="simple" />
 	<constant name="struts.custom.i18n.resources" value="msg"/>
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="json-default">
 		
 		<interceptors>
 			<interceptor name="loginInterceptor" class="ca.mcmaster.erp.utils.interceptors.LoginInterceptor"/>
@@ -74,6 +74,13 @@
 			<result name="list">/jsps/goodstype/list.jsp</result>
 			<result name="input">/jsps/goodstype/input.jsp</result>
 			<result name="toList" type="redirectAction">goodsType_list.action</result>
+			<result name="ajaxGetAllBySm" type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">
+					gtmList\[\d+\]\.uuid,
+					gtmList\[\d+\]\.name
+				</param>
+			</result>
 		</action>
 		
 		<action name="goods_*" class="goodsAction" method="{1}">

@@ -50,4 +50,15 @@ public class GoodsTypeAction extends BaseAction {
 		goodsTypeEbi.delete(gm);
 		return TO_LIST;
 	}
+	
+	//---------------------------------AJAX--------------------------------------------
+	private List<GoodsTypeModel> gtmList;
+	public List<GoodsTypeModel> getGtmList() {
+		return gtmList;
+	}
+
+	public String ajaxGetAllBySm(){
+		gtmList = goodsTypeEbi.getAllBySm(gm.getSm().getUuid());
+		return "ajaxGetAllBySm";
+	}
 }

@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.invoice.supplier.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 
 import ca.mcmaster.erp.invoice.supplier.dao.dao.SupplierDao;
@@ -17,6 +19,11 @@ public class SupplierImpl extends BaseImpl<SupplierModel> implements
 	@Override
 	public void doCriteria(BaseQueryModel bqm, DetachedCriteria dc) {
 		
+	}
+
+	public List<SupplierModel> getAllUnion() {
+		String hql = "select distinct sm from GoodsTypeModel gtm join gtm.sm sm";
+		return this.getHibernateTemplate().find(hql);
 	}
 
 }

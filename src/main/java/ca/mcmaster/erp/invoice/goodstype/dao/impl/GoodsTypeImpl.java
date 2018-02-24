@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.invoice.goodstype.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 
 import ca.mcmaster.erp.invoice.goodstype.dao.dao.GoodsTypeDao;
@@ -16,5 +18,11 @@ public class GoodsTypeImpl extends BaseImpl<GoodsTypeModel> implements
 	@Override
 	public void doCriteria(BaseQueryModel bqm, DetachedCriteria dc) {
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<GoodsTypeModel> getAllBySmUuid(Long uuid) {
+		String hql = "from GoodsTypeModel gtm where gtm.sm.uuid = ?";
+		return this.getHibernateTemplate().find(hql, uuid);
 	}
 }

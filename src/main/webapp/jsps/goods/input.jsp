@@ -5,22 +5,16 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/Calendar.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#all").click(function() {
-			$("[name=roles]:checkbox").attr("checked",$("#all").attr("checked")=="checked");
-		});
-		$("#reverse").click(function() {
-			$("[name=roles]:checkbox").each(function () {
-                $(this).attr("checked", !$(this).attr("checked"));
-            });
-		});
-		$("#supplier").change(function(){
-			$.post("${pageContext.request.contextPath}/goodsTypeAction_getAll.action",{"gm.supplier.uuid":$(this).val()},function(data){
+	$(function(){
+		$("#supplier").change(function(){			
+			var uuid = $(this).val()
+			$.post("goodsType_ajaxGetAllBySm.action", {'gm.sm.uuid': uuid}, function(data){
 				$("#goodsType").empty();
-				for(var i = 0;i<data.gtList.length;i++){
-					var goodsType = data.gtList[i];
-					var $option = $("<option value='"+goodsType.uuid+"'>"+goodsType.goodsTypeName+"</option>");	//创建option对象(jQuery格式)
-					$("#goodsType").append($option);				//将option对象添加到select组件中
+				var gtmList = data.gtmList;
+				for(var i = 0; i < gtmList.length; i++){
+					var gtm = gtmList[i];
+					$op = $("<option value='"+gtm.uuid+"'>"+gtm.name+"</option>");
+					$("#goodsType").append($op)
 				}
 			});
 		});
@@ -45,19 +39,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">供&nbsp;应&nbsp;商</td>
 				      <td width="32%">
-				      		<select style="width:190px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">七匹狼</option>
-								<option value="2">康师傅</option>
-							</select>
+				      	<s:select id="supplier" list="#supplierList" cssStyle="width:190px" headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name"/>
 				      </td>
 				      <td width="18%"align="center">商品类别</td>
 				      <td width="32%">
-				      		<select style="width:190px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">西服</option>
-								<option value="2">夹克</option>
-							</select>
+				      	<s:select id="goodsType" list="#gtmList" cssStyle="width:190px" headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name"/>
 					  </td>
 				    </tr>
 				    <tr bgcolor="#FFFFFF">
@@ -66,11 +52,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td align="center">商品名称</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="gm.name" size="25"/>
 				      </td>
 				      <td  align="center">产&nbsp;&nbsp;&nbsp;&nbsp;地</td>
 				      <td >
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="gm.origin" size="25"/>
 				      </td>
 				    </tr>
 				     <tr bgcolor="#FFFFFF">
@@ -79,10 +65,10 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">生产厂家</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="gm.producer" size="25"/>
 				      <td align="center">单&nbsp;&nbsp;&nbsp;&nbsp;位</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="gm.unit" size="25"/>
 					  </td>
 				     </tr>
 				    <tr bgcolor="#FFFFFF">
@@ -91,11 +77,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">进货单价</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="gm.inprice" size="25"/>
 					  </td>
 				      <td align="center">销售单价</td>
 				      <td>
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="gm.outprice" size="25"/>
 					  </td>
 				    </tr>
 				    <tr bgcolor="#FFFFFF">
@@ -104,6 +90,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">体&nbsp;&nbsp;&nbsp;&nbsp;积</td>
 				      <td>
+				      	<s:textfield name="" size="25"/>
 				      	<input type="text" size="25"/>
 					  </td>
 				      <td align="center">&nbsp;</td>
