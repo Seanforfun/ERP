@@ -1,6 +1,7 @@
 package ca.mcmaster.erp.invoice.goods.model;
 
 import ca.mcmaster.erp.invoice.goodstype.model.GoodsTypeModel;
+import ca.mcmaster.erp.utils.format.FormatUtils;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -8,13 +9,24 @@ import ca.mcmaster.erp.invoice.goodstype.model.GoodsTypeModel;
  */
 public class GoodsModel {
 	private Long uuid;
+	
 	private String name;
 	private String origin;
 	private String producer;
 	private String unit;
 	private Double inprice;
 	private Double outprice;
+	
+	private String inpriceView;
+	private String outpriceView;
+	
 	private GoodsTypeModel gtm;
+	public String getOutpriceView() {
+		return outpriceView;
+	}
+	public String getInpriceView() {
+		return inpriceView;
+	}
 	public GoodsTypeModel getGtm() {
 		return gtm;
 	}
@@ -56,11 +68,13 @@ public class GoodsModel {
 	}
 	public void setInprice(Double inprice) {
 		this.inprice = inprice;
+		this.inpriceView = FormatUtils.formatMoney(inprice);
 	}
 	public Double getOutprice() {
 		return outprice;
 	}
 	public void setOutprice(Double outprice) {
 		this.outprice = outprice;
+		this.outpriceView = FormatUtils.formatMoney(outprice);
 	}
 }

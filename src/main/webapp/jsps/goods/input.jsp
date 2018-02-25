@@ -28,7 +28,8 @@
 	</div>
 	<div class="content-text">
 		<div class="square-order">
-			<form action="list.jsp" method="post">
+			<form action="goods_save.action" method="post">
+			<s:hidden name="gm.uuid"/>
   			<div style="border:1px solid #cecece;">
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr bgcolor="#FFFFFF">
@@ -43,7 +44,7 @@
 				      </td>
 				      <td width="18%"align="center">商品类别</td>
 				      <td width="32%">
-				      	<s:select id="goodsType" list="#gtmList" cssStyle="width:190px" headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name"/>
+				      	<s:select id="goodsType" name="gm.gtm.uuid" list="#gtmList" cssStyle="width:190px" headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name"/>
 					  </td>
 				    </tr>
 				    <tr bgcolor="#FFFFFF">
@@ -87,15 +88,6 @@
 				    <tr bgcolor="#FFFFFF">
 					  <td colspan="4">&nbsp;</td>
 					</tr>
-				    <tr  bgcolor="#FFFFFF">
-				      <td height="30" align="center">体&nbsp;&nbsp;&nbsp;&nbsp;积</td>
-				      <td>
-				      	<s:textfield name="" size="25"/>
-				      	<input type="text" size="25"/>
-					  </td>
-				      <td align="center">&nbsp;</td>
-				      <td>&nbsp;</td>
-				    </tr>
 				     <tr bgcolor="#FFFFFF">
 					  <td colspan="4">&nbsp;</td>
 					</tr>

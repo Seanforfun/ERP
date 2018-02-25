@@ -68,24 +68,24 @@
 				<table width="100%" border="1" cellpadding="0" cellspacing="0">
 					<tr align="center"
 						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
-						<td width="12%" height="30">供应商</td>
+						<td width="18%" height="30">供应商</td>
 						<td width="12%">商品名</td>
 						<td width="12%">生产厂家</td>
 						<td width="12%">产地</td>
 						<td width="12%">进货价格</td>
 						<td width="12%">销售价格</td>
-						<td width="12%">单位</td>
+						<td width="6%">单位</td>
 						<td width="16%">操作</td>
 					</tr>
 					<s:iterator value="goodsList">
 						<tr align="center" bgcolor="#FFFFFF">
-							<td width="13%" height="30">${gm.sm.name}</td>
+							<td width="13%" height="30">${gtm.sm.name}</td>
 							<td>${name}</td>
 							<td>${producer}</td>
 							<td>${origin}</td>
-							<td align="right">${inprice}&nbsp;${unit}&nbsp;</td>
-							<td align="right">${outprice }&nbsp;${unit}&nbsp;</td>
-							<td>件</td>
+							<td align="right">${inpriceView}&nbsp;元&nbsp;</td>
+							<td align="right">${outpriceView}&nbsp;元&nbsp;</td>
+							<td>${unit}</td>
 							<td>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
