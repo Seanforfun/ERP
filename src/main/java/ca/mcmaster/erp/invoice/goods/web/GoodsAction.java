@@ -43,8 +43,9 @@ public class GoodsAction extends BaseAction {
 	}
 	
 	public String list(){
-		
-		List<GoodsModel> goodsList = goodsEbi.getAll();
+		List<SupplierModel> supplierList = supplierEbi.getAll();
+		put("supplierList", supplierList);
+		List<GoodsModel> goodsList = goodsEbi.getAll(gqm);
 		put("goodsList", goodsList);
 		return LIST;
 	}
@@ -52,11 +53,16 @@ public class GoodsAction extends BaseAction {
 	public String input(){
 		List<SupplierModel> supplierList = supplierEbi.getAllUnion();
 		put("supplierList", supplierList);
-		List<GoodsTypeModel> gtmList = goodsTypeEbi.getAllBySm(supplierList.get(0).getUuid());
-		put("gtmList", gtmList);
+		List<GoodsTypeModel> gtmList = null;
+		Long supplierUuid = null;
 		if(gm.getUuid() != null){
-			goodsEbi.get(gm.getUuid());
+			gm = goodsEbi.get(gm.getUuid());
+			supplierUuid = gm.getGtm().getSm().getUuid();			
+		}else{
+			supplierUuid = supplierList.get(0).getUuid();
 		}
+		gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		put("gtmList", gtmList);
 		return INPUT;
 	}
 }

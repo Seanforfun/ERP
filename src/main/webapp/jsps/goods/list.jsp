@@ -17,6 +17,14 @@
 		top.$('hid-action').value="goods_delete.action?gm.uuid=" + uuid;
 		top.lock.show();
 	}
+	
+	$(function(){
+		$(".unit").click(function(){
+			var unitVal = $(this).text();
+			var good = $("[name='gqm.unit']").val(unitVal)
+			$("form:first").submit();
+		});
+	});
 </script>
 <div class="content-right">
 	<div class="content-r-pic_w">
@@ -25,25 +33,23 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post"> 
+		<form action="goods_list.action" method="post"> 
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
 					<tr>
 						<td>供应商:</td>
 						<td>
-							<select class="kuan">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">康师傅</option>
-								<option value="2">七匹狼</option>
-							</select>
+							<s:select name="gqm.gtm.sm.uuid" list="#supplierList" cssClass="kuan" listKey="uuid" listValue="name" headerKey="-1" headerValue="----请-选-择----" cssStyle="width:113px"/>
 						</td>
 						<td height="30">商&nbsp;品&nbsp;名</td>
 						<td><input type="text" size="14" /></td>
 						<td>生产厂家</td>
 						<td><input type="text" size="14" /></td>
 						<td>单&nbsp;&nbsp;&nbsp;&nbsp;位</td>
-						<td><input type="text" size="14" /></td>
+						<td>
+							<s:textfield name="gqm.unit" size="14"/>
+						</td>
 						<td width="70">
 							<a href="goods_input.action">
 								<img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" />
@@ -59,7 +65,11 @@
 						<td><input type="text" size="14" /></td>
 						<td>到</td>
 						<td><input type="text" size="14" /></td>
-						<td><a id="query"> <img src="${pageContext.request.contextPath}/images/can_b_01.gif" border="0" /> </a></td>
+						<td>
+							<a id="query">
+								<img src="${pageContext.request.contextPath}/images/can_b_01.gif" border="0" />
+							</a>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -85,11 +95,11 @@
 							<td>${origin}</td>
 							<td align="right">${inpriceView}&nbsp;元&nbsp;</td>
 							<td align="right">${outpriceView}&nbsp;元&nbsp;</td>
-							<td>${unit}</td>
+							<td><a href="javascript:void(0)" class="unit">${unit}</a></td>
 							<td>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<s:a action="goods_input.action">
+									<s:a action="goods_input.action" cssClass="xiu">
 										<s:param name="gm.uuid" value="uuid"/>
 										修改
 									</s:a>

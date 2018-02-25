@@ -4,7 +4,6 @@ import ca.mcmaster.erp.utils.base.BaseQueryModel;
 import ca.mcmaster.erp.utils.format.FormatUtils;
 
 public class EmpQueryModel extends EmpModel implements BaseQueryModel{
-	//TODO EmpQueryModel
 	private Long birthdayMax;
 	private String birthdayMaxView;
 	public String getBirthdayMaxView() {
