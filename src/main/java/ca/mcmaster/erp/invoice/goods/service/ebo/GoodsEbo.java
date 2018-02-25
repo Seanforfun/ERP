@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import ca.mcmaster.erp.invoice.goods.dao.dao.GoodsDao;
 import ca.mcmaster.erp.invoice.goods.model.GoodsModel;
 import ca.mcmaster.erp.invoice.goods.service.ebi.GoodsEbi;
@@ -14,6 +16,7 @@ import ca.mcmaster.erp.utils.base.BaseQueryModel;
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Feb 21, 2018 1:25:12 PM
  */
+@Transactional
 public class GoodsEbo implements GoodsEbi {
 	@Resource(name="goodsDao")
 	private GoodsDao goodsDao;
@@ -48,5 +51,9 @@ public class GoodsEbo implements GoodsEbi {
 
 	public Integer getCount(BaseQueryModel bqm) {
 		return goodsDao.getCount(bqm);
+	}
+
+	public List<GoodsModel> getAllByGtm(Long uuid) {
+		return goodsDao.getAllByGtmUuid(uuid);
 	}
 }

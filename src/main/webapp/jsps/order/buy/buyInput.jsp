@@ -241,10 +241,7 @@
 					<tr>
 						<td width="68px" height="30">供应商：</td>
 						<td width="648px">
-							 <select class="kuan" style="width:190px">
-								<option value="1">七匹狼</option>
-								<option value="0">康师傅</option>
-							</select>
+							<s:select name="" list="#supplierList" cssClass="kuan" cssStyle="width:190px" listKey="uuid" listValue="name"></s:select>
 						</td>
 						<td height="30">
 							<a id="add"><img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" /> </a>
@@ -266,20 +263,14 @@
 					</tr>
 					<tr align="center" bgcolor="#FFFFFF">
 						<td height="30">
-							<select class="goodsType" style="width:200px">
-								<option value="1">上衣</option>
-								<option value="0">秋裤</option>
-							</select>
+							<s:select name="" list="goodsTypeList" cssClass="goodsType" cssStyle="width:200px" listKey="uuid" listValue="name"/>
 						</td>
 						<td>
-							<select class="goods" style="width:200px">
-								<option value="1">绿色纯棉加厚</option>
-								<option value="0">黄色纯棉加厚</option>
-							</select>
+							<s:select name="" list="goodsList" cssClass="goods" cssStyle="width:200px" listKey="uuid" listValue="name"/>
 						</td>
 						<td><input name="nums" class="num order_num" style="width:67px;border:1px solid black;text-align:right;padding:2px" type="text" value="1"/></td>
-						<td><input name="prices" class="prices order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" type="text" value="100"/> 元</td>
-						<td class="total" align="right">100.00&nbsp;元</td>
+						<td><input name="prices" class="prices order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" type="text" value="${goodsList[0].inpriceView}"/> 元</td>
+						<td class="total" align="right">${goodsList[0].inpriceView}&nbsp;元</td>
 						<td>
 							<a class="deleteBtn delete xiu" value="4"><img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 删除</a>
 						</td>
@@ -287,7 +278,7 @@
 					<tr id="finalTr" align="center"
 						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
 						<td height="30" colspan="4" align="right">总&nbsp;计:&nbsp;</td>
-						<td class="all" width="16%" align="right">100.00&nbsp;元</td>
+						<td class="all" width="16%" align="right">${goodsList[0].inpriceView}&nbsp;元</td>
 						<td>&nbsp;</td>
 					</tr>
 				</table>

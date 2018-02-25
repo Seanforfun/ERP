@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.invoice.goods.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -24,5 +26,10 @@ public class GoodsImpl extends BaseImpl<GoodsModel> implements GoodsDao {
 			dc.createAlias("gtm", "g");			
 			dc.add(Restrictions.eq("g.sm", gqm.getGtm().getSm()));
 		}
+	}
+
+	public List<GoodsModel> getAllByGtmUuid(Long uuid) {
+		String hql = "select distinct gm from GoodsModel gm where gtm.uuid = ?";
+		return this.getHibernateTemplate().find(hql, uuid);
 	}
 }
