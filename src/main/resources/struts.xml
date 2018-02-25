@@ -88,5 +88,11 @@
 			<result name="input">/jsps/goods/input.jsp</result>
 			<result name="toList" type="redirectAction">goods_list.action</result>
 		</action>
+		
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="buyList">/jsps/order/buy/buyList.jsp</result>
+			<result name="buyInput">/jsps/order/buy/buyInput.jsp</result>
+			<result name="toList" type="redirectAction">order_list.action</result>
+		</action>
 	</package>
 </struts>
