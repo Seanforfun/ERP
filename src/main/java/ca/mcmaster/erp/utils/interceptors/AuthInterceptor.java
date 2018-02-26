@@ -26,16 +26,16 @@ public class AuthInterceptor extends AbstractInterceptor {
 		String actionName = invocation.getProxy().getAction().getClass().getName();
 		String methodName = invocation.getProxy().getMethod();
 		String resource = actionName + "." + methodName;
-//		if("ca.mcmaster.erp.auth.emp.web.EmpAction.login".equals(resource)){
-//			return invocation.invoke();
-//		}
-		String resList = (String) ServletActionContext.getServletContext().getAttribute("resList");
-		if(!resList.contains(resource)){
-			invocation.invoke();
+		if("ca.mcmaster.erp.auth.emp.web.EmpAction.login".equals(resource)){
+			return invocation.invoke();
 		}
 		EmpModel em =  (EmpModel) invocation.getInvocationContext().getSession().get(EmpModel.LOGIN_EMP);
 		if(null == em){
 			return "nologin";
+		}
+		String resList = (String) ServletActionContext.getServletContext().getAttribute("resList");
+		if(!resList.contains(resource)){
+			return invocation.invoke();
 		}
 		
 //		List<ResourcesModel> resourcesModels = resourcesEbi.getAllByEmp(em.getUuid());
@@ -46,7 +46,7 @@ public class AuthInterceptor extends AbstractInterceptor {
 //		}
 		String empRes = em.getEmpRes();
 		if(empRes.contains(resource)){
-			invocation.invoke();
+			return invocation.invoke();
 		}
 		throw new AppException("Please don't euecute unauthorized actions!");
 	}

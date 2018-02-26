@@ -27,8 +27,8 @@
 			<result name="error">/jsps/error.jsp</result>
 		</global-results>
 		
-		<action name="login">
-			<result>/jsps/login.jsp</result>
+		<action name="page_*">
+			<result>/jsps/{1}.jsp</result>
 		</action>
 		
 		<action name="emp_*" class="empAction" method="{1}">
