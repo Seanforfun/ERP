@@ -93,6 +93,30 @@
 			<result name="buyList">/jsps/order/buy/buyList.jsp</result>
 			<result name="buyInput">/jsps/order/buy/buyInput.jsp</result>
 			<result name="toList" type="redirectAction">order_list.action</result>
+			<result name="ajaxGetGtmAndGm" type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">
+					gtmList\[\d+\]\.uuid,
+					gtmList\[\d+\]\.name,
+					goodsList\[\d+\]\.uuid,
+					goodsList\[\d+\]\.name,
+					goodsList\[\d+\]\.inpriceView
+				</param>
+			</result>
+			<result name="ajaxGetGm" type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">
+					goodsList\[\d+\]\.uuid,
+					goodsList\[\d+\]\.name,
+					goodsList\[\d+\]\.inpriceView
+				</param>
+			</result>
+			<result name="ajaxGetPrice" type="json">
+				<param name="root">gm</param>
+				<param name="includeProperties">
+					inpriceView
+				</param>
+			</result>
 		</action>
 	</package>
 </struts>

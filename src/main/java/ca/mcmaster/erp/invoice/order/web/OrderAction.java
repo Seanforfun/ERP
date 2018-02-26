@@ -69,4 +69,39 @@ public class OrderAction extends BaseAction {
 		put("goodsList", goodsList);
 		return "buyInput";
 	}
+	
+	//-------------------------------------------------------------------
+	public Long supplierUuid;
+	public Long gtmUuid;
+	public Long gmUuid;
+	private List<GoodsTypeModel> gtmList;
+	private List<GoodsModel> goodsList;
+	private GoodsModel gm;
+	
+	public GoodsModel getGm() {
+		return gm;
+	}
+
+	public List<GoodsTypeModel> getGtmList() {
+		return gtmList;
+	}
+	public List<GoodsModel> getGoodsList() {
+		return goodsList;
+	}
+
+	public String ajaxGetGtmAndGm(){
+		gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		goodsList = goodsEbi.getAllByGtm(gtmList.get(0).getUuid());
+		return "ajaxGetGtmAndGm";
+	}
+	
+	public String ajaxGetGm(){
+		goodsList = goodsEbi.getAllByGtm(gtmUuid);
+		return "ajaxGetGm";
+	}
+	
+	public String ajaxGetPrice(){
+		gm = goodsEbi.get(gmUuid);
+		return "ajaxGetPrice";
+	}
 }
