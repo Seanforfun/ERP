@@ -25,4 +25,10 @@ public class GoodsTypeImpl extends BaseImpl<GoodsTypeModel> implements
 		String hql = "from GoodsTypeModel gtm where gtm.sm.uuid = ?";
 		return this.getHibernateTemplate().find(hql, uuid);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<GoodsTypeModel> getAllUnionBySm(Long uuid) {
+		String hql = "select distinct gtm from GoodsModel gm join gm.gtm gtm join gtm.sm sm where sm.uuid = ?"; 
+		return this.getHibernateTemplate().find(hql, uuid);
+	}
 }

@@ -28,6 +28,7 @@ public class GoodsImpl extends BaseImpl<GoodsModel> implements GoodsDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<GoodsModel> getAllByGtmUuid(Long uuid) {
 		String hql = "select distinct gm from GoodsModel gm where gtm.uuid = ?";
 		return this.getHibernateTemplate().find(hql, uuid);

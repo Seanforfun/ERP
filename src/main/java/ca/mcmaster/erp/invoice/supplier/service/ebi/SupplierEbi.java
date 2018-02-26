@@ -15,4 +15,9 @@ public interface SupplierEbi extends BaseEbi<SupplierModel> {
 	 * @return
 	 */
 	public List<SupplierModel> getAllUnion();
+	/**
+	 * @Description: Get all suppliers with goods information.
+	 * @return
+	 */
+	public List<SupplierModel> getAllUnionTwo();
 }

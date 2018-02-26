@@ -61,9 +61,9 @@ public class OrderAction extends BaseAction {
 	}
 	
 	public String buyInput(){
-		List<SupplierModel> supplierList = supplierEbi.getAllUnion();
+		List<SupplierModel> supplierList = supplierEbi.getAllUnionTwo();
 		put("supplierList", supplierList);
-		List<GoodsTypeModel> goodsTypeList = goodsTypeEbi.getAllBySm(supplierList.get(0).getUuid());
+		List<GoodsTypeModel> goodsTypeList = goodsTypeEbi.getAllUnionBySm(supplierList.get(0).getUuid());
 		put("goodsTypeList", goodsTypeList);
 		List<GoodsModel> goodsList = goodsEbi.getAllByGtm(goodsTypeList.get(0).getUuid());
 		put("goodsList", goodsList);
@@ -90,7 +90,7 @@ public class OrderAction extends BaseAction {
 	}
 
 	public String ajaxGetGtmAndGm(){
-		gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		gtmList = goodsTypeEbi.getAllUnionBySm(supplierUuid);
 		goodsList = goodsEbi.getAllByGtm(gtmList.get(0).getUuid());
 		return "ajaxGetGtmAndGm";
 	}

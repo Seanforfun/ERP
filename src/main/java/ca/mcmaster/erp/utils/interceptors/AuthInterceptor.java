@@ -3,7 +3,6 @@ package ca.mcmaster.erp.utils.interceptors;
 import org.apache.struts2.ServletActionContext;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
-import ca.mcmaster.erp.auth.res.service.ebi.ResourcesEbi;
 import ca.mcmaster.erp.utils.exceptions.AppException;
 
 import com.opensymphony.xwork2.ActionInvocation;

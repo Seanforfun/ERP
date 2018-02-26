@@ -16,4 +16,11 @@ public interface GoodsTypeEbi extends BaseEbi<GoodsTypeModel> {
 	 * @return
 	 */
 	public List<GoodsTypeModel> getAllBySm(Long uuid);
+
+	/**
+	 * @Description: Get all none empty goodsTypeModel according to supplier's uuid.
+	 * @param uuid
+	 * @return
+	 */
+	public List<GoodsTypeModel> getAllUnionBySm(Long uuid);
 }

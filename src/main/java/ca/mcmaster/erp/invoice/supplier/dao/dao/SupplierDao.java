@@ -11,4 +11,6 @@ import ca.mcmaster.erp.utils.base.BaseDao;
  */
 public interface SupplierDao extends BaseDao<SupplierModel> {
 	List<SupplierModel> getAllUnion();
+
+	List<SupplierModel> getAllUnionTwo();
 }

@@ -53,4 +53,8 @@ public class SupplierEbo implements SupplierEbi {
 	public List<SupplierModel> getAllUnion() {
 		return supplierDao.getAllUnion();
 	}
+
+	public List<SupplierModel> getAllUnionTwo() {
+		return supplierDao.getAllUnionTwo();
+	}
 }

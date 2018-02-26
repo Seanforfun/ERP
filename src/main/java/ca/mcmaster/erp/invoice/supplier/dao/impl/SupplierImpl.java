@@ -21,9 +21,15 @@ public class SupplierImpl extends BaseImpl<SupplierModel> implements
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<SupplierModel> getAllUnion() {
 		String hql = "select distinct sm from GoodsTypeModel gtm join gtm.sm sm";
 		return this.getHibernateTemplate().find(hql);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<SupplierModel> getAllUnionTwo() {
+		String hql = "select distinct sm from GoodsModel gm join gm.gtm gtm join gtm.sm sm"; 
+		return this.getHibernateTemplate().find(hql);
+	}
 }

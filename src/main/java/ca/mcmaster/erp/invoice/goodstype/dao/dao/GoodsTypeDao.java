@@ -11,4 +11,6 @@ import ca.mcmaster.erp.utils.base.BaseDao;
  */
 public interface GoodsTypeDao extends BaseDao<GoodsTypeModel> {
 	public List<GoodsTypeModel> getAllBySmUuid(Long uuid);
+
+	public List<GoodsTypeModel> getAllUnionBySm(Long uuid);
 }
