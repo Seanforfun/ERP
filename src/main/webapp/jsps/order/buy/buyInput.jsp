@@ -3,25 +3,24 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
-</script>
 <script type="text/javascript">
 	$(function(){
 		$("#supplier").change(function(){
 			var supplierUuid = $(this).val();
 			$.post("order_ajaxGetGtmAndGm.action",{"supplierUuid":supplierUuid}, function(data){
-				$("#goodsType").empty();
-				$("#goods").empty();
+				$(".goodsType").empty();
+				$(".goods").empty();
 				var gtmList = data.gtmList;
 				var goodsList = data.goodsList;
 				for(var i = 0; i < gtmList.length; i++){
 					var gtm = gtmList[i];
 					$op = $("<option value='"+gtm.uuid+"'>"+gtm.name+"</option>");
-					$("#goodsType").append($op);
+					$(".goodsType").append($op);
 				}
 				for(var i = 0; i < goodsList.length; i++){
 					var gm = goodsList[i];
 					$op = $("<option value='"+gm.uuid+"'>"+gm.name+"</option>");
-					$("#goods").append($op);
+					$(".goods").append($op);
 				}
 				$(".num_order_num").attr("value","1");
 				$(".prices_order_num").attr("value", goodsList[0].inpriceView);
@@ -32,15 +31,15 @@
 	});
 	
 	$(function(){
-		$("#goodsType").change(function(){
+		$(".goodsType").change(function(){
 			var gtmUuid = $(this).val()
 			$.post("order_ajaxGetGm.action", {'gtmUuid': gtmUuid}, function(data){
 				var goodsList = data.goodsList;
-				$("#goods").empty();
+				$(".goods").empty();
 				for(var i = 0; i < goodsList.length; i++){
 					var gm = goodsList[i];
 					$op = $("<option value='"+gm.uuid+"'>"+gm.name+"</option>");
-					$("#goods").append($op);
+					$(".goods").append($op);
 				}
 				$(".num_order_num").attr("value","1");
 				$(".prices_order_num").attr("value", goodsList[0].inpriceView);
@@ -51,7 +50,7 @@
 	});
 	
 	$(function(){
-		$("#goods").change(function(){
+		$(".goods").change(function(){
 			var gmUuid = $(this).val();
 			$.post("order_ajaxGetPrice.action",{"gmUuid":gmUuid}, function(data){
 				var inprice = data.inpriceView;
@@ -59,6 +58,48 @@
 				$(".prices_order_num").attr("value", inprice);
 				$(".total").html(""+inprice+"&nbsp;元");
 				$(".all").html(""+inprice+"&nbsp;元");
+			});
+		});
+		
+		$("#add").click(function(){
+			var supplierUuid = $("#supplier").val();
+			$.post("order_ajaxGetGtmAndGm.action", {'supplierUuid' : supplierUuid}, function(data){
+				var gtmList = data.gtmList;
+				var goodsList = data.goodsList;
+				$tr = $('<tr bgcolor="#FFFFFF" align="center"></tr>');
+				$td1 = $('<td height="30"></td>');
+				$gtmSelect = $('<select class="goodsType" style="width:200px"></select>');
+				
+				for(var i = 0; i < gtmList.length; i++){
+					$op = $('<option value="'+gtmList[i].uuid+'">'+gtmList[i].name+'</option>')
+					$gtmSelect.append($op)
+				}
+				$td1.append($gtmSelect);
+				$tr.append($td1);
+				
+				$td2 = $('<td></td>');
+				$goodsSelect = $('<select class="goods" style="width:200px"></select>')
+				for(var i = 0; i < goodsList.length; i++){
+					$op = $('<option value="'+goodsList[i].uuid+'">'+goodsList[i].name+'</option>')
+					$goodsSelect.append($op);
+				}
+				$td2.append($goodsSelect);
+				$tr.append($td2);
+				
+				$td3 = $('<td></td>');
+				$input = $('<input name="nums" class="num_order_num" style="width:67px;border:1px solid black;text-align:right;padding:2px" value="1" type="text">');
+				$td3.append($input);
+				$tr.append($td3);
+				
+				$td4 = $('<td><input name="prices" class="prices_order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" value="'+goodsList[0].inpriceView+'" type="text"> 元</td>');
+				$tr.append($td4);
+				
+				$td5 = $('<td class="total" align="right">'+goodsList[0].inpriceView+'&nbsp;元</td>');
+				$tr.append($td5);
+				
+				$td6 = $('<td><a class="deleteBtn delete xiu" value="'+goodsList[0].uuid+'"><img src="/E/images/icon_04.gif"> 删除</a></td>');
+				$tr.append($td6);
+				$("#finalTr").before($tr);
 			});
 		});
 	});
@@ -99,10 +140,10 @@
 					</tr>
 					<tr align="center" bgcolor="#FFFFFF">
 						<td height="30">
-							<s:select id="goodsType" name="" list="goodsTypeList" cssClass="goodsType" cssStyle="width:200px" listKey="uuid" listValue="name"/>
+							<s:select class="goodsType" name="" list="goodsTypeList" cssClass="goodsType" cssStyle="width:200px" listKey="uuid" listValue="name"/>
 						</td>
 						<td>
-							<s:select id="goods" name="" list="goodsList" cssClass="goods" cssStyle="width:200px" listKey="uuid" listValue="name"/>
+							<s:select class="goods" name="" list="goodsList" cssClass="goods" cssStyle="width:200px" listKey="uuid" listValue="name"/>
 						</td>
 						<td><input name="nums" class="num_order_num" style="width:67px;border:1px solid black;text-align:right;padding:2px" type="text" value="1"/></td>
 						<td><input name="prices" class="prices_order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" type="text" value="${goodsList[0].inpriceView}"/> 元</td>
