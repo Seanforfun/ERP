@@ -52,7 +52,7 @@
 				$num.attr("value","1");
 				$inprice.attr("value", goodsList[0].inpriceView);
 				$totalPrice.html(""+goodsList[0].inpriceView+"&nbsp;元");
-				$(".all").html(""+goodsList[0].inpriceView+"&nbsp;元");
+				getSum();
 			});
 		});
 		
@@ -68,6 +68,7 @@
 				$inprice.attr("value", inprice);
 				$totalPrice.html(""+inprice+"&nbsp;元");
 				$(".all").html(""+inprice+"&nbsp;元");
+				getSum();
 			});
 		});
 		
@@ -127,6 +128,7 @@
 				if(gtmList.length == 1 && goodsList.length == 1){
 					$("#add").css("display", "none");
 				}
+				getSum();
 				clickFlag = true;
 			});
 		});
@@ -138,8 +140,52 @@
 			$currentTr = $(this).parent().parent();
 			$currentTr.remove();
 			$("#add").css("display", "inline");
+			getSum();
 		});
+		
+		$(".num_order_num").live("keyup", function(){
+			//先把非数字的都替换掉，除了数字 
+			$(this).val($(this).val().replace(/[^\d]/g,""));
+			calculateTotal($(this));
+			getSum();
+		});
+		
+		$(".prices_order_num").live("keyup", function(){
+			//先把非数字的都替换掉，除了数字和. 
+			$(this).val($(this).val().replace(/[^\d.]/g,""));
+	        //必须保证第一个为数字而不是. 
+	        $(this).val($(this).val().replace(/^\./g,"0."));
+	        //保证只有出现一个.而没有多个. 
+	        $(this).val($(this).val().replace(/\.{2,}/g,"."));
+	        //保证.只出现一次，而不能出现两次以上
+	        $(this).val($(this).val().replace(".","$#$").replace(/\./g,"").replace("$#$",".")); 
+			calculateTotal($(this));
+			getSum();
+		});
+		
+		function calculateTotal(obj){
+			$currentTr = obj.parent().parent();
+			$price = $currentTr.children("td:eq(3)").children("input");
+			$total = $currentTr.children("td:eq(4)");
+			$num = $currentTr.children("td:eq(2)").children("input");
+			var totalVal = $price.val() * $num.val();
+			$total.html(intToFloat(totalVal) + " 元");
+		}
+		
+		function getSum(){
+			var numArr = $(".num_order_num");
+			var priceArr = $(".prices_order_num");
+			var sum = 0;
+			for(var i = 0; i < numArr.length; i++){
+				sum += numArr[i].value * priceArr[i].value;
+			}
+			$(".all").html(intToFloat(sum) + " 元")
+		}
 	});
+	
+	function intToFloat(val){
+		return new Number(val).toFixed(2);
+	}
 </script>
 <div class="content-right">
 	<div class="content-r-pic_w">
