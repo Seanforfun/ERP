@@ -63,7 +63,12 @@
 		
 		$("#add").click(function(){
 			var supplierUuid = $("#supplier").val();
-			$.post("order_ajaxGetGtmAndGm.action", {'supplierUuid' : supplierUuid}, function(data){
+			var goodsList = $(".goods")
+			var used = "";
+			for(var i = 0; i < goodsList.length; i++){
+				used = used + "'" + goodsList[i].value + "',";
+			}
+			$.post("order_ajaxGetGtmAndGm2.action", {'supplierUuid' : supplierUuid, 'used':used}, function(data){
 				var gtmList = data.gtmList;
 				var goodsList = data.goodsList;
 				$tr = $('<tr bgcolor="#FFFFFF" align="center"></tr>');
@@ -100,6 +105,10 @@
 				$td6 = $('<td><a class="deleteBtn delete xiu" value="'+goodsList[0].uuid+'"><img src="/E/images/icon_04.gif"> 删除</a></td>');
 				$tr.append($td6);
 				$("#finalTr").before($tr);
+				
+				if(gtmList.length == 1 && goodsList.length == 1){
+					$("#add").css("display", "none");
+				}
 			});
 		});
 	});

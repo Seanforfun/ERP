@@ -95,6 +95,32 @@ public class OrderAction extends BaseAction {
 		return "ajaxGetGtmAndGm";
 	}
 	
+	public String used;
+	public String ajaxGetGtmAndGm2(){
+		System.out.println(used);
+		gtmList = goodsTypeEbi.getAllUnionBySm(supplierUuid);
+		Goods:
+			for (int i = gtmList.size() - 1; i >= 0; i--) {
+				List<GoodsModel> goodsListTemp = goodsEbi.getAllByGtm(gtmList.get(i).getUuid());
+				for(int j = 0; j < goodsListTemp.size(); j++){
+					Long goodsUuidTemp = goodsListTemp.get(j).getUuid();
+					if(!used.contains("'" + goodsUuidTemp + "'")){
+						continue Goods;
+					}
+				}
+				gtmList.remove(i);
+			}
+		goodsList = goodsEbi.getAllByGtm(gtmList.get(0).getUuid());
+		for(int i = goodsList.size() - 1; i >= 0; i--){
+			Long uuid = goodsList.get(i).getUuid();
+			if (used.contains("'" + uuid.toString() + "'")) {
+				goodsList.remove(i);
+			}
+		}
+		
+		return "ajaxGetGtmAndGm";
+	}
+	
 	public String ajaxGetGm(){
 		goodsList = goodsEbi.getAllByGtm(gtmUuid);
 		return "ajaxGetGm";
