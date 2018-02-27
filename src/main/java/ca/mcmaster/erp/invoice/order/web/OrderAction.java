@@ -97,7 +97,6 @@ public class OrderAction extends BaseAction {
 	
 	public String used;
 	public String ajaxGetGtmAndGm2(){
-		System.out.println(used);
 		gtmList = goodsTypeEbi.getAllUnionBySm(supplierUuid);
 		Goods:
 			for (int i = gtmList.size() - 1; i >= 0; i--) {
@@ -117,12 +116,17 @@ public class OrderAction extends BaseAction {
 				goodsList.remove(i);
 			}
 		}
-		
 		return "ajaxGetGtmAndGm";
 	}
 	
 	public String ajaxGetGm(){
 		goodsList = goodsEbi.getAllByGtm(gtmUuid);
+		for(int i = goodsList.size() - 1; i >= 0; i--){
+			Long uuid = goodsList.get(i).getUuid();
+			if (used.contains("'" + uuid.toString() + "'")) {
+				goodsList.remove(i);
+			}
+		}
 		return "ajaxGetGm";
 	}
 	

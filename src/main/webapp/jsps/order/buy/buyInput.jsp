@@ -27,41 +27,59 @@
 				$(".total").html(""+goodsList[0].inpriceView+"&nbsp;元");
 				$(".all").html(""+goodsList[0].inpriceView+"&nbsp;元");
 			});
-		});		
-	});
-	
-	$(function(){
-		$(".goodsType").change(function(){
+		});
+		
+		$(".goodsType").live("change", function(){
+			$currentTr = $(this).parent().parent();
+			$gmSelect = $currentTr.children("td:eq(1)").children("select");
+			$num = $currentTr.children("td:eq(2)").children("input");
+			$inprice = $currentTr.children("td:eq(3)").children("input");
+			$totalPrice = $currentTr.children("td:eq(4)");
 			var gtmUuid = $(this).val()
-			$.post("order_ajaxGetGm.action", {'gtmUuid': gtmUuid}, function(data){
+			var goodsList = $(".goods");
+			var used = "";
+			for(var i = 0; i < goodsList.length; i++){
+				used = used + "'" + goodsList[i].value + "',";
+			}
+			$.post("order_ajaxGetGm.action", {'gtmUuid': gtmUuid, 'used':used}, function(data){
 				var goodsList = data.goodsList;
-				$(".goods").empty();
+				$gmSelect.empty();
 				for(var i = 0; i < goodsList.length; i++){
 					var gm = goodsList[i];
 					$op = $("<option value='"+gm.uuid+"'>"+gm.name+"</option>");
-					$(".goods").append($op);
+					$gmSelect.append($op);
 				}
-				$(".num_order_num").attr("value","1");
-				$(".prices_order_num").attr("value", goodsList[0].inpriceView);
-				$(".total").html(""+goodsList[0].inpriceView+"&nbsp;元");
+				$num.attr("value","1");
+				$inprice.attr("value", goodsList[0].inpriceView);
+				$totalPrice.html(""+goodsList[0].inpriceView+"&nbsp;元");
 				$(".all").html(""+goodsList[0].inpriceView+"&nbsp;元");
 			});
 		});
-	});
-	
-	$(function(){
-		$(".goods").change(function(){
+		
+		$(".goods").live("change", function(){
+			$currentTr = $(this).parent().parent();
+			$num = $currentTr.children("td:eq(2)").children("input");
+			$inprice = $currentTr.children("td:eq(3)").children("input");
+			$totalPrice = $currentTr.children("td:eq(4)");
 			var gmUuid = $(this).val();
 			$.post("order_ajaxGetPrice.action",{"gmUuid":gmUuid}, function(data){
 				var inprice = data.inpriceView;
-				$(".num_order_num").attr("value","1");
-				$(".prices_order_num").attr("value", inprice);
-				$(".total").html(""+inprice+"&nbsp;元");
+				$num.attr("value","1");
+				$inprice.attr("value", inprice);
+				$totalPrice.html(""+inprice+"&nbsp;元");
 				$(".all").html(""+inprice+"&nbsp;元");
 			});
 		});
 		
+		var clickFlag = true;
 		$("#add").click(function(){
+			$("#supplier").attr("disabled", true);
+			$(".goods").attr("disabled", true);
+			$(".goodsType").attr("disabled", true);
+			if(!clickFlag){
+				return;
+			}
+			clickFlag = false;
 			var supplierUuid = $("#supplier").val();
 			var goodsList = $(".goods")
 			var used = "";
@@ -109,7 +127,17 @@
 				if(gtmList.length == 1 && goodsList.length == 1){
 					$("#add").css("display", "none");
 				}
+				clickFlag = true;
 			});
+		});
+		
+		$(".deleteBtn").live("click", function(){
+			if($(".deleteBtn").length == 1){
+				return;
+			}
+			$currentTr = $(this).parent().parent();
+			$currentTr.remove();
+			$("#add").css("display", "inline");
 		});
 	});
 </script>
