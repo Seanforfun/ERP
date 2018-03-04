@@ -21,7 +21,7 @@
 				<many-to-one name="checker" class="ca.mcmaster.erp.auth.emp.model.EmpModel" column="checker"/>
 				<many-to-one name="completer" class="ca.mcmaster.erp.auth.emp.model.EmpModel" column="completer"/>
 				<many-to-one name="sm" class="ca.mcmaster.erp.invoice.supplier.model.SupplierModel" column="supplierUuid"/>
-				<set name="odms" cascade="save-update">
+				<set name="odms" cascade="save-update" inverse="true">
         			<key column="orderUuid"/>
         			<one-to-many class="ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel"/>
         		</set>

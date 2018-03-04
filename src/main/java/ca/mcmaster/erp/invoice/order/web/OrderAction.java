@@ -58,6 +58,9 @@ public class OrderAction extends BaseAction {
 	
 	//--------------------------------------------------------------------
 	public String buyList(){
+		setDataTotal(orderEbi.getCount(oqm));
+		List<OrderModel> orderList = orderEbi.getAllBuy(oqm, maxPageNum, pageCount);
+		put("orderList", orderList);
 		return "buyList";
 	}
 	

@@ -62,7 +62,6 @@ public class OrderModel {
 		orderMap.put(ORDER_TYPE_OF_SALE_BUY_CHECK_PASS, ORDER_TYPE_OF_SALE_BUY_CHECK_PASS_VIEW);
 	}
 	
-	
 	private Long uuid;
 	
 	private String orderNum;

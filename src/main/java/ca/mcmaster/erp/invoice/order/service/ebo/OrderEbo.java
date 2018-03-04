@@ -14,6 +14,7 @@ import ca.mcmaster.erp.invoice.goods.dao.dao.GoodsDao;
 import ca.mcmaster.erp.invoice.goods.model.GoodsModel;
 import ca.mcmaster.erp.invoice.order.dao.dao.OrderDao;
 import ca.mcmaster.erp.invoice.order.model.OrderModel;
+import ca.mcmaster.erp.invoice.order.model.OrderQueryModel;
 import ca.mcmaster.erp.invoice.order.service.ebi.OrderEbi;
 import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
@@ -87,5 +88,11 @@ public class OrderEbo implements OrderEbi {
 		om.setTotalPrice(totalPrice);
 		om.setOrderNum(NumUtil.generateOrdeNum());
 		orderDao.save(om);
+	}
+
+	public List<OrderModel> getAllBuy(OrderQueryModel oqm, Integer maxPageNum,
+			Integer pageCount) {
+		oqm.setOrderType(OrderModel.ORDER_ORDERTYPE_OF_BUY);
+		return orderDao.getAll(oqm, maxPageNum, pageCount);
 	}
 }

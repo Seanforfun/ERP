@@ -79,19 +79,22 @@
 						<td width="5%">详情</td>
 						<td width="9%">订单状态</td>
 					</tr>
-					<tr align="center" bgcolor="#FFFFFF">
-						<td width="13%" height="30">32478dhyfjahfajd32</td>
-						<td>七匹狼</td>
-						<td>张三</td>
-						<td>2014-9-29</td>
-						<td>188</td>
-						<td align="right">788.04 元</td>
-						<td>
-							<a href="inDetailList.jsp" class="xiu">详情</a>
-						</td>
-						<td>未审核</td>
-					</tr>
+					<s:iterator value="#orderList">
+						<tr align="center" bgcolor="#FFFFFF">
+							<td width="13%" height="30">${orderNum}</td>
+							<td>${sm.name}</td>
+							<td>${creator.name}</td>
+							<td>${createTimeView}</td>
+							<td>${totalNum}</td>
+							<td align="right">${totalPrice} 元</td>
+							<td>
+								<a href="inDetailList.jsp" class="xiu">详情</a>
+							</td>
+							<td>${orderTypeView}</td>
+						</tr>
+					</s:iterator>
 				</table>
+				<%@include file="/jsps/tools/paging.jsp" %>
 			</div>
 		</form>
 	</div>
