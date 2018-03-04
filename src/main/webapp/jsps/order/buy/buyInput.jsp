@@ -5,6 +5,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#submitOrder").click(function(){
+			$("#supplier").attr("disabled", false);
+			$(".goods").attr("disabled", false);
+			$("form:first").submit();	
+		});
+		
 		$("#supplier").change(function(){
 			var supplierUuid = $(this).val();
 			$.post("order_ajaxGetGtmAndGm.action",{"supplierUuid":supplierUuid}, function(data){
@@ -102,7 +108,7 @@
 				$tr.append($td1);
 				
 				$td2 = $('<td></td>');
-				$goodsSelect = $('<select class="goods" style="width:200px"></select>')
+				$goodsSelect = $('<select class="goods" name="goodsUuids" style="width:200px"></select>')
 				for(var i = 0; i < goodsList.length; i++){
 					$op = $('<option value="'+goodsList[i].uuid+'">'+goodsList[i].name+'</option>')
 					$goodsSelect.append($op);
@@ -194,14 +200,14 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="inList.jsp" method="post">
+		<s:form action="order_buySave.action" method="post">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
 					<tr>
 						<td width="68px" height="30">供应商：</td>
 						<td width="648px">
-							<s:select id="supplier" name="" list="#supplierList" cssClass="kuan" cssStyle="width:190px" listKey="uuid" listValue="name"></s:select>
+							<s:select id="supplier" name="om.sm.uuid" list="#supplierList" cssClass="kuan" cssStyle="width:190px" listKey="uuid" listValue="name"></s:select>
 						</td>
 						<td height="30">
 							<a id="add"><img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" /> </a>
@@ -226,7 +232,7 @@
 							<s:select class="goodsType" name="" list="goodsTypeList" cssClass="goodsType" cssStyle="width:200px" listKey="uuid" listValue="name"/>
 						</td>
 						<td>
-							<s:select class="goods" name="" list="goodsList" cssClass="goods" cssStyle="width:200px" listKey="uuid" listValue="name"/>
+							<s:select name="goodsUuids" class="goods" list="goodsList" cssClass="goods" cssStyle="width:200px" listKey="uuid" listValue="name"/>
 						</td>
 						<td><input name="nums" class="num_order_num" style="width:67px;border:1px solid black;text-align:right;padding:2px" type="text" value="1"/></td>
 						<td><input name="prices" class="prices_order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" type="text" value="${goodsList[0].inpriceView}"/> 元</td>
@@ -258,7 +264,7 @@
 				</div>
 			</div>
 			</div>
-		</form>
+		</s:form>
 	</div>
 	
 	<div class="content-bbg"></div>

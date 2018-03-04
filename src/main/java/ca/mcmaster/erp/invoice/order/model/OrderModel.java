@@ -2,8 +2,10 @@ package ca.mcmaster.erp.invoice.order.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
+import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
 import ca.mcmaster.erp.utils.format.FormatUtils;
 
@@ -84,6 +86,13 @@ public class OrderModel {
 	private EmpModel checker;
 	private EmpModel completer;
 	private SupplierModel sm;
+	private Set<OrderDetailModel> odms;
+	public Set<OrderDetailModel> getOdms() {
+		return odms;
+	}
+	public void setOdms(Set<OrderDetailModel> odms) {
+		this.odms = odms;
+	}
 	public String getTotalPriceView() {
 		return totalPriceView;
 	}

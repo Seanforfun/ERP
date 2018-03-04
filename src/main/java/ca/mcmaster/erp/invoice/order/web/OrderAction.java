@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.invoice.goods.model.GoodsModel;
 import ca.mcmaster.erp.invoice.goods.service.ebi.GoodsEbi;
 import ca.mcmaster.erp.invoice.goodstype.model.GoodsTypeModel;
@@ -68,6 +69,15 @@ public class OrderAction extends BaseAction {
 		List<GoodsModel> goodsList = goodsEbi.getAllByGtm(goodsTypeList.get(0).getUuid());
 		put("goodsList", goodsList);
 		return "buyInput";
+	}
+	
+	public Long[] goodsUuids;
+	public Integer[] nums;
+	public Double[] prices;
+	public String buySave(){
+		EmpModel currentUser = getLogin();
+		orderEbi.saveBuyOrder(om, goodsUuids, nums, prices, currentUser);
+		return "toBuyList"; 
 	}
 	
 	//-------------------------------------------------------------------
