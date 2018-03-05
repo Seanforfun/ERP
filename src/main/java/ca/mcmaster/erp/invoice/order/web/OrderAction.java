@@ -135,6 +135,13 @@ public class OrderAction extends BaseAction {
 		return "toTaskList";
 	}
 	
+	public String tasks(){
+		setDataTotal(orderEbi.getCountBuyLogin(oqm, getLogin()));
+		List<OrderModel> orderList = orderEbi.getAllTask(oqm, maxPageNum, pageCount, getLogin());
+		put("orderList", orderList);
+		return "tasks";
+	}
+	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;
 	public Long gtmUuid;

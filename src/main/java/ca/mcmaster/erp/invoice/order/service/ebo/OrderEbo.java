@@ -155,4 +155,15 @@ public class OrderEbo implements OrderEbi {
 		temp.setCompleter(completer);
 		orderDao.update(temp);
 	}
+
+	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer maxPageNum,
+			Integer pageCount, EmpModel login) {
+		oqm.setCompleter(login);
+		return orderDao.getAll(oqm, maxPageNum, pageCount);
+	}
+
+	public Integer getCountBuyLogin(OrderQueryModel oqm, EmpModel empModel) {
+		oqm.setCompleter(empModel);
+		return orderDao.getCount(oqm);
+	}
 }

@@ -40,6 +40,9 @@ public class OrderImpl extends BaseImpl<OrderModel> implements OrderDao {
 			dc.createAlias("completer", "c3");
 			dc.add(Restrictions.like("c3.name", "%" + oqm.getCompleter().getName() + "%"));
 		}
+		if(oqm.getCompleter() != null && oqm.getCompleter().getUuid() != null && oqm.getCompleter().getUuid() != -1){
+			dc.add(Restrictions.eq("completer", oqm.getCompleter()));
+		}
 		dc.createAlias("sm", "s");
 		if(oqm.getSm() != null && oqm.getSm().getUuid() != null && oqm.getSm().getUuid() != -1){
 			dc.add(Restrictions.eq("s.uuid", oqm.getSm().getUuid()));

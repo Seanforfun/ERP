@@ -134,6 +134,7 @@
 			<result name="taskList">/jsps/transport/taskList.jsp</result>
 			<result name="toTaskList" type="redirectAction">transport_taskList.action</result>
 			<result name="taskDetail">/jsps/transport/taskDetail.jsp</result>
+			<result name="tasks">/jsps/transport/tasks.jsp</result>
 		</action>
 	</package>
 </struts>
