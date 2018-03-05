@@ -68,9 +68,10 @@
 							<td align="left">&nbsp;${sm.address }</td>
 							<td>${typeView }</td>
 							<td>
-								<a href="./taskDetail.jsp">
+								<s:a action="transport_task.action">
+									<s:param name="om.uuid" value="uuid"/>
 									<img src="${pageContext.request.contextPath}/images/icon_3.gif" />详情
-								</a>
+								</s:a>
 							</td>
 						</tr>
 					</s:iterator>

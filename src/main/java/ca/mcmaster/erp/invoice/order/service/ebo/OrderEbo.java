@@ -166,4 +166,13 @@ public class OrderEbo implements OrderEbi {
 		oqm.setCompleter(empModel);
 		return orderDao.getCount(oqm);
 	}
+
+	public void endTask(Long uuid) {
+		OrderModel temp = orderDao.get(uuid);
+		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_BUYING)){
+			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+		}
+		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
+		orderDao.update(temp);
+	}
 }

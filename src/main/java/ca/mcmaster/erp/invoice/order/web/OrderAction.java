@@ -142,6 +142,16 @@ public class OrderAction extends BaseAction {
 		return "tasks";
 	}
 	
+	public String task(){
+		om = orderEbi.get(om.getUuid());
+		return "task";
+	}
+	
+	public String endTask(){
+		orderEbi.endTask(om.getUuid());
+		return "toTaskList";
+	}
+	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;
 	public Long gtmUuid;

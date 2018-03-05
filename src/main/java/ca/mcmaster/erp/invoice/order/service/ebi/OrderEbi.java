@@ -83,4 +83,10 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 	 */
 	List<OrderModel> getAllTask(OrderQueryModel oqm, Integer maxPageNum,
 			Integer pageCount, EmpModel login);
+
+	/**
+	 * @Description: End the task with given uuid
+	 * @param uuid
+	 */
+	void endTask(Long uuid);
 }
