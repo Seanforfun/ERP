@@ -110,6 +110,14 @@ public class OrderAction extends BaseAction {
 		orderEbi.buyCheckReject(om.getUuid(), getLogin());
 		return "toBuyCheckList";
 	}
+	//---------------------------transport---------------------------
+	public String taskList(){
+		setDataTotal(orderEbi.getCountTask(oqm));
+		List<OrderModel> orderList = orderEbi.getAllTask(oqm, maxPageNum, pageCount);
+		put("orderList", orderList);
+		return "taskList";
+	}
+	
 	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;

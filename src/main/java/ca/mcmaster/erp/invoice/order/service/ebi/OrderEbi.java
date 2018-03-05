@@ -52,4 +52,9 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 	 * @param empModel 
 	 */
 	void buyCheckReject(Long uuid, EmpModel login);
+
+	int getCountTask(OrderQueryModel oqm);
+
+	List<OrderModel> getAllTask(OrderQueryModel oqm, Integer maxPageNum,
+			Integer pageCount);
 }

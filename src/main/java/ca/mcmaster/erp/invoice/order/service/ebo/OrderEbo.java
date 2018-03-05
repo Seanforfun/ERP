@@ -132,4 +132,17 @@ public class OrderEbo implements OrderEbi {
 		temp.setChecker(login);
 		orderDao.update(temp);
 	}
+
+	private Integer[] taskTypes = new Integer[]{OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS,
+			OrderModel.ORDER_TYPE_OF_BUY_BUYING,
+			OrderModel.ORDER_TYPE_OF_BUY_IN_STORE,
+			OrderModel.ORDER_TYPE_OF_BUY_COMPLETE
+			};
+	public int getCountTask(OrderQueryModel oqm) {
+		return orderDao.getCountTypes(oqm, taskTypes);
+	}
+	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer maxPageNum,
+			Integer pageCount) {
+		return orderDao.getAllTypes(oqm, maxPageNum, pageCount, taskTypes);
+	}
 }

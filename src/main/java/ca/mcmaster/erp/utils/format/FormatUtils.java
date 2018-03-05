@@ -22,7 +22,7 @@ public class FormatUtils {
 	}
 	public static final String formatDateTime(Long time){
 		if(null == time) return "";
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return df.format(new Date(time));
 	}
 	public static final String formatMoney(Double money){

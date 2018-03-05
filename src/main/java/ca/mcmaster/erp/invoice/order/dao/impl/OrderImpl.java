@@ -34,8 +34,13 @@ public class OrderImpl extends BaseImpl<OrderModel> implements OrderDao {
 		}
 	}
 	
-	public void doCriteria2(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){
+	private void doCriteria2(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){
 		dc.add(Restrictions.in("orderType", orderTypes));
+		doCriteria(bqm, dc);
+	}
+	
+	private void doCriteria3(BaseQueryModel bqm, DetachedCriteria dc, Integer[] taskTypes){
+		dc.add(Restrictions.in("type", taskTypes));
 		doCriteria(bqm, dc);
 	}
 
@@ -53,5 +58,20 @@ public class OrderImpl extends BaseImpl<OrderModel> implements OrderDao {
 		dc.setProjection(Projections.rowCount());
 		List<Long> count = this.getHibernateTemplate().findByCriteria(dc);
 		return count.get(0).intValue();
+	}
+
+	public int getCountTypes(OrderQueryModel oqm, Integer[] taskTypes) {
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
+		doCriteria3(oqm, dc, taskTypes);
+		dc.setProjection(Projections.rowCount());
+		List<Long> count = this.getHibernateTemplate().findByCriteria(dc);
+		return count.get(0).intValue();
+	}
+
+	public List<OrderModel> getAllTypes(OrderQueryModel oqm,
+			Integer maxPageNum, Integer pageCount, Integer[] taskTypes) {
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
+		doCriteria3(oqm, dc, taskTypes);
+		return this.getHibernateTemplate().findByCriteria(dc);
 	}
 }
