@@ -13,7 +13,7 @@
 <div class="content-right">
 	<div class="content-r-pic_w">
 		<div style="margin:8px auto auto 12px;margin-top:6px">
-			<span class="page_title">任务指派</span>
+			<span class="page_title">任务详情</span>
 		</div>
 	</div>
 	<div class="content-text">
@@ -70,24 +70,18 @@
 						</tr>
 				</table>
 				<br/>
-				<form action="list.jsp" method="post">
 				<table width="100%">
 					<tr>
-						<td width="50%" align="right">
-							
-							<select style="width:100px;font-size:20px">
-								<option value="1">小灰灰</option>
-								<option value="0">懒洋洋</option>
-							</select>
-						</td>
-						<td width="50%" align="left">
-							<a id="task" href="javascript:void(0)" style="color:#0f0;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(../../../images/btn_bg.jpg)">
-								&nbsp;派&nbsp;&nbsp;单
+						<td width="50%" align="center">
+							<a href="tasks.jsp" style="color:#0f0;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(../../../images/btn_bg.jpg)">
+								结&nbsp;&nbsp;单
+							</a>
+							<a href="tasks.jsp" style="color:#f00;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(../../../images/btn_bg.jpg)">
+								已结单
 							</a>
 						</td>
 					</tr>
 				</table>
-				</form>
 			</div>
 	</div>
 	<div class="content-bbg"></div>

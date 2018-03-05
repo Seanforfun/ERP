@@ -82,6 +82,7 @@
 						<td width="21%">审核时间</td>
 						<td width="5%">审核人</td>
 						<td width="15%">供应商</td>
+						<td width="13%">发货方式</td>
 						<td width="10%">跟单人</td>
 					</tr>
 					<s:iterator value="#orderList">
@@ -92,11 +93,14 @@
 							<td>${checkTimeView }</td>
 							<td>${checker.name }</td>
 							<td>${sm.name }</td>
+							<td>${sm.needsView }</td>
 							<td>
 									<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
-										<a href="assignTask.jsp" class="xiu">任务指派
-										</a> 
+										<s:a action="transport_taskDetail.action" cssClass="xiu">
+											<s:param name="om.uuid" value="uuid"/>
+											任务指派
+										</s:a>
 									</span>
 							</td>
 						</tr>

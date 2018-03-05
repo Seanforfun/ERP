@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
+import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
 import ca.mcmaster.erp.invoice.goods.model.GoodsModel;
 import ca.mcmaster.erp.invoice.goods.service.ebi.GoodsEbi;
 import ca.mcmaster.erp.invoice.goodstype.model.GoodsTypeModel;
@@ -32,6 +33,8 @@ public class OrderAction extends BaseAction {
 	private GoodsTypeEbi goodsTypeEbi;
 	@Resource(name="goodsEbi")
 	private GoodsEbi goodsEbi;
+	@Resource(name="empEbi")
+	private EmpEbi empEbi;
 	
 	public String save(){
 		orderEbi.save(om);
@@ -118,6 +121,12 @@ public class OrderAction extends BaseAction {
 		return "taskList";
 	}
 	
+	public String taskDetail(){
+		List<EmpModel> empList = empEbi.getByDept(getLogin().getDm().getUuid());
+		put("empList", empList);
+		om = orderEbi.get(om.getUuid());
+		return "taskDetail";
+	}
 	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;
