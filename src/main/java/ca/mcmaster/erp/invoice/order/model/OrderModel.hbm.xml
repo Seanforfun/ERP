@@ -13,6 +13,7 @@
 				<property name="totalNum"/>
 				<property name="totalPrice"/>
 				<property name="createTime"/>
+				<property name="checkTime"/>
 				<property name="endTime"/>
 				<property name="orderType"/>
 				<property name="type"/>

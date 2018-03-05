@@ -19,6 +19,7 @@ import ca.mcmaster.erp.invoice.order.service.ebi.OrderEbi;
 import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
 import ca.mcmaster.erp.utils.base.BaseQueryModel;
+import ca.mcmaster.erp.utils.exceptions.AppException;
 import ca.mcmaster.erp.utils.num.NumUtil;
 
 /**
@@ -108,5 +109,27 @@ public class OrderEbo implements OrderEbi {
 	public List<OrderModel> getAllBuyCheck(OrderQueryModel oqm,
 			Integer maxPageNum, Integer pageCount) {
 		return orderDao.getAllOrderTypes(oqm, maxPageNum, pageCount, buyCheckOrderTypes);
+	}
+
+	public void buyCheckPass(Long uuid, EmpModel checker) {
+		OrderModel temp = orderDao.get(uuid);
+		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK)){
+			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+		}
+		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS);
+		temp.setCheckTime(System.currentTimeMillis());
+		temp.setChecker(checker);
+		orderDao.update(temp);
+	}
+
+	public void buyCheckReject(Long uuid, EmpModel login) {
+		OrderModel temp = orderDao.get(uuid);
+		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK)){
+			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+		}
+		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_REJECT);
+		temp.setCheckTime(System.currentTimeMillis());
+		temp.setChecker(login);
+		orderDao.update(temp);
 	}
 }

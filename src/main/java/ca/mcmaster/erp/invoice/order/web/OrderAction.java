@@ -96,6 +96,21 @@ public class OrderAction extends BaseAction {
 		return "buyCheckList";
 	}
 	
+	public String buyCheckDetail(){
+		om = orderEbi.get(om.getUuid());
+		return "buyCheckDetail";
+	}
+	
+	public String buyCheckPass(){
+		orderEbi.buyCheckPass(om.getUuid(), getLogin());
+		return "toBuyCheckList";
+	}
+	
+	public String buyCheckReject(){
+		orderEbi.buyCheckReject(om.getUuid(), getLogin());
+		return "toBuyCheckList";
+	}
+	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;
 	public Long gtmUuid;

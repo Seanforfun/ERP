@@ -39,4 +39,17 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 	List<OrderModel> getAllBuyCheck(OrderQueryModel oqm, Integer maxPageNum,
 			Integer pageCount);
 
+	/**
+	 * @Description: Pass a buy order.
+	 * @param uuid: The Order uuid of the order approved
+	 * @param empModel 
+	 */
+	void buyCheckPass(Long uuid, EmpModel checker);
+
+	/**
+	 * @Description: Reject a buy order.
+	 * @param uuid: The Order uuid of the order rejected
+	 * @param empModel 
+	 */
+	void buyCheckReject(Long uuid, EmpModel login);
 }
