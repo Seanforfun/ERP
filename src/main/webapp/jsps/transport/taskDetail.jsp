@@ -62,19 +62,22 @@
 					</s:iterator>
 				</table>
 				<br/>
-				<table width="100%">
-					<tr>
-						<td width="50%" align="right">
-							<s:select name="om.completer.uuid" list="empList" listKey="uuid" listValue="name" cssStyle="width:100px;font-size:20px">
-							</s:select>
-						</td>
-						<td width="50%" align="left">
-							<a id="task" href="javascript:void(0)" style="color:#0f0;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(images/btn_bg.jpg)">
-								&nbsp;派&nbsp;&nbsp;单
-							</a>
-						</td>
-					</tr>
-				</table>
+				<s:form action="transport_assignTask.action" method="post">
+					<s:hidden name="om.uuid"/>
+					<table width="100%">
+						<tr>
+							<td width="50%" align="right">
+								<s:select name="om.completer.uuid" list="empList" listKey="uuid" listValue="name" cssStyle="width:100px;font-size:20px">
+								</s:select>
+							</td>
+							<td width="50%" align="left">
+								<a id="task" href="javascript:void(0)" style="color:#0f0;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(images/btn_bg.jpg)">
+									&nbsp;派&nbsp;&nbsp;单
+								</a>
+							</td>
+						</tr>
+					</table>
+				</s:form>
 			</div>
 	</div>
 	<div class="content-bbg"></div>

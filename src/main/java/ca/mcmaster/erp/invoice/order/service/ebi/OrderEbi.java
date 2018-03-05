@@ -57,4 +57,11 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 
 	List<OrderModel> getAllTask(OrderQueryModel oqm, Integer maxPageNum,
 			Integer pageCount);
+
+	/**
+	 * @Description: Assign task to transport employees
+	 * @param uuid
+	 * @param completer
+	 */
+	void assignTask(Long uuid, EmpModel completer);
 }

@@ -59,4 +59,10 @@ public class EmpImpl extends BaseImpl<EmpModel> implements EmpDao{
 		int row = this.getHibernateTemplate().bulkUpdate(hql, md5NewPwd, loginName, md5Pwd);
 		return row > 0;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<EmpModel> getAllByDeptUuid(Integer uuid) {
+		String hql = "from EmpModel em where em.dm.uuid = ?";
+		return this.getHibernateTemplate().find(hql, uuid);
+	}
 }

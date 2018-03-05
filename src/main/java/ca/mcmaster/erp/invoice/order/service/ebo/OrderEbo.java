@@ -145,4 +145,14 @@ public class OrderEbo implements OrderEbi {
 			Integer pageCount) {
 		return orderDao.getAllTypes(oqm, maxPageNum, pageCount, taskTypes);
 	}
+
+	public void assignTask(Long uuid, EmpModel completer) {
+		OrderModel temp = orderDao.get(uuid);
+		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS)){
+			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+		}
+		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_BUYING);
+		temp.setCompleter(completer);
+		orderDao.update(temp);
+	}
 }

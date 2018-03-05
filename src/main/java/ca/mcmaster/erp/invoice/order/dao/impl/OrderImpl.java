@@ -32,6 +32,21 @@ public class OrderImpl extends BaseImpl<OrderModel> implements OrderDao {
 		if(oqm.getType() != null && oqm.getType() != -1){
 			dc.add(Restrictions.eq("type", oqm.getType()));
 		}
+		if(oqm.getChecker() != null && oqm.getChecker().getName() != null && oqm.getChecker().getName().trim().length() > 0){
+			dc.createAlias("checker", "c2");
+			dc.add(Restrictions.like("c2.name", "%" + oqm.getChecker().getName() + "%"));
+		}
+		if(oqm.getCompleter() != null && oqm.getCompleter().getName() != null && oqm.getCompleter().getName().trim().length() > 0){
+			dc.createAlias("completer", "c3");
+			dc.add(Restrictions.like("c3.name", "%" + oqm.getCompleter().getName() + "%"));
+		}
+		dc.createAlias("sm", "s");
+		if(oqm.getSm() != null && oqm.getSm().getUuid() != null && oqm.getSm().getUuid() != -1){
+			dc.add(Restrictions.eq("s.uuid", oqm.getSm().getUuid()));
+		}
+		if(oqm.getSm() != null && oqm.getSm().getNeeds() != null && oqm.getSm().getNeeds() != -1){
+			dc.add(Restrictions.eq("s.needs", oqm.getSm().getNeeds()));
+		}
 	}
 	
 	private void doCriteria2(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){

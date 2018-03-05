@@ -118,6 +118,8 @@ public class OrderAction extends BaseAction {
 		setDataTotal(orderEbi.getCountTask(oqm));
 		List<OrderModel> orderList = orderEbi.getAllTask(oqm, maxPageNum, pageCount);
 		put("orderList", orderList);
+		List<SupplierModel> supplierList = supplierEbi.getAll();
+		put("supplierList", supplierList);
 		return "taskList";
 	}
 	
@@ -126,6 +128,11 @@ public class OrderAction extends BaseAction {
 		put("empList", empList);
 		om = orderEbi.get(om.getUuid());
 		return "taskDetail";
+	}
+	
+	public String assignTask(){
+		orderEbi.assignTask(om.getUuid(), om.getCompleter());
+		return "toTaskList";
 	}
 	
 	//-------------------------------------------------------------------

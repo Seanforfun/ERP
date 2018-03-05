@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post"> 
+		<s:form action="transport_taskList.action" method="post"> 
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -34,14 +34,12 @@
 						</td>
 						<td>供&nbsp;应&nbsp;商:</td>
 						<td>
-							<select style="width:115px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">七匹狼</option>
-								<option value="0">康师傅</option>
-							</select>
+							<s:select name="oqm.sm.uuid" list="supplierList" headerKey="-1" headerValue="----请-选-择----" cssStyle="width:115px" listKey="uuid" listValue="name"/>
 						</td>
 						<td>下单人:</td>
-						<td><input type="text" size="10" /></td>
+						<td>
+							<s:textfield name="oqm.creator.name" size="10"/>
+						</td>
 						<td>&nbsp;</td>
 						<td><a id="query"> 
 							<img src="${pageContext.request.contextPath}/images/can_b_01.gif" border="0" /> </a>
@@ -58,16 +56,16 @@
 						</td>
 						<td>发货方式:</td>
 						<td>
-							<select style="width:115px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">送货</option>
-								<option value="0">自提</option>
-							</select> 
+							<s:select name="oqm.sm.needs" list="@ca.mcmaster.erp.invoice.supplier.model.SupplierModel@needsMap" cssStyle="width:115px" headerKey="-1" headerValue="----请-选-择----"/>
 						</td>
 						<td>审核人:</td>
-						<td><input type="text" size="10" /></td>
+						<td>
+							<s:textfield name="oqm.checker.name" size="10"/>
+						</td>
 						<td>跟单人:</td>
-						<td><input type="text" size="10" /></td>
+						<td>
+							<s:textfield name="oqm.completer.name" size="10"/>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -95,6 +93,7 @@
 							<td>${sm.name }</td>
 							<td>${sm.needsView }</td>
 							<td>
+								<s:if test="type == @ca.mcmaster.erp.invoice.order.model.OrderModel@ORDER_TYPE_OF_BUY_CHECK_PASS">
 									<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
 										<s:a action="transport_taskDetail.action" cssClass="xiu">
@@ -102,12 +101,16 @@
 											任务指派
 										</s:a>
 									</span>
+								</s:if>
+								<s:else>
+									${completer.name}
+								</s:else>
 							</td>
 						</tr>
 					</s:iterator>
 				</table>
 			</div>
-		</form>
+		</s:form>
 	</div>
 	<div class="content-bbg"></div>
 </div>

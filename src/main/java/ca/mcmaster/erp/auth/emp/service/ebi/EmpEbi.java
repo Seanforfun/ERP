@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.auth.emp.service.ebi;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
@@ -45,4 +47,11 @@ public interface EmpEbi extends BaseEbi<EmpModel> {
 	 * @param roleUuids
 	 */
 	public void update(EmpModel em, Long[] roleUuids);
+
+	/**
+	 * @Description: Get all employees from transport department.
+	 * @param uuid
+	 * @return
+	 */
+	public List<EmpModel> getByDept(Integer uuid);
 }

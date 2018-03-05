@@ -124,4 +124,7 @@ public class EmpEbo implements EmpEbi{
 		temp.setName(em.getName());
 		empDao.update(temp);
 	}
+	public List<EmpModel> getByDept(Integer uuid) {
+		return empDao.getAllByDeptUuid(uuid);
+	}
 }
