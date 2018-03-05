@@ -1,6 +1,9 @@
 package ca.mcmaster.erp.invoice.order.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import ca.mcmaster.erp.invoice.order.dao.dao.OrderDao;
@@ -29,5 +32,26 @@ public class OrderImpl extends BaseImpl<OrderModel> implements OrderDao {
 		if(oqm.getType() != null && oqm.getType() != -1){
 			dc.add(Restrictions.eq("type", oqm.getType()));
 		}
+	}
+	
+	public void doCriteria2(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){
+		dc.add(Restrictions.in("orderType", orderTypes));
+		doCriteria(bqm, dc);
+	}
+
+	public List<OrderModel> getAllOrderTypes(OrderQueryModel oqm,
+			Integer maxPageNum, Integer pageCount, Integer[] orderTypes) {
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
+		doCriteria2(oqm, dc, orderTypes);
+		return this.getHibernateTemplate().findByCriteria(dc, (maxPageNum - 1) * pageCount, pageCount);
+	}
+
+	public int getCountOrderTypes(OrderQueryModel oqm,
+			Integer[] orderTypes) {
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
+		doCriteria2(oqm, dc, orderTypes);
+		dc.setProjection(Projections.rowCount());
+		List<Long> count = this.getHibernateTemplate().findByCriteria(dc);
+		return count.get(0).intValue();
 	}
 }

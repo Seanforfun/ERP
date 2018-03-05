@@ -93,6 +93,7 @@
 			<result name="buyList">/jsps/order/buy/buyList.jsp</result>
 			<result name="buyDetail">/jsps/order/buy/buyDetail.jsp</result>
 			<result name="list">/jsps/order/buy/buyList.jsp</result>
+			<result name="buyCheckList">/jsps/order/buy/buyCheckList.jsp</result>
 			<result name="toBuyList" type="redirectAction">order_buyList.action</result>
 			<result name="buyInput">/jsps/order/buy/buyInput.jsp</result>
 			<result name="toList" type="redirectAction">order_list.action</result>

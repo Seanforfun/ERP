@@ -95,4 +95,18 @@ public class OrderEbo implements OrderEbi {
 		oqm.setOrderType(OrderModel.ORDER_ORDERTYPE_OF_BUY);
 		return orderDao.getAll(oqm, maxPageNum, pageCount);
 	}
+
+	private Integer[] buyCheckOrderTypes = new Integer[]{
+			OrderModel.ORDER_ORDERTYPE_OF_BUY, 
+			OrderModel.ORDER_ORDERTYPE_OF_RETURN_BUY
+	};
+	
+	public int getCountBuyCheck(OrderQueryModel oqm) {
+		return orderDao.getCountOrderTypes(oqm, buyCheckOrderTypes);
+	}
+
+	public List<OrderModel> getAllBuyCheck(OrderQueryModel oqm,
+			Integer maxPageNum, Integer pageCount) {
+		return orderDao.getAllOrderTypes(oqm, maxPageNum, pageCount, buyCheckOrderTypes);
+	}
 }

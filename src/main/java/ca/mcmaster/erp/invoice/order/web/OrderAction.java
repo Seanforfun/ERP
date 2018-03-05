@@ -89,6 +89,13 @@ public class OrderAction extends BaseAction {
 		return "buyDetail";
 	}
 	
+	public String buyCheckList(){
+		setDataTotal(orderEbi.getCountBuyCheck(oqm));
+		List<OrderModel> orderList = orderEbi.getAllBuyCheck(oqm, maxPageNum, pageCount);
+		put("orderList", orderList);
+		return "buyCheckList";
+	}
+	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;
 	public Long gtmUuid;

@@ -34,4 +34,9 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 	List<OrderModel> getAllBuy(OrderQueryModel oqm, Integer maxPageNum,
 			Integer pageCount);
 
+	int getCountBuyCheck(OrderQueryModel oqm);
+
+	List<OrderModel> getAllBuyCheck(OrderQueryModel oqm, Integer maxPageNum,
+			Integer pageCount);
+
 }
