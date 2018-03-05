@@ -3,6 +3,7 @@ package ca.mcmaster.erp.invoice.order.model;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
@@ -46,20 +47,27 @@ public class OrderModel {
 	public static final String ORDER_TYPE_OF_SALE_BUY_CHECK_PASS_VIEW = "Í¨¹ý";
 	
 	public static final Map<Integer, String> orderTypeMap = new HashMap<Integer, String>();
-	public static final Map<Integer, String> orderMap = new HashMap<Integer, String>();
+	private static final Map<Integer, String> orderMap = new HashMap<Integer, String>();
+	public static final Map<Integer, String> buyOrderMap = new TreeMap<Integer, String>();
+	public static final Map<Integer, String> saleOrderMap = new TreeMap<Integer, String>();
 	static{
 		orderTypeMap.put(ORDER_ORDERTYPE_OF_BUY, ORDER_ORDERTYPE_OF_BUY_VIEW);
 		orderTypeMap.put(ORDER_ORDERTYPE_OF_SALE, ORDER_ORDERTYPE_OF_SALE_VIEW);
 		orderTypeMap.put(ORDER_ORDERTYPE_OF_RETURN_BUY, ORDER_ORDERTYPE_OF_RETURN_BUY_VIEW);
 		orderTypeMap.put(ORDER_ORDERTYPE_OF_RETURN_SALE, ORDER_ORDERTYPE_OF_RETURN_SALE_VIEW);
-		orderMap.put(ORDER_TYPE_OF_BUY_NO_CHECK, ORDER_TYPE_OF_BUY_NO_CHECK_VIEW);
-		orderMap.put(ORDER_TYPE_OF_BUY_CHECK_PASS, ORDER_TYPE_OF_BUY_CHECK_PASS_VIEW);
-		orderMap.put(ORDER_TYPE_OF_BUY_CHECK_REJECT, ORDER_TYPE_OF_BUY_CHECK_REJECT_VIEW);
-		orderMap.put(ORDER_TYPE_OF_BUY_BUYING, ORDER_TYPE_OF_BUY_BUYING_VIEW);
-		orderMap.put(ORDER_TYPE_OF_BUY_IN_STORE, ORDER_TYPE_OF_BUY_IN_STORE_VIEW);
-		orderMap.put(ORDER_TYPE_OF_BUY_COMPLETE, ORDER_TYPE_OF_BUY_COMPLETE_VIEW);
-		orderMap.put(ORDER_TYPE_OF_SALE_NO_CHECK, ORDER_TYPE_OF_SALE_NO_CHECK_VIEW);
-		orderMap.put(ORDER_TYPE_OF_SALE_BUY_CHECK_PASS, ORDER_TYPE_OF_SALE_BUY_CHECK_PASS_VIEW);
+		
+		buyOrderMap.put(ORDER_TYPE_OF_BUY_NO_CHECK, ORDER_TYPE_OF_BUY_NO_CHECK_VIEW);
+		buyOrderMap.put(ORDER_TYPE_OF_BUY_CHECK_PASS, ORDER_TYPE_OF_BUY_CHECK_PASS_VIEW);
+		buyOrderMap.put(ORDER_TYPE_OF_BUY_CHECK_REJECT, ORDER_TYPE_OF_BUY_CHECK_REJECT_VIEW);
+		buyOrderMap.put(ORDER_TYPE_OF_BUY_BUYING, ORDER_TYPE_OF_BUY_BUYING_VIEW);
+		buyOrderMap.put(ORDER_TYPE_OF_BUY_IN_STORE, ORDER_TYPE_OF_BUY_IN_STORE_VIEW);
+		buyOrderMap.put(ORDER_TYPE_OF_BUY_COMPLETE, ORDER_TYPE_OF_BUY_COMPLETE_VIEW);
+		
+		saleOrderMap.put(ORDER_TYPE_OF_SALE_NO_CHECK, ORDER_TYPE_OF_SALE_NO_CHECK_VIEW);
+		saleOrderMap.put(ORDER_TYPE_OF_SALE_BUY_CHECK_PASS, ORDER_TYPE_OF_SALE_BUY_CHECK_PASS_VIEW);
+		
+		orderMap.putAll(buyOrderMap);
+		orderMap.putAll(saleOrderMap);
 	}
 	
 	private Long uuid;
@@ -166,6 +174,7 @@ public class OrderModel {
 		return type;
 	}
 	public void setType(Integer type) {
+		this.typeView = orderMap.get(type);
 		this.type = type;
 	}
 	public Integer getTotalNum() {

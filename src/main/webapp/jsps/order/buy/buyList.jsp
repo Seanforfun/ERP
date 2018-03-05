@@ -19,23 +19,19 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post"> 
+		<s:form action="order_list.action" method="post"> 
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
 					<tr>
 						<td height="30">订单状态</td>
-						<td> 
-							<select class="kuan" style="width:113px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">未审核</option>
-								<option value="0">已审核</option>
-								<option value="0">正在采购</option>
-								<option value="0">入库完成</option>
-							</select> 
+						<td>
+							<s:select name="oqm.type" list="@ca.mcmaster.erp.invoice.order.model.OrderModel@buyOrderMap" headerKey="-1" headerValue="----请-选-择----" cssClass="kuan" cssStyle="width:113px"/>
 						</td>
 						<td>下单人:</td>
-						<td><input type="text" size="14" /></td>
+						<td>
+							<s:textfield name="oqm.creator.name" size="14"/>
+						</td>
 						<td>总量:</td>
 						<td><input type="text" size="14" /></td>
 						<td>到 </td>
@@ -70,8 +66,8 @@
 				<table width="100%" border="1" cellpadding="0" cellspacing="0">
 					<tr align="center"
 						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
-						<td width="25%" height="30">订单号</td>
-						<td width="9%">供应商</td>
+						<td width="15%" height="30">订单号</td>
+						<td width="19%">供应商</td>
 						<td width="10%">制单人</td>
 						<td width="20%">制单时间</td>
 						<td width="10%">订单商品总量</td>
@@ -88,15 +84,18 @@
 							<td>${totalNum}</td>
 							<td align="right">${totalPrice} 元</td>
 							<td>
-								<a href="inDetailList.jsp" class="xiu">详情</a>
+								<s:a action="order_buyDetail.action" cssClass="xiu">
+									<s:param name="om.uuid" value="uuid"/>
+									详情
+								</s:a>
 							</td>
-							<td>${orderTypeView}</td>
+							<td>${typeView}</td>
 						</tr>
 					</s:iterator>
 				</table>
 				<%@include file="/jsps/tools/paging.jsp" %>
 			</div>
-		</form>
+		</s:form>
 	</div>
 	<div class="content-bbg"></div>
 </div>

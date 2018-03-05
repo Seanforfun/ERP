@@ -22,5 +22,12 @@ public class OrderImpl extends BaseImpl<OrderModel> implements OrderDao {
 		if(oqm != null && oqm.getOrderType() != null && oqm.getOrderType() != -1){
 			dc.add(Restrictions.eq("orderType", oqm.getOrderType()));
 		}
+		if(oqm.getCreator() != null && oqm.getCreator().getName() != null && oqm.getCreator().getName().trim().length() > 0){
+			dc.createAlias("creator", "c1");
+			dc.add(Restrictions.like("c1.name", "%" + oqm.getCreator().getName() + "%"));
+		}
+		if(oqm.getType() != null && oqm.getType() != -1){
+			dc.add(Restrictions.eq("type", oqm.getType()));
+		}
 	}
 }

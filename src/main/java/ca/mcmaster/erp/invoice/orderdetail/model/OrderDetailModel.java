@@ -14,9 +14,14 @@ public class OrderDetailModel {
 	private Double price;
 	
 	private String priceView;
+	private String totalPriceView;
 	
 	private GoodsModel gm;
 	private OrderModel om;
+	
+	public String getTotalPriceView() {
+		return totalPriceView;
+	}
 	public Long getUuid() {
 		return uuid;
 	}
@@ -34,6 +39,7 @@ public class OrderDetailModel {
 	}
 	public void setPrice(Double price) {
 		this.priceView = FormatUtils.formatMoney(price);
+		this.totalPriceView = FormatUtils.formatMoney(price * this.num);
 		this.price = price;
 	}
 	public GoodsModel getGm() {

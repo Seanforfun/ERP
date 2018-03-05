@@ -44,7 +44,8 @@ public class OrderAction extends BaseAction {
 	}
 	
 	public String list(){
-		List<OrderModel> orderList = orderEbi.getAll();
+		setDataTotal(orderEbi.getCount(oqm));
+		List<OrderModel> orderList = orderEbi.getAllBuy(oqm, maxPageNum, pageCount);
 		put("orderList", orderList);
 		return LIST;
 	}
@@ -81,6 +82,11 @@ public class OrderAction extends BaseAction {
 		EmpModel currentUser = getLogin();
 		orderEbi.saveBuyOrder(om, goodsUuids, nums, prices, currentUser);
 		return "toBuyList"; 
+	}
+	
+	public String buyDetail(){
+		om = orderEbi.get(om.getUuid());
+		return "buyDetail";
 	}
 	
 	//-------------------------------------------------------------------
