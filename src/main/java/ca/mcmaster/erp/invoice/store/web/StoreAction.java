@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.emp.model.EmpModel;
+import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
 import ca.mcmaster.erp.invoice.store.model.StoreModel;
 import ca.mcmaster.erp.invoice.store.model.StoreQueryModel;
 import ca.mcmaster.erp.invoice.store.service.ebi.StoreEbi;
@@ -15,6 +17,8 @@ public class StoreAction extends BaseAction {
 	public StoreQueryModel sqm = new StoreQueryModel(); 
 	@Resource(name="storeEbi")
 	private StoreEbi storeEbi;
+	@Resource(name="empEbi")
+	private EmpEbi empEbi;
 
 	public String list(){
 		super.setDataTotal(storeEbi.getCount(sqm));
@@ -27,6 +31,8 @@ public class StoreAction extends BaseAction {
 		if(sm.getUuid() != null){
 			sm = storeEbi.get(sm.getUuid());
 		}
+		List<EmpModel>  empList = empEbi.getByDept(getLogin().getDm().getUuid());
+		put("empList", empList);
 		return INPUT;
 	}
 

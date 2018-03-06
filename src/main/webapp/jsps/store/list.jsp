@@ -45,7 +45,9 @@
 						<td>到</td>
 						<td><input type="text" size="16" />&nbsp;米<sup>3</sup>&nbsp;</td>
 						<td>
-							<a href="./input.jsp"><img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" /> </a>
+							<s:a action="store_input.action">
+								<img src="${pageContext.request.contextPath}/images/can_b_02.gif" border="0" />
+							</s:a>
 						</td>
 					</tr>
 				</table>
@@ -55,19 +57,16 @@
 				<table width="100%" border="1" cellpadding="0" cellspacing="0">
 					<tr align="center"
 						style="background:url(${pageContext.request.contextPath}/images/table_bg.gif) repeat-x;">
-						<td width="10%" height="30">仓库名称</td>
-						<td width="10%">仓库管理员</td>
+						<td width="20%" height="30">仓库名称</td>
+						<td width="20%">仓库管理员</td>
 						<td width="44%">仓库地址</td>
-						<td width="10%">总容积量</td>
-						<td width="10%">当前容积量</td>
 						<td width="16%">操作</td>
 					</tr>
+					<s:iterator value="storeList">
 						<tr align="center" bgcolor="#FFFFFF">
-							<td width="13%" height="30">服装仓库</td>
-							<td>张三</td>
-							<td align="left">&nbsp;金华</td>
-							<td align="right">100&nbsp;米<sup>3</sup>&nbsp;</td>
-							<td align="right">20&nbsp;米<sup>3</sup>&nbsp;</td>
+							<td width="13%" height="30">${name }</td>
+							<td>${em.name }</td>
+							<td align="left">&nbsp;${address }</td>
 							<td>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
@@ -75,10 +74,11 @@
 								</span> 
 								<img src="${pageContext.request.contextPath}/images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
 								</span>
 							</td>
 						</tr>
+					</s:iterator>
 				</table>
 			</div>
 		</form>

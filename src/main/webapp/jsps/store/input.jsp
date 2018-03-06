@@ -10,7 +10,7 @@
 	</div>
 	<div class="content-text">
 		<div class="square-order">
-			<form action="list.jsp" method="post">
+			<s:form action="store_save.action" method="post">
   			<div style="border:1px solid #cecece;">
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr bgcolor="#FFFFFF">
@@ -21,11 +21,11 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">仓库名称</td>
 				      <td width="32%">
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="sm.name" size="25"/>
 				      </td>
 				      <td width="18%" align="center">仓库地址</td>
 				      <td width="32%">
-				      	<input type="text" size="25"/>
+				      	<s:textfield name="sm.address" size="25"/>
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
@@ -33,16 +33,8 @@
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">管理员</td>
-				      <td width="32%">
-				      	<select style="width:190px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">张三</option>
-								<option value="2">李四</option>
-							</select>
-				      </td>
-				      <td width="18%" align="center">最大容积</td>
-				      <td width="32%">
-				      	<input type="text"size="22"/>&nbsp;米<sup>3</sup>
+				      <td width="32%" colspan="3">
+				      	<s:select name="sm.em.uuid" list="empList" headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name" cssStyle="width:190px"/>
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
@@ -65,7 +57,7 @@
 					</table>
 				</div>
 			</div>
-			</form>
+			</s:form>
 		</div><!--"square-order"end-->
 	</div><!--"content-text"end-->
 	<div class="content-bbg"><img src="${pageContext.request.contextPath}/images/content_bbg.jpg" /></div>

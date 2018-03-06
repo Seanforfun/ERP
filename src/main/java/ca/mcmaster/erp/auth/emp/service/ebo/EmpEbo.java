@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import ca.mcmaster.erp.auth.dept.model.DeptModel;
 import ca.mcmaster.erp.auth.emp.dao.dao.EmpDao;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.auth.emp.service.ebi.EmpEbi;
@@ -124,6 +125,7 @@ public class EmpEbo implements EmpEbi{
 		temp.setName(em.getName());
 		empDao.update(temp);
 	}
+	
 	public List<EmpModel> getByDept(Integer uuid) {
 		return empDao.getAllByDeptUuid(uuid);
 	}
