@@ -175,4 +175,15 @@ public class OrderEbo implements OrderEbi {
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
 		orderDao.update(temp);
 	}
+
+	public Integer getCountInStore(OrderQueryModel oqm) {
+		oqm.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
+		return orderDao.getCount(oqm);
+	}
+
+	public List<OrderModel> getAllInStore(OrderQueryModel oqm,
+			Integer maxPageNum, Integer pageCount) {
+		oqm.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
+		return orderDao.getAll(oqm, maxPageNum, pageCount);
+	}
 }

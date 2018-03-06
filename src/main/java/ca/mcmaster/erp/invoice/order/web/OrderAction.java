@@ -151,6 +151,13 @@ public class OrderAction extends BaseAction {
 		orderEbi.endTask(om.getUuid());
 		return "toTaskList";
 	}
+	//---------------------------store----------------------------------------
+	public String inStoreList(){
+		setDataTotal(orderEbi.getCountInStore(oqm));
+		List<OrderModel> orderList = orderEbi.getAllInStore(oqm, maxPageNum, pageCount);
+		put("orderList", orderList);
+		return "inStoreList";
+	}
 	
 	//-------------------------------------------------------------------
 	public Long supplierUuid;

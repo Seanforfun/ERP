@@ -89,4 +89,9 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 	 * @param uuid
 	 */
 	void endTask(Long uuid);
+
+	Integer getCountInStore(OrderQueryModel oqm);
+
+	List<OrderModel> getAllInStore(OrderQueryModel oqm, Integer maxPageNum,
+			Integer pageCount);
 }

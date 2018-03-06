@@ -101,6 +101,8 @@
 			<result name="toBuyList" type="redirectAction">order_buyList.action</result>
 			<result name="buyInput">/jsps/order/buy/buyInput.jsp</result>
 			<result name="toList" type="redirectAction">order_list.action</result>
+			
+			<result name="inStoreList">/jsps/order/in/inStoreList.jsp</result>
 			<result name="ajaxGetGtmAndGm" type="json">
 				<param name="root">action</param>
 				<param name="includeProperties">
@@ -125,6 +127,7 @@
 					inpriceView
 				</param>
 			</result>
+			
 		</action>
 		
 		<action name="orderDetail_*" class="orderDetailAction" method="{1}">
