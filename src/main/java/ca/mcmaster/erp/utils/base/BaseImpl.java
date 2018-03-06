@@ -59,8 +59,8 @@ public abstract class BaseImpl<T> extends HibernateDaoSupport implements BaseDao
 		DetachedCriteria dc = DetachedCriteria.forClass(entityClass);
 		dc.setProjection(Projections.rowCount());
 		doCriteria(bqm, dc);
-		List<Long> deptCount = this.getHibernateTemplate().findByCriteria(dc);
-		return deptCount.get(0).intValue();
+		List<Long> count = this.getHibernateTemplate().findByCriteria(dc);
+		return count.get(0).intValue();
 
 	}
 

@@ -10,6 +10,7 @@ import java.lang.reflect.Modifier;
 import org.junit.Test;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
+import ca.mcmaster.erp.invoice.store.model.StoreModel;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -25,20 +26,20 @@ public class GeneratorUtilsTest {
 
 	@Test
 	public void demo1() throws Exception{
-		GeneratorUtil(EmpModel.class);
+		GeneratorUtil(StoreModel.class);
 	}
 	private void GeneratorUtil(Class clazz) throws IOException {
 		this.clazz = clazz;
 		dataInit();
-//		generatorDirectory();
-//		generatorQueryModel();
+		generatorDirectory();
+		generatorQueryModel();
 		generatorHbmXml();
-//		generatorDao();
-//		generatorImpl();
-//		generatorEbi();
-//		generatorEbo();
-//		generatorAction();
-//		generatorApplicationContextXml();
+		generatorDao();
+		generatorImpl();
+		generatorEbi();
+		generatorEbo();
+		generatorAction();
+		generatorApplicationContextXml();
 	}
 
 	private void generatorApplicationContextXml() throws IOException {
@@ -125,7 +126,7 @@ public class GeneratorUtilsTest {
 		
 		bw.write("	public String list(){");
 		bw.newLine();
-		bw.write("		super.setDataTotal(dataTotal);");
+		bw.write("		super.setDataTotal("+s+"Ebi.getCount("+l+"qm));");
 		bw.newLine();
 		bw.write("		List<"+b+"Model> "+s+"List = "+s+"Ebi.getAll("+l+"qm, pageNum, pageCount);");
 		bw.newLine();

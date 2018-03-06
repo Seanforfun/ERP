@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.erp.invoice.store.model.StoreModel" table="tbl_store">
+         		<id name="uuid">
+        			<generator class="native"/>
+        		</id>
+
+        		<property name="name" />
+        		<property name="address" />
+        		<many-to-one name="em" class="ca.mcmaster.erp.auth.emp.model.EmpModel" column="empUuid"/>
+        	</class>
+        </hibernate-mapping>

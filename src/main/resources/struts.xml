@@ -137,5 +137,11 @@
 			<result name="tasks">/jsps/transport/tasks.jsp</result>
 			<result name="task">/jsps/transport/task.jsp</result>
 		</action>
+		
+		<action name="store_*" class="storeAction" method="{1}">
+			<result name="list">/jsps/store/list.jsp</result>
+			<result name="input">/jsps/store/input.jsp</result>
+			<result name="toList" type="redirectAction">store_list.action</result>
+		</action>
 	</package>
 </struts>
