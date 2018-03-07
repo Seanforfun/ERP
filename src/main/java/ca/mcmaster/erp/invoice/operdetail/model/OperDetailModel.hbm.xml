@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.erp.invoice.operdetail.model.OperDetailModel" table="tbl_operDetail">
+         		<id name="uuid">
+        			<generator class="native"/>
+        		</id>
+
+        		<property name="operTime" />
+        		<property name="type" />
+        		<property name="num" />
+        		<property name="operTimeView" />
+        		<property name="typeView" />
+        	</class>
+        </hibernate-mapping>

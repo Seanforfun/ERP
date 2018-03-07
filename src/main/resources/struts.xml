@@ -153,5 +153,11 @@
 			<result name="input">/jsps/store/input.jsp</result>
 			<result name="toList" type="redirectAction">store_list.action</result>
 		</action>
+		
+		<action name="storeDetail_*" class="storeDetaiAction" method="{1}">
+		</action>
+		
+		<action name="OperDetail_*" class="operDetaiAction" method="{1}">
+		</action>
 	</package>
 </struts>

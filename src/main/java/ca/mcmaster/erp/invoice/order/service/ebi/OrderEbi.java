@@ -94,4 +94,13 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 
 	List<OrderModel> getAllInStore(OrderQueryModel oqm, Integer maxPageNum,
 			Integer pageCount);
+
+	/**
+	 * @Description: TODO
+	 * @param storeUuid
+	 * @param odmUuid
+	 * @param num
+	 * @param login
+	 */
+	void inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login);
 }

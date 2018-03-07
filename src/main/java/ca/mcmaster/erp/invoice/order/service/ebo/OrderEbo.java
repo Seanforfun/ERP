@@ -187,4 +187,8 @@ public class OrderEbo implements OrderEbi {
 		oqm.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
 		return orderDao.getAll(oqm, maxPageNum, pageCount);
 	}
+
+	public void inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login) {
+		
+	}
 }

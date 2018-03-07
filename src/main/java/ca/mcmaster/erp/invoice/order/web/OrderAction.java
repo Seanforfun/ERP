@@ -234,4 +234,12 @@ public class OrderAction extends BaseAction {
 		gm = goodsEbi.get(gmUuid);
 		return "ajaxGetPrice";
 	}
+	
+	private Integer num;
+	private Long odmUuid;
+	private Long storeUuid;
+	public String ajaxInGoods(){
+		orderEbi.inGoods(storeUuid, odmUuid, num, getLogin());
+		return "";
+	}
 }

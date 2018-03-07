@@ -10,7 +10,9 @@ import java.lang.reflect.Modifier;
 import org.junit.Test;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
+import ca.mcmaster.erp.invoice.operdetail.model.OperDetailModel;
 import ca.mcmaster.erp.invoice.store.model.StoreModel;
+import ca.mcmaster.erp.invoice.storedetail.model.StoreDetailModel;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -26,7 +28,7 @@ public class GeneratorUtilsTest {
 
 	@Test
 	public void demo1() throws Exception{
-		GeneratorUtil(StoreModel.class);
+		GeneratorUtil(OperDetailModel.class);
 	}
 	private void GeneratorUtil(Class clazz) throws IOException {
 		this.clazz = clazz;

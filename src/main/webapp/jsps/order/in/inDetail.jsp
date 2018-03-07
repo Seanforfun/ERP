@@ -23,7 +23,7 @@ $(function(){
 		$newTr.append($td1);
 		
 		$td2 = $('<td height="30"></td>');
-		$select = $('<select style="width:200px"></select>');
+		$select = $('<select id="storeid" style="width:200px"></select>');
 		for(var i = 0; i <numArr.length; i++){
 			$op = $('<option value="'+numArr[i]+'">'+nameArr[i]+'</option>');
 			$select.append($op);
@@ -40,6 +40,19 @@ $(function(){
 			$newTr.append($td5);	
 			
 			$NowTr.after($newTr);
+		});
+	});
+	
+	$(".ajaxIn").live("click", function(){
+		var jsonParam = {}
+		var num = $("#inNum").val();
+		var storeId = $("#storeid").val();
+		var odmId = $(this).parent().parent().prev().children("td:eq(4)").children("a").attr("odm");
+		jsonParam["num"] = num;
+		jsonParam["odmUuid"] = odmId;
+		jsonParam["storeUuid"] = storeId;
+		$.post("order_ajaxInGoods.action", jsonParam, function(data){
+			
 		});
 	}); 
 });
