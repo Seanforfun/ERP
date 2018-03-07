@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.sun.corba.se.impl.logging.OMGSystemException;
+
 import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.orderdetail.service.ebi.OrderDetailEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
@@ -39,5 +41,16 @@ public class OrderDetailAction extends BaseAction {
 			odm = orderDetailEbi.get(odm.getUuid());
 		}
 		return INPUT;
+	}
+	
+	
+	//----------------------AJAX------------------------------------------------------------------
+	public OrderDetailModel getOdm(){
+		return odm;
+	}
+	
+	public String ajaxGetSurplus(){
+		odm = orderDetailEbi.get(odm.getUuid());
+		return "ajaxGetSurplus";
 	}
 }

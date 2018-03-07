@@ -11,6 +11,7 @@
         		</id>
         		<property name="num"/>
         		<property name="price"/>
+        		<property name="surplus"/>
         		
 				<many-to-one name="gm" class="ca.mcmaster.erp.invoice.goods.model.GoodsModel" column="goodsUuid"/>
 				<many-to-one name="om" class="ca.mcmaster.erp.invoice.order.model.OrderModel" column="orderUuid"/>

@@ -8,5 +8,4 @@ import ca.mcmaster.erp.utils.base.BaseDao;
  * @version Mar 3, 2018 6:19:00 PM
  */
 public interface OrderDetailDao extends BaseDao<OrderDetailModel> {
-
 }

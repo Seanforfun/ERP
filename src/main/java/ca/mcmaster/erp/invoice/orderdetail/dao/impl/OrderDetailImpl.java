@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.invoice.orderdetail.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 
 import ca.mcmaster.erp.invoice.orderdetail.dao.dao.OrderDetailDao;

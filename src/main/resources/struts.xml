@@ -103,6 +103,7 @@
 			<result name="toList" type="redirectAction">order_list.action</result>
 			
 			<result name="inStoreList">/jsps/order/in/inStoreList.jsp</result>
+			<result name="inStoreDetail">/jsps/order/in/inDetail.jsp</result>
 			<result name="ajaxGetGtmAndGm" type="json">
 				<param name="root">action</param>
 				<param name="includeProperties">
@@ -131,6 +132,12 @@
 		</action>
 		
 		<action name="orderDetail_*" class="orderDetailAction" method="{1}">
+			<result name="ajaxGetSurplus" type="json">
+				<param name="root">odm</param>
+				<param name="includeProperties">
+					surplus
+				</param>
+			</result>
 		</action>
 		
 		<action name="transport_*" class="orderAction" method="{1}">

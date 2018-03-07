@@ -52,9 +52,11 @@
 							</td>
 							<td>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
-								<span style="line-height:12px; text-align:center;"> 
-									<a href="inDetail.jsp" class="xiu">入库
-									</a> 
+								<span style="line-height:12px; text-align:center;">
+									<s:a action="order_inStoreDetail" cssClass="xiu">
+										<s:param name="om.uuid" value="uuid"/>
+										入库
+									</s:a>
 								</span>
 							</td>
 						</tr>

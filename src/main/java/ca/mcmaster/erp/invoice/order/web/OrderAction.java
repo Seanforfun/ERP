@@ -13,6 +13,8 @@ import ca.mcmaster.erp.invoice.goodstype.service.ebi.GoodsTypeEbi;
 import ca.mcmaster.erp.invoice.order.model.OrderModel;
 import ca.mcmaster.erp.invoice.order.model.OrderQueryModel;
 import ca.mcmaster.erp.invoice.order.service.ebi.OrderEbi;
+import ca.mcmaster.erp.invoice.store.model.StoreModel;
+import ca.mcmaster.erp.invoice.store.service.ebi.StoreEbi;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
 import ca.mcmaster.erp.invoice.supplier.service.ebi.SupplierEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
@@ -35,6 +37,8 @@ public class OrderAction extends BaseAction {
 	private GoodsEbi goodsEbi;
 	@Resource(name="empEbi")
 	private EmpEbi empEbi;
+	@Resource(name="storeEbi")
+	private StoreEbi storeEbi;
 	
 	public String save(){
 		orderEbi.save(om);
@@ -157,6 +161,13 @@ public class OrderAction extends BaseAction {
 		List<OrderModel> orderList = orderEbi.getAllInStore(oqm, maxPageNum, pageCount);
 		put("orderList", orderList);
 		return "inStoreList";
+	}
+	
+	public String inStoreDetail(){
+		List<StoreModel> storeList = storeEbi.getAll();
+		put("storeList", storeList);
+		om = orderEbi.get(om.getUuid());
+		return "inStoreDetail";
 	}
 	
 	//-------------------------------------------------------------------

@@ -77,6 +77,7 @@ public class OrderEbo implements OrderEbi {
 			tempOdm.setOm(om);
 			tempOdm.setNum(nums[i]);
 			tempOdm.setPrice(prices[i]);
+			tempOdm.setSurplus(nums[i]);
 			GoodsModel tempGm = new GoodsModel();
 			tempGm.setUuid(goodsUuids[i]);
 			tempOdm.setGm(tempGm);
