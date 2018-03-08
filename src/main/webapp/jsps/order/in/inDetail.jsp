@@ -56,13 +56,31 @@ $(function(){
 		$.post("order_ajaxInGoods.action", jsonParam, function(data){
 			var num = data.num;
 			var surplus = data.surplus;
-			alert(num);
-			alert(surplus);
+			
+			if($(".ins").length == 1 && surplus == 0){
+				$("#inOrderTitle").hide()
+				$("#inOrder").hide()
+				$("#allInTitle").show();
+				$("#return").show();
+			}
+			
+			if(surplus == 0){
+				$nowTr.remove();
+				$prevTr.remove();
+				return;
+			}
 			$prevTr.children("td:eq(2)").html(num - surplus);
 			$prevTr.children("td:eq(3)").html(surplus);
 			$nowTr.children("td:eq(3)").children("input").val(surplus)
 		});
 	});
+	
+	if($(".ins").length == 0){
+		$("#inOrderTitle").hide()
+		$("#inOrder").hide()
+		$("#allInTitle").show();
+		$("#return").show();
+	}
 });
 
 </script>
@@ -98,15 +116,17 @@ $(function(){
 						<td width="10%">入库</td>
 					</tr>
 					<s:iterator value="om.odms">
-						<tr aa="bb" align="center" bgcolor="#FFFFFF">
-							<input type="hidden" value=1/>
-							<input type="hidden" value=2/>
-							<td height="30">${gm.name }</td>
-							<td>${num }</td>
-							<td>${num - surplus }</td>
-							<td>${surplus }</td>
-							<td><a odm="${uuid}" href="javascript:void(0)" class="oper xiu"><img src="${pageContext.request.contextPath}/images/icon_3.gif" />入库</a></td>
-						</tr>
+						<s:if test="surplus > 0">
+							<tr class="ins" align="center" bgcolor="#FFFFFF">
+								<input type="hidden" value=1/>
+								<input type="hidden" value=2/>
+								<td height="30">${gm.name }</td>
+								<td>${num }</td>
+								<td>${num - surplus }</td>
+								<td>${surplus }</td>
+								<td><a odm="${uuid}" href="javascript:void(0)" class="oper xiu"><img src="${pageContext.request.contextPath}/images/icon_3.gif" />入库</a></td>
+							</tr>
+						</s:if>
 					</s:iterator>							
 				</table>
 				<center id="allInTitle" style="display:none;font-size:16px; font-weight:bold; font-family:"黑体";">&nbsp;&nbsp;&nbsp;&nbsp;全&nbsp;&nbsp;部&nbsp;&nbsp;入&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;&nbsp;</center>

@@ -51,13 +51,20 @@
 								<s:property value="odms.size()"/>
 							</td>
 							<td>
+								<s:if test="type == @ca.mcmaster.erp.invoice.order.model.OrderModel@ORDER_TYPE_OF_BUY_COMPLETE">
+									<%-- <span style="line-height:12px; text-align:center;"> --%>
+										${typeView }
+									<%-- </span> --%>
+								</s:if>
+								<s:else>
 								<img src="${pageContext.request.contextPath}/images/icon_3.gif" /> 
-								<span style="line-height:12px; text-align:center;">
-									<s:a action="order_inStoreDetail" cssClass="xiu">
-										<s:param name="om.uuid" value="uuid"/>
-										入库
-									</s:a>
-								</span>
+									<span style="line-height:12px; text-align:center;">
+										<s:a action="order_inStoreDetail" cssClass="xiu">
+											<s:param name="om.uuid" value="uuid"/>
+											入库
+										</s:a>
+									</span>
+								</s:else>
 							</td>
 						</tr>
 					</s:iterator>

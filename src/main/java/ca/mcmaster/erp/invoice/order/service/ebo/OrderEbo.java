@@ -127,7 +127,7 @@ public class OrderEbo implements OrderEbi {
 	public void buyCheckPass(Long uuid, EmpModel checker) {
 		OrderModel temp = orderDao.get(uuid);
 		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK)){
-			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+			throw new AppException("请不要进行非法操作！");
 		}
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS);
 		temp.setCheckTime(System.currentTimeMillis());
@@ -138,7 +138,7 @@ public class OrderEbo implements OrderEbi {
 	public void buyCheckReject(Long uuid, EmpModel login) {
 		OrderModel temp = orderDao.get(uuid);
 		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK)){
-			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+			throw new AppException("请不要进行非法操作！");
 		}
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_REJECT);
 		temp.setCheckTime(System.currentTimeMillis());
@@ -162,7 +162,7 @@ public class OrderEbo implements OrderEbi {
 	public void assignTask(Long uuid, EmpModel completer) {
 		OrderModel temp = orderDao.get(uuid);
 		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS)){
-			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+			throw new AppException("请不要进行非法操作！");
 		}
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_BUYING);
 		temp.setCompleter(completer);
@@ -183,7 +183,7 @@ public class OrderEbo implements OrderEbi {
 	public void endTask(Long uuid) {
 		OrderModel temp = orderDao.get(uuid);
 		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_BUYING)){
-			throw new AppException("Çë²»Òª½øÐÐ·Ç·¨²Ù×÷£¡");
+			throw new AppException("请不要进行非法操作！");
 		}
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
 		orderDao.update(temp);
@@ -202,9 +202,12 @@ public class OrderEbo implements OrderEbi {
 
 	public OrderDetailModel inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login) {
 		//1. Update the orderDetails
-		OrderDetailModel tempOdm = orderDetailDao.get(odmUuid);		
+		OrderDetailModel tempOdm = orderDetailDao.get(odmUuid);	
+		if(tempOdm.getOm().getType() != OrderModel.ORDER_TYPE_OF_BUY_IN_STORE){
+			throw new AppException("请不要进行非法操作！");
+		}
 		if(tempOdm.getSurplus() < num){
-			throw new AppException("Èë¿âÊýÁ¿Ó¦Ð¡ÓÚÊ£ÓàÊýÁ¿£¡");
+			throw new AppException("入库数量应小于剩余数量！");
 		}
 		tempOdm.setSurplus(tempOdm.getSurplus() - num);
 		orderDetailDao.update(tempOdm);
@@ -237,6 +240,17 @@ public class OrderEbo implements OrderEbi {
 		opdm.setSm(sm);
 		operDetailDao.save(opdm);
 		
+		//4.If all goods in current order are in store, change the type of the order.
+		Long orderUuid = tempOdm.getOm().getUuid();
+		OrderModel tempOm = orderDao.get(orderUuid);
+		Set<OrderDetailModel> odms = tempOm.getOdms();
+		for(OrderDetailModel tOdm : odms){
+			if(tOdm.getSurplus() != 0){
+				return tempOdm;
+			}
+		}
+		tempOm.setType(OrderModel.ORDER_TYPE_OF_BUY_COMPLETE);
+		tempOm.setEndTime(System.currentTimeMillis());
 		return tempOdm;
 	}
 }
