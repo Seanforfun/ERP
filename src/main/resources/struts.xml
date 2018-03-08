@@ -104,6 +104,7 @@
 			
 			<result name="inStoreList">/jsps/order/in/inStoreList.jsp</result>
 			<result name="inStoreDetail">/jsps/order/in/inDetail.jsp</result>
+			
 			<result name="ajaxGetGtmAndGm" type="json">
 				<param name="root">action</param>
 				<param name="includeProperties">
@@ -126,6 +127,14 @@
 				<param name="root">gm</param>
 				<param name="includeProperties">
 					inpriceView
+				</param>
+			</result>
+			
+			<result name="ajaxInGoods" type="json">
+				<param name="root">odm</param>
+				<param name="includeProperties">
+					num,
+					surplus
 				</param>
 			</result>
 			

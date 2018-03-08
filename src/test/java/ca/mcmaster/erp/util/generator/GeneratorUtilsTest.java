@@ -415,8 +415,6 @@ public class GeneratorUtilsTest {
 
 		bw.write("	//TODO "+ b +"Dao");
 		bw.newLine();
-		bw.write("		"+b+"QueryModel dqm = ("+b+"QueryModel) bqm;");
-		bw.newLine();
 		bw.write("}");
 		
 		bw.flush();
@@ -447,7 +445,7 @@ public class GeneratorUtilsTest {
 		bw.newLine();
 		bw.write("        	<class name=\""+ pkg +".model."+ b +"Model\" table=\"tbl_"+ s +"Model\">");
 		bw.newLine();
-		bw.write("         		<id name=\"uuid\">");
+		bw.write("         		<id name=\"uuid\" column=\"uuid\">");
 		bw.newLine();
 		bw.write("        			<generator class=\"native\"/>");
 		bw.newLine();

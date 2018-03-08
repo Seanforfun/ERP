@@ -6,14 +6,22 @@
 
         <hibernate-mapping>
         	<class name="ca.mcmaster.erp.invoice.operdetail.model.OperDetailModel" table="tbl_operDetail">
-         		<id name="uuid">
+         		<id name="uuid" column="uuid">
         			<generator class="native"/>
         		</id>
 
         		<property name="operTime" />
         		<property name="type" />
         		<property name="num" />
-        		<property name="operTimeView" />
-        		<property name="typeView" />
+        		
+        		<many-to-one name="em"
+        								class="ca.mcmaster.erp.auth.emp.model.EmpModel"
+        								column="empUuid"/>
+        		<many-to-one name="gm"
+        								class="ca.mcmaster.erp.invoice.goods.model.GoodsModel"
+        								column="goodsUuid"/>
+        		<many-to-one name="sm"
+        								class="ca.mcmaster.erp.invoice.store.model.StoreModel"
+        								column="storeUuid"/>
         	</class>
         </hibernate-mapping>

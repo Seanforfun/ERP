@@ -6,11 +6,18 @@
 
         <hibernate-mapping>
         	<class name="ca.mcmaster.erp.invoice.storedetail.model.StoreDetailModel" table="tbl_storeDetail">
-         		<id name="uuid">
+         		<id name="uuid" column="uuid">
         			<generator class="native"/>
         		</id>
 
         		<property name="num" />
         		
+        		<many-to-one name="sm" 
+        			class="ca.mcmaster.erp.invoice.store.model.StoreModel"
+        			column="storeUuid"/>
+        			
+        		<many-to-one name="gm"
+        								class="ca.mcmaster.erp.invoice.goods.model.GoodsModel"
+        								column="goodsUuid"/>
         	</class>
         </hibernate-mapping>

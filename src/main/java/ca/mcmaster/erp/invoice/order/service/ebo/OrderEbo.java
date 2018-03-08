@@ -12,11 +12,17 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.invoice.goods.dao.dao.GoodsDao;
 import ca.mcmaster.erp.invoice.goods.model.GoodsModel;
+import ca.mcmaster.erp.invoice.operdetail.dao.dao.OperDetailDao;
+import ca.mcmaster.erp.invoice.operdetail.model.OperDetailModel;
 import ca.mcmaster.erp.invoice.order.dao.dao.OrderDao;
 import ca.mcmaster.erp.invoice.order.model.OrderModel;
 import ca.mcmaster.erp.invoice.order.model.OrderQueryModel;
 import ca.mcmaster.erp.invoice.order.service.ebi.OrderEbi;
+import ca.mcmaster.erp.invoice.orderdetail.dao.dao.OrderDetailDao;
 import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
+import ca.mcmaster.erp.invoice.store.model.StoreModel;
+import ca.mcmaster.erp.invoice.storedetail.dao.dao.StoreDetailDao;
+import ca.mcmaster.erp.invoice.storedetail.model.StoreDetailModel;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
 import ca.mcmaster.erp.utils.base.BaseQueryModel;
 import ca.mcmaster.erp.utils.exceptions.AppException;
@@ -30,6 +36,12 @@ import ca.mcmaster.erp.utils.num.NumUtil;
 public class OrderEbo implements OrderEbi {
 	@Resource(name="orderDao")
 	private OrderDao orderDao;
+	@Resource(name="orderDetailDao")
+	private OrderDetailDao orderDetailDao;
+	@Resource(name="storeDetailDao")
+	private StoreDetailDao storeDetailDao;
+	@Resource(name = "operDetailDao")
+	private OperDetailDao operDetailDao;
 	public void save(OrderModel t) {
 		orderDao.save(t);
 	}
@@ -188,7 +200,43 @@ public class OrderEbo implements OrderEbi {
 		return orderDao.getAll(oqm, maxPageNum, pageCount);
 	}
 
-	public void inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login) {
+	public OrderDetailModel inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login) {
+		//1. Update the orderDetails
+		OrderDetailModel tempOdm = orderDetailDao.get(odmUuid);		
+		if(tempOdm.getSurplus() < num){
+			throw new AppException("Èë¿âÊýÁ¿Ó¦Ð¡ÓÚÊ£ÓàÊýÁ¿£¡");
+		}
+		tempOdm.setSurplus(tempOdm.getSurplus() - num);
+		orderDetailDao.update(tempOdm);
 		
+		//2.Update storeDetail
+		//Check if the current goods had store detail before
+		GoodsModel gm = new GoodsModel();
+		gm.setUuid(tempOdm.getGm().getUuid());
+		StoreModel sm = new StoreModel();
+		sm.setUuid(storeUuid);
+		StoreDetailModel tempSdm = storeDetailDao.getBySmAndGm(storeUuid, tempOdm.getGm().getUuid());
+		if(null != tempSdm){
+			tempSdm.setNum(tempSdm.getNum() + num);
+			storeDetailDao.update(tempSdm);
+		}else{
+			tempSdm = new StoreDetailModel();
+			tempSdm.setNum(num);
+			tempSdm.setGm(gm);
+			tempSdm.setSm(sm);
+			storeDetailDao.save(tempSdm);
+		}
+		
+		//3.Add a opteration detail log
+		OperDetailModel opdm = new OperDetailModel();
+		opdm.setType(OperDetailModel.OPER_TYPE_OF_IN);
+		opdm.setOperTime(System.currentTimeMillis());
+		opdm.setNum(num);
+		opdm.setEm(login);
+		opdm.setGm(gm);
+		opdm.setSm(sm);
+		operDetailDao.save(opdm);
+		
+		return tempOdm;
 	}
 }

@@ -13,6 +13,7 @@ import ca.mcmaster.erp.invoice.goodstype.service.ebi.GoodsTypeEbi;
 import ca.mcmaster.erp.invoice.order.model.OrderModel;
 import ca.mcmaster.erp.invoice.order.model.OrderQueryModel;
 import ca.mcmaster.erp.invoice.order.service.ebi.OrderEbi;
+import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.store.model.StoreModel;
 import ca.mcmaster.erp.invoice.store.service.ebi.StoreEbi;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
@@ -235,11 +236,12 @@ public class OrderAction extends BaseAction {
 		return "ajaxGetPrice";
 	}
 	
-	private Integer num;
-	private Long odmUuid;
-	private Long storeUuid;
+	public Integer num;
+	public Long odmUuid;
+	public Long storeUuid;
+	public OrderDetailModel odm;
 	public String ajaxInGoods(){
-		orderEbi.inGoods(storeUuid, odmUuid, num, getLogin());
-		return "";
+		odm = orderEbi.inGoods(storeUuid, odmUuid, num, getLogin());
+		return "ajaxInGoods";
 	}
 }

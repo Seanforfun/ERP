@@ -3,6 +3,7 @@ package ca.mcmaster.erp.utils.exceptions;
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Feb 6, 2018 12:23:07 PM
  */
+@SuppressWarnings("serial")
 public class AppException extends RuntimeException{
 
 	public AppException() {

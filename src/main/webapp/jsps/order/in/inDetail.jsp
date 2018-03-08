@@ -51,10 +51,18 @@ $(function(){
 		jsonParam["num"] = num;
 		jsonParam["odmUuid"] = odmId;
 		jsonParam["storeUuid"] = storeId;
+		$nowTr = $(this).parent().parent();
+		$prevTr = $nowTr.prev();
 		$.post("order_ajaxInGoods.action", jsonParam, function(data){
-			
+			var num = data.num;
+			var surplus = data.surplus;
+			alert(num);
+			alert(surplus);
+			$prevTr.children("td:eq(2)").html(num - surplus);
+			$prevTr.children("td:eq(3)").html(surplus);
+			$nowTr.children("td:eq(3)").children("input").val(surplus)
 		});
-	}); 
+	});
 });
 
 </script>

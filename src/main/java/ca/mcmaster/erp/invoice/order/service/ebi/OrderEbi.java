@@ -5,6 +5,7 @@ import java.util.List;
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.invoice.order.model.OrderModel;
 import ca.mcmaster.erp.invoice.order.model.OrderQueryModel;
+import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.utils.base.BaseEbi;
 
 /**
@@ -102,5 +103,5 @@ public interface OrderEbi extends BaseEbi<OrderModel> {
 	 * @param num
 	 * @param login
 	 */
-	void inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login);
+	OrderDetailModel inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login);
 }

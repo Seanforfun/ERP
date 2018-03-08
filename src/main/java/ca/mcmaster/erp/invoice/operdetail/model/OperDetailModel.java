@@ -26,8 +26,8 @@ public class OperDetailModel {
 	private StoreModel sm;
 	
 	public static final Map<Integer, String> typeMap = new HashMap<Integer, String>();
-	private static final Integer OPER_TYPE_OF_IN = 1;
-	private static final Integer OPER_TYPE_OF_OUT = 2;
+	public static final Integer OPER_TYPE_OF_IN = 1;
+	public static final Integer OPER_TYPE_OF_OUT = 2;
 	private static final String OPER_TYPE_OF_IN_VIEW = "Èë¿â";
 	private static final String OPER_TYPE_OF_OUT_VIEW = "³ö¿â";
 	static{
