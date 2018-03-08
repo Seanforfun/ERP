@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<link href="../../../css/index.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../../js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="../../../js/Calendar.js"></script>
+<link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/Calendar.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#query").click(function() {
@@ -85,7 +85,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="inGoods.jsp" method="post">
+		<s:form action="bill_buyBillList.action" method="post">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -96,19 +96,13 @@
 						</td>
 						<td width="70">订单类别:</td>
 						<td width="190">
-							<select>
-								<option value="-1">----请-选-择----</option>
-								<option value="1">未审核</option>
-								<option value="0">正在派单</option>
-								<option value="0">正在采购</option>
-								<option value="0">正在入库</option>
-							</select>
+							<s:select list="@ca.mcmaster.erp.invoice.order.model.OrderModel@buyOrderMap" name="bqm.type" headerKey="-1" headerValue="----请-选-择----" cssClass="kuan"/>
 						</td>
 						<td width="70">开始日期:</td>
 						<td width="190">
 							<input type="text" size="18" onfocus="c.showMoreDay=false;c.show(this);" />
-						<td ><a id="query"> <img
-								src="../../../images/can_b_01.gif" border="0" /> </a></td>
+						<td ><a id="query">
+							<img src="${pageContext.request.contextPath}/images/can_b_01.gif" border="0" /> </a></td>
 					</tr>
 					<tr>
 						<td height="30">&nbsp;</td>
@@ -117,22 +111,19 @@
 						</td>
 						<td>厂商名称:</td>
 						<td>
-							<select class="kuan">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">七匹狼</option>
-								<option value="2">康师傅</option>
-							</select>
+							<s:select list="supplierList" name="bqm.supplierUuid" headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name" cssClass="kuan"/>
 						</td>
 						<td>结束日期:</td>
 						<td width="190">
 							<input type="text" size="18" onfocus="c.showMoreDay=false;c.show(this);" />
 						<td>
 							<a href="demo.xls">
-								<img src="../../../images/can_b_03.gif" border="0" />
+								<img src="${pageContext.request.contextPath}/images/can_b_03.gif" border="0" />
 							</a>
 					</tr>
 				</table>
 			</div>
+			</s:form>
 			<!--"square-o-top"end-->
 			<div class="square-order">
 				<table width="70%" border="1" cellpadding="0" cellspacing="0" style="float:left;">
@@ -142,33 +133,17 @@
 						<td colspan="2" width="28%">总数量</td>
 						<td width="23%">详情</td>
 					</tr>
+					<s:iterator value="billList" var="objs">
 						<tr align="center" bgcolor="#FFFFFF">
-							<td colspan="2" width="30%" height="30">狼皮背心</td>
-							<td colspan="2">300</td>
+							<td colspan="2" width="30%" height="30">${objs[1].name }</td>
+							<td colspan="2">${objs[0] }</td>
 							<td>
 								<a href="javascript:void(0)" class="xiu info" value="1">
 									详情
 								</a>
 							</td>
 						</tr>
-						<tr align="center" bgcolor="#FFFFFF">
-							<td colspan="2" width="30%" height="30">狼皮背心</td>
-							<td colspan="2">300</td>
-							<td>
-								<a href="javascript:void(0)" class="xiu info" value="1">
-									详情
-								</a>
-							</td>
-						</tr>
-						<tr align="center" bgcolor="#FFFFFF">
-							<td colspan="2" width="30%" height="30">狼皮背心</td>
-							<td colspan="2">300</td>
-							<td>
-								<a href="javascript:void(0)" class="xiu info" value="1">
-									详情
-								</a>
-							</td>
-						</tr>
+					</s:iterator>
 				</table>
 				<div style="float:right;"> 
 					<a href="demo.png">
@@ -176,7 +151,6 @@
 					</a>
 				</div>
 			</div>
-		</form>
 	</div>
 	<div class="content-bbg"></div>
 </div>

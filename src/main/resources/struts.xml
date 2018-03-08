@@ -166,7 +166,11 @@
 		<action name="storeDetail_*" class="storeDetaiAction" method="{1}">
 		</action>
 		
-		<action name="OperDetail_*" class="operDetaiAction" method="{1}">
+		<action name="operDetail_*" class="operDetaiAction" method="{1}">
+		</action>
+		
+		<action name="bill_*" class="billAction" method="{1}">
+			<result name="buyBillList">/jsps/bill/buyBillList.jsp</result>
 		</action>
 	</package>
 </struts>

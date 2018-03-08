@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import ca.mcmaster.erp.auth.emp.model.EmpModel;
 import ca.mcmaster.erp.invoice.operdetail.model.OperDetailModel;
+import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.store.model.StoreModel;
 import ca.mcmaster.erp.invoice.storedetail.model.StoreDetailModel;
 
@@ -28,7 +29,7 @@ public class GeneratorUtilsTest {
 
 	@Test
 	public void demo1() throws Exception{
-		GeneratorUtil(OperDetailModel.class);
+		GeneratorUtil(OrderDetailModel.class);
 	}
 	private void GeneratorUtil(Class clazz) throws IOException {
 		this.clazz = clazz;
