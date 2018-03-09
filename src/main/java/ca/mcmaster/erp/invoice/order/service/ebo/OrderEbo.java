@@ -203,7 +203,7 @@ public class OrderEbo implements OrderEbi {
 	public OrderDetailModel inGoods(Long storeUuid, Long odmUuid, Integer num, EmpModel login) {
 		//1. Update the orderDetails
 		OrderDetailModel tempOdm = orderDetailDao.get(odmUuid);	
-		if(tempOdm.getOm().getType() != OrderModel.ORDER_TYPE_OF_BUY_IN_STORE){
+		if(!tempOdm.getOm().getType().equals(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE)){
 			throw new AppException("请不要进行非法操作！");
 		}
 		if(tempOdm.getSurplus() < num){

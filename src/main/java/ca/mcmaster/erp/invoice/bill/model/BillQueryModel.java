@@ -8,9 +8,16 @@ public class BillQueryModel implements BaseQueryModel{
 	private Long supplierUuid;
 	private Long start;
 	private Long end;
+	private Long goodsUuid;
 	
 	private String startView;
 	private String endView;
+	public Long getGoodsUuid() {
+		return goodsUuid;
+	}
+	public void setGoodsUuid(Long goodsUuid) {
+		this.goodsUuid = goodsUuid;
+	}
 	public String getStartView() {
 		return startView;
 	}

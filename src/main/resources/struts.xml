@@ -171,6 +171,17 @@
 		
 		<action name="bill_*" class="billAction" method="{1}">
 			<result name="buyBillList">/jsps/bill/buyBillList.jsp</result>
+			
+			<result name="ajaxGetBillByGood" type="json">
+				<param name="root">odmList</param>
+				<param name="includeProperties">
+					\[\d+\]\.om\.orderNum,
+					\[\d+\]\.om\.createTimeView,
+					\[\d+\]\.num,
+					\[\d+\]\.priceView,
+					\[\d+\]\.totalPriceView
+				</param>
+			</result>
 		</action>
 	</package>
 </struts>

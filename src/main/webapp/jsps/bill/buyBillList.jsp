@@ -9,73 +9,51 @@
 			$("[name='pageNum']").val(1);
 			$("form:first").submit();
 		});
-		$(".ajaxMsg").live("click",function(){
-			$(".ajaxMsg").empty();
-		});
+		
 		$(".info").click(function(){
-			var jsonParam = {"bqm.goodsUuid":$(this).attr("value")};
-			jsonParam["bqm.time"]= $("[name='bqm.time']").val();
-			jsonParam["bqm.time2"]= $("[name='bqm.time2']").val();
-			jsonParam["bqm.type"]= $("[name='bqm.type']").val();
-			$tt = $(this).parent().parent();
-				//将制定标记tr删除
-				$('.ajaxMsg').empty();
-				
-				//每个tr对象都带有一个class="ajaxMsg",用于后期操作删除标记
-				
-				//动态添加一个tr行,用于做标题栏
-				//创建tr组件
-				
-				var $trHead = $("<tr align='center' class='ajaxMsg' style='background:url(images/table_bg.gif) repeat-x;'></tr>");
-				var $td1 = $("<td height='30'>订单号</td>");
-				$trHead.append($td1);
-				var $td2 = $("<td>订单时间</td>");
-				$trHead.append($td2);
-				var $td3 = $("<td>数量</td>");
-				$trHead.append($td3);
-				var $td4 = $("<td>单价</td>");
-				$trHead.append($td4);
-				var $td5 = $("<td>合计</td>");
-				$trHead.append($td5);
-				$tt.after($trHead);
-				$tt=$trHead;
-				
-				//--------------------------------------------------------------------------
+			$nowTr = $(this).parent().parent();
+			var jsonParam = {"bqm.goodsUuid":$(this).attr("gm")};
+			jsonParam["bqm.type"] = $("[name='bqm.type']").val();
+			jsonParam["bqm.supplierUuid"] = $("[name='bqm.supplierUuid']").val();
+			$.post("bill_ajaxGetBillByGood.action", jsonParam, function(data){
+				$(".ajaxMsg").remove();
+				$headTr = $('<tr align="center" style="background:url(images/table_bg.gif) repeat-x;" class="ajaxMsg"><td height="30">订单号</td><td>订单时间</td><td>数量</td><td>单价</td><td>合计</td></tr>');
+				$nowTr.after($headTr);
+				var odmList = data;
 				var sum = 0;
-				for(i = 0;i<3;i++){
-					var $tr = $("<tr align='center' class='ajaxMsg'></tr>");
-					//共计5列
-					var $td1 = $("<td height='30'>1238987412</td>");
-					$tr.append($td1);
-					var $td2 = $("<td>2014-01-01</td>");
-					$tr.append($td2);
-					var $td3 = $("<td>"+i+"</td>");
-					$tr.append($td3);
-					var $td4 = $("<td align='right'>100.00&nbsp;元</td>");
-					$tr.append($td4);
-					var $td5 = $("<td align='right'>100.00&nbsp;元</td>");
-					$tr.append($td5);
+				for(var i = 0; i < odmList.length; i++){
+					var odm = odmList[i];
+					var om = odm.om;
+					sum += odm.totalPriceView * 1;
+					$dataTr = $("<tr align='center' class='ajaxMsg'></tr>")
 					
-					$tt.after($tr);
-					$tt=$tr;
-					sum = sum + 100;
+					$td1 = $('<td height="30">'+om.orderNum+'</td>');
+					$dataTr.append($td1);
+					
+					$td2 = $('<td>'+om.createTimeView+'</td>');
+					$dataTr.append($td2);
+					
+					$td3 = $('<td>'+odm.num+'</td>');
+					$dataTr.append($td3);
+					
+					$td4 = $('<td align="right">'+odm.priceView+' 元</td>');
+					$dataTr.append($td4);
+					
+					$td5 = $('<td align="right">'+odm.totalPriceView+' 元</td>');
+					$dataTr.append($td5);
+					
+					$headTr.after($dataTr);
+					$headTr = $dataTr;
 				}
-				//--------------------------------------------------------------------------
 				
-				
-				var $trFoot = $("<tr align='center' class='ajaxMsg'></tr>");
-				var $td1 = $("<td align='right' colspan='4' height='30'>总计：</td>");
-				$trFoot.append($td1);
-				var $td2 = $("<td align='right'>"+intToFloat(sum)+"&nbsp;元</td>");
-				$trFoot.append($td2);
-				$tt.after($trFoot);
-				$tt=$trHead;
-				
+				$tailTr = $('<tr align="center" class="ajaxMsg"><td height="30" align="right" colspan="4">总计：</td><td align="right">'+intToFloat(sum)+' 元</td></tr>');
+				$headTr.after($tailTr);
+			});
 		});
+		
 		function intToFloat(val){
 			return new Number(val).toFixed(2);
 		}
-		
 	});
 </script>
 <div class="content-right">
@@ -138,7 +116,7 @@
 							<td colspan="2" width="30%" height="30">${objs[1].name }</td>
 							<td colspan="2">${objs[0] }</td>
 							<td>
-								<a href="javascript:void(0)" class="xiu info" value="1">
+								<a href="javascript:void(0)" class="xiu info" gm="${objs[1].uuid }">
 									详情
 								</a>
 							</td>

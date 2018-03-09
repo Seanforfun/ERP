@@ -45,4 +45,29 @@ public class BillImpl extends HibernateDaoSupport implements BillDao {
 		dc.setProjection(pList);
 		return this.getHibernateTemplate().findByCriteria(dc);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<OrderDetailModel> getBuyBillDetails(BillQueryModel bqm) {
+		/*	select
+				*
+			from
+				tbl_orderdetail od
+			left outer join
+				tbl_goods g
+			on
+				od.goodsuuid = g.uuid
+			left outer join
+				tbl_order o
+			on
+				od.orderuuid = o.uuid
+			where
+				g.uuid = ? */
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderDetailModel.class);
+		if(bqm.getType() != null && bqm.getType() != -1){
+			dc.createAlias("om", "o");
+			dc.add(Restrictions.eq("o.type", bqm.getType()));
+		}
+		dc.add(Restrictions.eq("gm.uuid", bqm.getGoodsUuid()));
+		return this.getHibernateTemplate().findByCriteria(dc);
+	}
 }

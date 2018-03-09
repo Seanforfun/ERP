@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import ca.mcmaster.erp.invoice.bill.model.BillQueryModel;
 import ca.mcmaster.erp.invoice.bill.service.ebi.BillEbi;
 import ca.mcmaster.erp.invoice.order.service.ebi.OrderEbi;
+import ca.mcmaster.erp.invoice.orderdetail.model.OrderDetailModel;
 import ca.mcmaster.erp.invoice.supplier.model.SupplierModel;
 import ca.mcmaster.erp.invoice.supplier.service.ebi.SupplierEbi;
 import ca.mcmaster.erp.utils.base.BaseAction;
@@ -37,5 +38,12 @@ public class BillAction extends BaseAction {
 		List<SupplierModel> supplierList = supplierEbi.getAll();
 		put("supplierList", supplierList);
 		return "buyBillList";
+	}
+	
+	//----------------------------ajax-------------------------------------------
+	public List<OrderDetailModel> odmList;
+	public String ajaxGetBillByGood(){
+		odmList = billEbi.getBillByGoods(bqm);
+		return "ajaxGetBillByGood";
 	}
 }
