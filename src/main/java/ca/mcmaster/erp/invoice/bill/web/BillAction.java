@@ -1,8 +1,14 @@
 package ca.mcmaster.erp.invoice.bill.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import ca.mcmaster.erp.invoice.bill.model.BillQueryModel;
 import ca.mcmaster.erp.invoice.bill.service.ebi.BillEbi;
@@ -38,6 +44,12 @@ public class BillAction extends BaseAction {
 		List<SupplierModel> supplierList = supplierEbi.getAll();
 		put("supplierList", supplierList);
 		return "buyBillList";
+	}
+	
+	public void pieBill() throws IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		ServletOutputStream os = response.getOutputStream();
+		billEbi.writeJChartToOs(os, bqm);
 	}
 	
 	//----------------------------ajax-------------------------------------------

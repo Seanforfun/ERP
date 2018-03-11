@@ -1,5 +1,7 @@
 package ca.mcmaster.erp.invoice.bill.service.ebi;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -17,4 +19,12 @@ public interface BillEbi {
 	 * @return
 	 */
 	public List<OrderDetailModel> getBillByGoods(BillQueryModel bqm);
+
+	/**
+	 * @Description: Create the pie chart and write the image into output stream
+	 * @param os
+	 * @param bqm
+	 * @throws IOException 
+	 */
+	public void writeJChartToOs(OutputStream os, BillQueryModel bqm) throws IOException;
 }

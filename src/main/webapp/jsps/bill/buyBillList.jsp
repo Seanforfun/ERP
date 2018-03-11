@@ -124,8 +124,8 @@
 					</s:iterator>
 				</table>
 				<div style="float:right;"> 
-					<a href="demo.png">
-						<img id="pei" src="demo.png" width="228px" height="180px">
+					<a href="bill_pieBill.action?bqm.type=${param['bqm.type']}&bqm.supplierUuid=${param['bqm.supplierUuid']}">
+						<img id="pei" src="bill_pieBill.action?bqm.type=${param['bqm.type']}&bqm.supplierUuid=${param['bqm.supplierUuid']}" width="228px" height="180px">
 					</a>
 				</div>
 			</div>
