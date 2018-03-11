@@ -182,6 +182,11 @@
 					\[\d+\]\.totalPriceView
 				</param>
 			</result>
+			
+			<result name="downloadBillReport" type="stream">
+				<param name="inputName">downloadExcelStream</param>
+				<param name="contentDisposition">filename=${xlsName}</param>
+			</result>
 		</action>
 	</package>
 </struts>

@@ -1,6 +1,8 @@
 package ca.mcmaster.erp.invoice.bill.web;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -52,10 +54,25 @@ public class BillAction extends BaseAction {
 		billEbi.writeJChartToOs(os, bqm);
 	}
 	
+	private InputStream downloadExcelStream;
+	public InputStream getDownloadExcelStream() {
+		return downloadExcelStream;
+	}
+	private String xlsName;
+	public String getXlsName() throws UnsupportedEncodingException{
+		return new String(xlsName.getBytes("utf-8"), "iso8859-1");
+	}
+	public String downloadBillReport() throws Exception{
+		xlsName = "2¨¦1o¡À¡§¡À¨ª.xls";
+		downloadExcelStream = billEbi.getExcelStream(bqm);
+		return "downloadBillReport";
+	}
+	
 	//----------------------------ajax-------------------------------------------
 	public List<OrderDetailModel> odmList;
 	public String ajaxGetBillByGood(){
 		odmList = billEbi.getBillByGoods(bqm);
 		return "ajaxGetBillByGood";
 	}
+
 }

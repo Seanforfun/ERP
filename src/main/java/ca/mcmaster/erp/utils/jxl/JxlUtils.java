@@ -1,6 +1,5 @@
 package ca.mcmaster.erp.utils.jxl;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -44,8 +43,8 @@ public class JxlUtils {
 	 * @param name	name of the work sheet.
 	 * @return
 	 */
-	public WritableSheet cSheet(WritableWorkbook workBook, int idx, String name){
-		return workBook.createSheet(name, idx);
+	public static WritableSheet cSheet(WritableWorkbook workBook, int idx, String name){
+		return workBook.createSheet(name, idx - 1);
 	}
 	
 	/**
@@ -56,7 +55,7 @@ public class JxlUtils {
 	 * @return
 	 */
 	public static Label createLabel(int row, int column, String value){
-		return new Label(column, row, value);
+		return new Label(column - 1, row - 1, value);
 	}
 	
 	/**
@@ -82,7 +81,7 @@ public class JxlUtils {
 	 * @param width
 	 */
 	public static void setColumnSize(WritableSheet writableSheet, int column, int width){
-		writableSheet.setColumnView(column, width);
+		writableSheet.setColumnView(column - 1, width);
 	}
 	
 	/**
@@ -93,7 +92,7 @@ public class JxlUtils {
 	 */
 	public static void setRowSize(WritableSheet writableSheet, int row, int height){
 		try {
-			writableSheet.setRowView(row, height);
+			writableSheet.setRowView(row - 1, height);
 		} catch (RowsExceededException e) {
 			e.printStackTrace();
 		}
@@ -110,7 +109,7 @@ public class JxlUtils {
 	 */
 	public static void merge(WritableSheet writableSheet, int col1, int row1, int col2, int row2){
 		try {
-			writableSheet.mergeCells(col1, row1, col2, row2);
+			writableSheet.mergeCells(col1 - 1, row1 -1, col2-1, row2-1);
 		} catch (RowsExceededException e) {
 			e.printStackTrace();
 		} catch (WriteException e) {

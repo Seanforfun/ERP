@@ -95,7 +95,7 @@
 						<td width="190">
 							<input type="text" size="18" onfocus="c.showMoreDay=false;c.show(this);" />
 						<td>
-							<a href="demo.xls">
+							<a href="bill_downloadBillReport.action?bqm.type=${param['bqm.type']}&bqm.supplierUuid=${param['bqm.supplierUuid']}">
 								<img src="${pageContext.request.contextPath}/images/can_b_03.gif" border="0" />
 							</a>
 					</tr>
