@@ -56,4 +56,8 @@ public class StoreDetailEbo implements StoreDetailEbi {
 	public List<StoreDetailModel> getAll(BaseQueryModel bqm) {
 		return null;
 	}
+
+	public List<Object[]> getWarningInfo() {
+		return storeDetailDao.getWarningInfo();
+	}
 }

@@ -1,6 +1,7 @@
 package ca.mcmaster.erp.utils.quartz;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -8,6 +9,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 import ca.mcmaster.erp.invoice.goods.service.ebi.GoodsEbi;
+import ca.mcmaster.erp.invoice.storedetail.service.ebi.StoreDetailEbi;
 import ca.mcmaster.erp.utils.format.FormatUtils;
 
 /**
@@ -17,6 +19,8 @@ import ca.mcmaster.erp.utils.format.FormatUtils;
 public class TimerTask {
 	@Resource(name="goodsEbi")
 	private GoodsEbi goodsEbi;
+	@Resource(name="storeDetailEbi")
+	private StoreDetailEbi storeDetailEbi;
 	@Resource(name="mailSender")
 	private MailSender mailSender;
 	/*update
@@ -36,17 +40,31 @@ public class TimerTask {
 	}
 	
 	public void storeWarning(){
-		SimpleMailMessage smm = new SimpleMailMessage();
+		/*select
+		g.name,
+		(sum(sd.num) < g.minNum) as rmin,
+		(sum(sd.num) > g.maxNum) as rmax
+		from
+			tbl_storedetail sd
+		left outer join
+			tbl_goods g
+		on
+			g.uuid = sd.goodsUuid
+		group by
+			sd.goodsUuid*/
+		List<Object[]> warningList = storeDetailEbi.getWarningInfo();
+		for(Object[] objs : warningList){
+			System.out.println(objs[0]);
+			System.out.println(objs[1]);
+			System.out.println(objs[2]);
+		}
 		
-		smm.setFrom("Xiao.Botao@outlook.com");
-		smm.setTo("xbtdx@126.com");
-		
-		smm.setSentDate(new Date());
-		smm.setSubject("ø‚¥Ê‘§æØ["+FormatUtils.formatDateTime(System.currentTimeMillis())+"]");
-		smm.setText("≤‚ ‘” º˛");
-		
-		mailSender.send(smm);
-		
-		System.out.println(mailSender);
+//		SimpleMailMessage smm = new SimpleMailMessage();
+//		smm.setFrom("Xiao.Botao@outlook.com");
+//		smm.setTo("xbtdx@126.com");
+//		smm.setSentDate(new Date());
+//		smm.setSubject("ø‚¥Ê‘§æØ["+FormatUtils.formatDateTime(System.currentTimeMillis())+"]");
+//		smm.setText("≤‚ ‘” º˛");
+//		mailSender.send(smm);
 	}
 }
