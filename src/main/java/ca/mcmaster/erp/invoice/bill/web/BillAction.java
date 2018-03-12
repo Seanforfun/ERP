@@ -63,7 +63,7 @@ public class BillAction extends BaseAction {
 		return new String(xlsName.getBytes("utf-8"), "iso8859-1");
 	}
 	public String downloadBillReport() throws Exception{
-		xlsName = "2¨¦1o¡À¡§¡À¨ª.xls";
+		xlsName = "²É¹º±¨±í.xls";
 		downloadExcelStream = billEbi.getExcelStream(bqm);
 		return "downloadBillReport";
 	}

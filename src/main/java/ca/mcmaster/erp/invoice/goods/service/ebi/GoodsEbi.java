@@ -16,4 +16,9 @@ public interface GoodsEbi extends BaseEbi<GoodsModel> {
 	 * @return
 	 */
 	List<GoodsModel> getAllByGtm(Long uuid);
+
+	/**
+	 * @Description: Update the useNum in Quartz.
+	 */
+	void goodUseNumUpdate();
 }

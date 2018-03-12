@@ -33,4 +33,21 @@ public class GoodsImpl extends BaseImpl<GoodsModel> implements GoodsDao {
 		String hql = "select distinct gm from GoodsModel gm where gtm.uuid = ?";
 		return this.getHibernateTemplate().find(hql, uuid);
 	}
+
+	public void goodUseNumUpdate() {
+		/*update
+		tbl_goods g
+		set
+			useNum = 
+		(
+		select
+			count(uuid)
+		from
+			tbl_orderdetail
+		where
+			goodsuuid = g.uuid
+		)*/
+		String hql = "update GoodsModel g set useNum = (select count(odm.uuid) from OrderDetailModel odm where g.uuid = odm.gm.uuid)";
+		this.getHibernateTemplate().bulkUpdate(hql);
+	}
 }

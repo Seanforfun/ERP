@@ -21,6 +21,7 @@ public class GoodsEbo implements GoodsEbi {
 	@Resource(name="goodsDao")
 	private GoodsDao goodsDao;
 	public void save(GoodsModel t) {
+		t.setUseNum(0);
 		goodsDao.save(t);
 	}
 
@@ -29,7 +30,9 @@ public class GoodsEbo implements GoodsEbi {
 	}
 
 	public void update(GoodsModel t) {
-		goodsDao.update(t);
+		GoodsModel temp = goodsDao.get(t.getUuid());
+		temp.setUseNum(temp.getUseNum() + 1);
+		goodsDao.update(temp);
 	}
 
 	public GoodsModel get(Serializable uuid) {
@@ -55,5 +58,9 @@ public class GoodsEbo implements GoodsEbi {
 
 	public List<GoodsModel> getAllByGtm(Long uuid) {
 		return goodsDao.getAllByGtmUuid(uuid);
+	}
+
+	public void goodUseNumUpdate() {
+		goodsDao.goodUseNumUpdate();
 	}
 }

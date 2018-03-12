@@ -16,6 +16,7 @@ public class GoodsModel {
 	private String unit;
 	private Double inprice;
 	private Double outprice;
+	private Integer useNum;
 	
 	private String inpriceView;
 	private String outpriceView;
@@ -76,5 +77,11 @@ public class GoodsModel {
 	public void setOutprice(Double outprice) {
 		this.outprice = outprice;
 		this.outpriceView = FormatUtils.formatMoney(outprice);
+	}
+	public Integer getUseNum() {
+		return useNum;
+	}
+	public void setUseNum(Integer useNum) {
+		this.useNum = useNum;
 	}
 }

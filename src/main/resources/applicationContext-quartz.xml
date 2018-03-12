@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="doTime1"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="doTime1" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobTask"/>
+		<property name="cronExpression" value="0 0 2 * * ?"></property>
+	</bean>
+	<bean id="jobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="timerTask"/>
+		<property name="targetMethod" value="goodUseNumUpdate"/>
+	</bean>
+	<bean name="timerTask" class="ca.mcmaster.erp.utils.quartz.TimerTask"></bean>
+</beans>
