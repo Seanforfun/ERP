@@ -1,5 +1,6 @@
 package ca.mcmaster.erp.utils.quartz;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -52,19 +53,40 @@ public class TimerTask {
 			g.uuid = sd.goodsUuid
 		group by
 			sd.goodsUuid*/
+		Boolean sendFlag = false;
 		List<Object[]> warningList = storeDetailEbi.getWarningInfo();
+		//objs[0]:name; objs[1]:rmin; objs[2]:rmax
+		StringBuilder sb = new StringBuilder();
 		for(Object[] objs : warningList){
-			System.out.println(objs[0]);
-			System.out.println(objs[1]);
-			System.out.println(objs[2]);
+			
+			if(((BigInteger)objs[1]).intValue() == 1){
+				sb.append("商品【");
+				String goodsName = objs[0].toString();
+				sb.append(goodsName);
+				sb.append("】库存低于下限，请开始补货。");
+				sb.append("\r\n");
+				sendFlag = true;
+				continue;
+			}
+			if(((BigInteger)objs[2]).intValue() == 1){
+				sb.append("商品【");
+				String goodsName = objs[0].toString();
+				sb.append(goodsName);
+				sb.append("】库存超过上限，请停止补货。");
+				sb.append("\r\n");
+				sendFlag = true;
+			}
 		}
-		
-//		SimpleMailMessage smm = new SimpleMailMessage();
-//		smm.setFrom("Xiao.Botao@outlook.com");
-//		smm.setTo("xbtdx@126.com");
-//		smm.setSentDate(new Date());
-//		smm.setSubject("库存预警["+FormatUtils.formatDateTime(System.currentTimeMillis())+"]");
-//		smm.setText("测试邮件");
-//		mailSender.send(smm);
+//		System.out.println(sb.toString());
+		if(sendFlag){
+			SimpleMailMessage smm = new SimpleMailMessage();
+			smm.setFrom("Xiao.Botao@outlook.com");
+			smm.setTo("xbtdx@126.com");
+			smm.setSentDate(new Date());
+			smm.setSubject("库存预警["+FormatUtils.formatDateTime(System.currentTimeMillis())+"]");
+			smm.setText(sb.toString());
+			mailSender.send(smm);
+			System.out.println("已发送邮件");
+		}
 	}
 }

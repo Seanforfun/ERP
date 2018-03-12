@@ -27,7 +27,7 @@
 	
 	<bean id="doTime2" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="jobTask2"/>
-		<property name="cronExpression" value="0/5 * * * * ?"></property>
+		<property name="cronExpression" value="0 0 2 * * ?"></property>
 	</bean>
 	<bean id="jobTask2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="timerTask"/>
