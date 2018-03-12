@@ -17,6 +17,8 @@ public class GoodsModel {
 	private Double inprice;
 	private Double outprice;
 	private Integer useNum;
+	private Integer minNum;
+	private Integer maxNum;
 	
 	private String inpriceView;
 	private String outpriceView;
@@ -83,5 +85,17 @@ public class GoodsModel {
 	}
 	public void setUseNum(Integer useNum) {
 		this.useNum = useNum;
+	}
+	public Integer getMinNum() {
+		return minNum;
+	}
+	public void setMinNum(Integer minNum) {
+		this.minNum = minNum;
+	}
+	public Integer getMaxNum() {
+		return maxNum;
+	}
+	public void setMaxNum(Integer maxNum) {
+		this.maxNum = maxNum;
 	}
 }

@@ -16,6 +16,8 @@
         		<property name="inprice"/>
         		<property name="outprice"/>
         		<property name="useNum"/>
+        		<property name="minNum"/>
+        		<property name="maxNum"/>
         		<many-to-one name="gtm" 
         		class="ca.mcmaster.erp.invoice.goodstype.model.GoodsTypeModel" 
         		column="goodsTypeuuid"/>

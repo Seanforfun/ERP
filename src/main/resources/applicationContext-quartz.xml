@@ -11,16 +11,28 @@
 		<property name="triggers">
 			<list>
 				<ref bean="doTime1"/>
+				<ref bean="doTime2"/>
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="doTime1" class="org.springframework.scheduling.quartz.CronTriggerBean">
-		<property name="jobDetail" ref="jobTask"/>
+		<property name="jobDetail" ref="jobTask1"/>
 		<property name="cronExpression" value="0 0 2 * * ?"></property>
 	</bean>
-	<bean id="jobTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<bean id="jobTask1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="timerTask"/>
 		<property name="targetMethod" value="goodUseNumUpdate"/>
 	</bean>
-	<bean name="timerTask" class="ca.mcmaster.erp.utils.quartz.TimerTask"></bean>
+	
+	<bean id="doTime2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobTask2"/>
+		<property name="cronExpression" value="0/5 * * * * ?"></property>
+	</bean>
+	<bean id="jobTask2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="timerTask"/>
+		<property name="targetMethod" value="storeWarning"/>
+	</bean>
+	
+	<bean name="timerTask" class="ca.mcmaster.erp.utils.quartz.TimerTask"/>
 </beans>
